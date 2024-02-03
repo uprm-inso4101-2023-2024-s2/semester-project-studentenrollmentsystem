@@ -4,7 +4,7 @@
   is done so that it can be reviewed by Managers and Team Leaders before being committed.
 
 
-## How to use (Depends on Lang & Framework):
+## How to use:
 Here I will be putting a small guide to setting up the project depending on what we decide on.
 
 ## Resources
