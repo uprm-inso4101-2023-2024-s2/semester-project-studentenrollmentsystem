@@ -5,9 +5,14 @@
 
 
 ## How to use:
-Here I will be putting a small guide to setting up the project depending on what we decide on.
-
+* Install npm/node if you do not already have it installed [here](https://nodejs.org/en/download)
+* Run npm install to download all dependencies
+* Use `npm start` to run the project
+  
 ## Resources
 Further learning for the tools we are using or links to other stuff we use.
   
  * [Figma](https://www.figma.com/file/IWqzrTlf0xV8O1M3G8rldM/Student-Enrollment-Platform---SWE?type=design&node-id=0%3A1&mode=design&t=4TCzbT35dAltGejj-1)
+ * [React Docs](https://react.dev/learn)
+ * [Express Docs](https://expressjs.com/en/guide/routing.html)
+ * [Sequelize](https://sequelize.org/docs/v6/getting-started/)
