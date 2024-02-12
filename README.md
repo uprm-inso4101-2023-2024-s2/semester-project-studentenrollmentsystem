@@ -1,5 +1,5 @@
-The student page file is *studentPage.js* (src/pages/studentPage.js).
-The student page file for style is *studentPage.css* (src/styles/pages/studentPage.js).
+* The student page file is *studentPage.js* (src/pages/studentPage.js).
+* The student page file for style is *studentPage.css* (src/styles/pages/studentPage.js).
 ____________________________________________________________________________________________________________________
 
 ## Contributing
