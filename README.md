@@ -1,6 +1,6 @@
+## For working on the Student Page
 * The student page file is *studentPage.js* (src/pages/studentPage.js).
 * The student page file for style is *studentPage.css* (src/styles/pages/studentPage.js).
-____________________________________________________________________________________________________________________
 
 ## Contributing
 * Do not work on the main branch directly, work on your own branch.
