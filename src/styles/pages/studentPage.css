@@ -1,0 +1,78 @@
+/* .StudentPage {
+    background-color: rgb(0, 146, 102);
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+} */
+
+*
+{
+  margin:0;
+}
+
+.topbar
+{
+  height: 1%;
+  width: 100%;
+  padding: 0.1rem;
+  background-color: rgb(0, 146, 102);
+  color:white;
+  transition:all ease;
+}
+
+.topbar #btn1
+{
+  font-size: 30px;
+  cursor: pointer;
+  rotate: 0deg;
+  transition: all ease 0.35s;
+}
+
+.list
+{
+  opacity:1;
+  transition: all ease;
+  display:flex;
+}
+
+.topbar #btn1:hover
+{
+  color:black;
+}
+
+.btntitle
+{
+  font-family:fantasy;
+  font-size: 26px;
+}
+
+.user
+{
+  text-align: right;
+  float:right;
+}
+
+.user-img
+{
+  width: 25px;
+  border-radius: 100%;
+  border: 2px solid black;
+}
+
+.main-page
+{
+  display:flex;
+}
+
+.profile-side
+{
+  flex: 30%;
+  outline: auto;
+}
+
+.curriculum-side
+{
+  flex: 70%;
+  outline: auto;
+}
