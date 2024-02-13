@@ -1,0 +1,116 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+
+.navbar {
+    display: flex;
+    background-color: #40976A;
+    justify-content: flex-start;
+    align-items: center;
+    color: white;
+    padding: 0.5rem 1rem;
+    position: relative;
+
+    .logo {
+        a {
+            font-family: "Bebas Neue", sans-serif;
+            color: white;
+            text-decoration: none;
+            font-size: 30px;
+            margin-left: 20px;
+        }
+    }
+
+    a {
+        color: white;
+        text-decoration: none;
+        transition: color 0.1s;
+
+        &:hov00er {
+            color: #ddd;
+        }
+    }
+}
+
+
+.hamburger {
+    cursor: pointer;
+    display: block;
+    /* Always display, adjust based on your media query */
+    position: relative;
+    /* Ensures it's on top but consider z-index if needed */
+    z-index: 2;
+
+    /* Higher than the navLinks */
+    .bar {
+        width: 25px;
+        height: 3.6px;
+        background-color: white;
+        margin: 5px 0;
+        transition: 0.4s;
+    }
+}
+
+.navLinks {
+    display: flex;
+    flex-direction: column;
+    background-color: #40976A;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 15%;
+    transform: translateX(-100%);
+    transition: transform 0.2s ease-out;
+    height: 95vh;
+    overflow: hidden;
+    z-index: 1;
+    list-style-type: none;
+    /* Remove list iƒtem dots */
+    margin: 0px;
+
+
+    a {
+        color: white;
+        text-decoration: none;
+        transition: color 0.3s;
+        font-family: 'Bebas Neue', sans-serif;
+        font-size: 30px;
+
+        &:hover {
+            color: #ddd;
+        }
+    }
+}
+
+.showMenu {
+    max-height: none;
+    /* Allow the menu to expand as needed */
+    transform: translateX(0%);
+    /* Adjust if you want it to overlay from the top */
+
+}
+
+
+// Adjust the media query to change the display property of the hamburger menu
+@media (max-width: 768px) {
+    .navbar {
+        .hamburger {
+            display: block;
+        }
+
+
+        .navLinks {
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            padding: 0px;
+
+            a {
+                font-size: 40px;
+
+            }
+
+            &.showMenu {
+                display: flex;
+            }
+        }
+    }
+}
