@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import styles from "../styles/components/navbar.module.scss";
+import { Link } from "react-router-dom";
 
 export default function Navbar() {
   // Determine if NavBar menu is open or closed
@@ -17,20 +18,14 @@ export default function Navbar() {
         <div className={styles.bar}></div>
       </div>
       <div className={styles.logo}>
-        <a href="/">MATRICULA UPRM</a>
+        <Link to="/">MATRICULA UPRM</Link>
       </div>
       <ul className={`${styles.navLinks} ${isOpen ? styles.showMenu : ""}`}>
         <li>
-          <a href="/home">Home</a>
+          <Link to="/home">Home</Link>
         </li>
         <li>
-          <a href="/about">About</a>
-        </li>
-        <li>
-          <a href="/services">Services</a>
-        </li>
-        <li>
-          <a href="/contact">Contact</a>
+          <Link to="/calendar">Calendar</Link>
         </li>
       </ul>
     </nav>
