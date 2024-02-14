@@ -1,5 +1,6 @@
 import React from "react";
 import "../styles/pages/studentPage.css"
+import courseTable from "../components/courseTable";
 
 function StudentPage() {
   return (
