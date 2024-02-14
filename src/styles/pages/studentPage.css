@@ -26,19 +26,21 @@
   font-size: 30px;
   cursor: pointer;
   rotate: 0deg;
-  transition: all ease 0.35s;
+  transition: all ease 0.5s;
+  opacity: 1;
 }
 
-.list
+.sidebar #btn2
 {
-  opacity:1;
-  transition: all ease;
-  display:flex;
+  font-size: 30px;
+  cursor: pointer;
+  transition: all ease 0.35s;
+  float:right;
 }
 
 .topbar #btn1:hover
 {
-  color:black;
+  /* color:black; */
 }
 
 .btntitle
@@ -55,9 +57,21 @@
 
 .user-img
 {
-  width: 25px;
+  width: 28px;
   border-radius: 100%;
   border: 2px solid black;
+}
+
+.sidebar
+{
+  position: absolute;
+  background-color: rgb(0, 146, 102);
+  transition: all ease 0.5s;
+  height:100%;
+  width: 0;
+  opacity:0;
+  color:white;
+  padding: 0.1rem;  
 }
 
 .main-page
