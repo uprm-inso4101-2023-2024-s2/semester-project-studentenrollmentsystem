@@ -1,3 +1,7 @@
+## Note
+* For the moment the student page has it's own navbar for testing purposes.
+* The final product, however, shall include the universal navbar compononent created by Kevin Ibarra.
+
 ## For working on the Student Page
 * The student page file is *studentPage.js* (src/pages/studentPage.js).
 * The student page file for style is *studentPage.css* (src/styles/pages/studentPage.css).
