@@ -1,0 +1,20 @@
+.LoginPage {
+    background-color: rgb(255, 255, 255);
+    width: 100%;
+  
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.LoginPage-header {
+      text-align: center;
+      font-size: 24px;
+      color: #333; 
+}
+
+.vertical-rectangle {
+    background-size: cover; 
+    background-position: center; 
+    display: inline-block; 
+  }
