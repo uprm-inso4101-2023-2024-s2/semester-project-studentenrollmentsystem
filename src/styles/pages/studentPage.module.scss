@@ -1,9 +1,5 @@
 /* .StudentPage {
     background-color: rgb(0, 146, 102);
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
 } */
 
 *
@@ -18,24 +14,7 @@
   padding: 0.1rem;
   background-color: rgb(0, 146, 102);
   color:white;
-  transition:all ease;
-}
-
-.topbar #btn1
-{
-  font-size: 30px;
-  cursor: pointer;
-  rotate: 0deg;
-  transition: all ease 0.5s;
-  opacity: 1;
-}
-
-.sidebar #btn2
-{
-  font-size: 30px;
-  cursor: pointer;
-  transition: all ease 0.35s;
-  float:right;
+  transition:all ease 0.5s;
 }
 
 .btntitle
@@ -50,7 +29,7 @@
   float:right;
 }
 
-.user-img
+.userimg
 {
   width: 28px;
   border-radius: 100%;
@@ -69,20 +48,43 @@
   padding: 0.1rem;  
 }
 
-.main-page
+.mainpage
 {
   display:flex;
+
+  .profileside
+  {
+    flex: 30%;
+    outline: auto;
+  }
+
+  .curriculumside
+  {
+    flex: 70%;
+    outline: auto;
+    text-align: center;
+
+    .viewbutton
+    {
+      color:black;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .tableview
+    {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+    }
+  }
 }
 
-.profile-side
-{
-  flex: 30%;
-  outline: auto;
-}
 
-.curriculum-side
-{
-  flex: 70%;
-  outline: auto;
-  text-align: center;
-}
+
+
+
+

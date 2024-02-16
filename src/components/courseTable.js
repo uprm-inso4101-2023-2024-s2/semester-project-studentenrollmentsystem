@@ -5,7 +5,7 @@ export default function Coursetable()
 {
     return(
         <table className={styles.Coursetable}>
-        <tr>
+        <tr className={styles.mainrow}>
             <th>Curso</th>
             <th>Seccion</th>
             <th>Reuniones</th>

@@ -1,33 +1,33 @@
 import React from "react";
-import "../styles/pages/studentPage.css"
+import "../styles/pages/studentPage.module.scss";
+import styles from "../styles/pages/studentPage.module.scss";
 import Coursetable from "../components/courseTable";
+import Button from "../components/button";
 
 function StudentPage() {
   return (
     <>
-      <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet"></link>
-      <div className="sidebar" id="sidebarid">
-        <i className="bx bx-menu" id="btn2" onClick={closeNav}>
-        </i>
-      </div>
-      <div className="topbar" id="topbarid">
-        <i className="bx bx-menu" id="btn1" onClick={openNav}>
-        </i>
-        <span className="btntitle">
+      <div className={styles.topbar} id="topbarid">
+        <span className={styles.btntitle}>
           Perfil Estudiantil
         </span>
-        <span className="user">
-          <img src="https://as2.ftcdn.net/v2/jpg/00/64/67/27/1000_F_64672736_U5kpdGs9keUll8CRQ3p3YaEv2M6qkVY5.jpg" className="user-img"></img>
+        <span className={styles.user}>
+          <img src="https://as2.ftcdn.net/v2/jpg/00/64/67/27/1000_F_64672736_U5kpdGs9keUll8CRQ3p3YaEv2M6qkVY5.jpg" className={styles.userimg}></img>
         </span>
       </div>
 
-      <div className="main-page">
-        <div className="profile-side">
+      <div className={styles.mainpage}>
+        <div className={styles.profileside}>
           <h1>Profile</h1>
         </div>
-        <div className="curriculum-side">
+        <div className={styles.curriculumside}>
           <h1>Curriculum: Spring 2024</h1>
-          <Coursetable></Coursetable>
+          <div className={styles.viewbutton}>
+            <Button>Switch</Button>
+          </div>
+          <div className={styles.tableview}>
+            <Coursetable></Coursetable>
+          </div>
         </div>
       </div>
     </>
