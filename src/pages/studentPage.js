@@ -1,6 +1,6 @@
 import React from "react";
 import "../styles/pages/studentPage.css"
-import courseTable from "../components/courseTable";
+import Coursetable from "../components/courseTable";
 
 function StudentPage() {
   return (
@@ -26,7 +26,8 @@ function StudentPage() {
           <h1>Profile</h1>
         </div>
         <div className="curriculum-side">
-          <h1>Curriculum</h1>
+          <h1>Curriculum: Spring 2024</h1>
+          <Coursetable></Coursetable>
         </div>
       </div>
     </>

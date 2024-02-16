@@ -38,11 +38,6 @@
   float:right;
 }
 
-.topbar #btn1:hover
-{
-  /* color:black; */
-}
-
 .btntitle
 {
   font-family:fantasy;
@@ -89,4 +84,5 @@
 {
   flex: 70%;
   outline: auto;
+  text-align: center;
 }
