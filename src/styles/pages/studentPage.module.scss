@@ -1,0 +1,55 @@
+/* .StudentPage {
+    background-color: rgb(0, 146, 102);
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+} */
+
+.topbar
+{
+  height: 1%;
+  width: 100%;
+  padding: 0.1rem;
+  background-color: rgb(0, 146, 102);
+  color:white;
+  transition:all ease;
+
+  .btntitle
+  {
+    font-family:fantasy;
+    font-size: 26px;
+  }
+
+  .user
+  {
+    text-align: right;
+    float:right;
+  }
+
+  .userimg
+  {
+    width: 28px;
+    border-radius: 100%;
+    border: 2px solid black;
+  }
+}
+
+.mainpage
+{
+  display:flex;
+
+  .profileside
+  {
+    flex: 30%;
+    outline: auto;
+  }
+
+  .curriculumside
+  {
+    flex: 70%;
+    outline: auto;
+  }
+}
+
+
