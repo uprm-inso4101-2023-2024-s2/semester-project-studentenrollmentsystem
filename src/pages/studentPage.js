@@ -1,10 +1,17 @@
 import React from "react";
-import "../styles/pages/studentPage.module.scss";
 import styles from "../styles/pages/studentPage.module.scss";
-import Coursetable from "../components/courseTable";
+import { useState } from "react";
 import Button from "../components/button";
+import Coursetable from "../components/courseTable";
+import Scheduletable from "../components/scheduleTable";
 
 function StudentPage() {
+   const [isTable1, setIsTable1] = useState(true);
+   const toggleIsTable1 = () => 
+   {
+     setIsTable1(current => !current);
+   };
+  
   return (
     <>
       <div className={styles.topbar} id="topbarid">
@@ -23,10 +30,10 @@ function StudentPage() {
         <div className={styles.curriculumside}>
           <h1>Curriculum: Spring 2024</h1>
           <div className={styles.viewbutton}>
-            <Button>Switch</Button>
+            <Button onClick={toggleIsTable1}>Switch</Button>
           </div>
           <div className={styles.tableview}>
-            <Coursetable></Coursetable>
+            {<Whichtable which={isTable1}/>}
           </div>
         </div>
       </div>
@@ -34,19 +41,14 @@ function StudentPage() {
   );
 }
 
-export default StudentPage;
+function Whichtable(props)
+{
+  const which = props.which;
+  return(
+  <>
+    {which ? <Coursetable/> : <Scheduletable/>}
+  </>
+  );
+}
 
-function openNav()
-{
-  document.getElementById("sidebarid").style.width = "10%";
-  document.getElementById("sidebarid").style.opacity = "1";
-  document.getElementById("btn1").style.rotate = "90deg";
-  document.getElementById("btn1").style.opacity = "0";
-}
-function closeNav()
-{
-  document.getElementById("sidebarid").style.width = "0";
-  document.getElementById("sidebarid").style.opacity = "0";
-  document.getElementById("btn1").style.rotate = "0deg";
-  document.getElementById("btn1").style.opacity = "1";
-}
+export default StudentPage;

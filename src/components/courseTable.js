@@ -5,9 +5,10 @@ export default function Coursetable()
 {
     return(
         <table className={styles.Coursetable}>
-        <tr className={styles.mainrow}>
+        <tr>
             <th>Curso</th>
             <th>Seccion</th>
+            <th>Creditos</th>
             <th>Reuniones</th>
             <th>Profesor</th>
             <th>Info. Adicional</th>
@@ -15,6 +16,7 @@ export default function Coursetable()
         <tr>
             <td>MATE4145</td>
             <td>070</td>
+            <td>4</td>
             <td>
                 1:00pm-2:50pm LW AE406
                 <br/>1:00pm-1:50pm V AE406
@@ -27,12 +29,6 @@ export default function Coursetable()
         <tr>
             <td>A</td>
             <td>B</td>
-            <td>C</td>
-            <td>D</td>
-            <td>F</td>
-        </tr>
-        <tr>
-            <td>A</td>
             <td>B</td>
             <td>C</td>
             <td>D</td>
@@ -41,12 +37,22 @@ export default function Coursetable()
         <tr>
             <td>A</td>
             <td>B</td>
+            <td>B</td>
             <td>C</td>
             <td>D</td>
             <td>F</td>
         </tr>
         <tr>
             <td>A</td>
+            <td>B</td>
+            <td>B</td>
+            <td>C</td>
+            <td>D</td>
+            <td>F</td>
+        </tr>
+        <tr>
+            <td>A</td>
+            <td>B</td>
             <td>B</td>
             <td>C</td>
             <td>D</td>

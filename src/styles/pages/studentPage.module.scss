@@ -2,10 +2,6 @@
     background-color: rgb(0, 146, 102);
 } */
 
-*
-{
-  margin:0;
-}
 
 .topbar
 {
@@ -15,37 +11,25 @@
   background-color: rgb(0, 146, 102);
   color:white;
   transition:all ease 0.5s;
-}
 
-.btntitle
-{
-  font-family:fantasy;
-  font-size: 26px;
-}
+  .btntitle
+  {
+    font-family:fantasy;
+    font-size: 26px;
+  }
 
-.user
-{
-  text-align: right;
-  float:right;
-}
+  .user
+  {
+    text-align: right;
+    float:right;
+  }
 
-.userimg
-{
-  width: 28px;
-  border-radius: 100%;
-  border: 2px solid black;
-}
-
-.sidebar
-{
-  position: absolute;
-  background-color: rgb(0, 146, 102);
-  transition: all ease 0.5s;
-  height:100%;
-  width: 0;
-  opacity:0;
-  color:white;
-  padding: 0.1rem;  
+  .userimg
+  {
+    width: 28px;
+    border-radius: 100%;
+    border: 2px solid black;
+  }
 }
 
 .mainpage
@@ -54,31 +38,50 @@
 
   .profileside
   {
-    flex: 30%;
+    flex: 35%;
     outline: auto;
   }
 
   .curriculumside
   {
-    flex: 70%;
-    outline: auto;
+    flex: 65%;
     text-align: center;
+    position: relative;
+    transition: all ease 0.5s;
+    outline: auto;
 
     .viewbutton
     {
-      color:black;
       display: flex;
       flex-direction: row;
       justify-content: center;
       align-items: center;
+      position: relative;
     }
 
     .tableview
     {
       display: flex;
-      flex-direction: row;
+      flex-direction: column;
       justify-content: center;
       align-items: center;
+
+      // .table1
+      // {
+      //   opacity: 1;
+      //   transition: all ease 0.5s;
+      //   border:0.5rem solid white;
+      //   position:absolute;
+      //   padding-bottom:10rem;
+      // }
+
+      // .table2
+      // {
+      //   opacity:0;
+      //   transition: all ease 0.5s;
+      //   border:0.5rem solid white;
+      //   position: relative;
+      // }
     }
   }
 }
