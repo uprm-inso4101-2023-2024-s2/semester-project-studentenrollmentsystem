@@ -4,6 +4,7 @@ import './App.css';
 import Navbar from './components/navbar';
 import HomePage from './pages/HomePage';
 import Calendar from './pages/Calendar';
+import SignUp from './pages/SignUp';
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/calendar" element={<Calendar />} />
+        <Route path="/signup" element={<SignUp />} />
         {/* Add more routes as necessary */}
       </Routes>
     </div>
