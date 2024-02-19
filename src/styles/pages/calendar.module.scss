@@ -23,8 +23,12 @@
 
             }
         }
-
-
     }
+    
+    .calendarContainer {
+        flex-grow: 1;
+        margin-left: 20px; /* Add margin to create space between the header and the calendar */
+        margin-right: 20px; /* Add margin to create space between the calendar and the edges of the website */
+      }
 
 }
