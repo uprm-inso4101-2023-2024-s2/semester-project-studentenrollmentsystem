@@ -39,10 +39,11 @@ function WeeklySchedule() {
             selectable={true}
             select={handleDateSelect}
             events={events}
+            eventColor="#05B774" 
             headerToolbar={{
                 left: 'prev,next today',
                 center: 'title',
-                right: '' // Keep the calendar in a weekly view
+                right: '' 
             }}
         />
     );
