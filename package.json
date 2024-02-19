@@ -17,7 +17,6 @@
     "pg-hstore": "^2.3.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-scripts": "^3.0.1",
     "sass": "^1.70.0",
     "uuid": "^9.0.1",
     "web-vitals": "^2.1.4"
@@ -49,13 +48,4 @@
     ]
   },
   "devDependencies": {
-    "@types/express": "^4.17.21",
-    "nodemon": "^3.0.3",
-    "typescript": "^5.3.3"
-  },
-  "description": "* Do not work on the main branch directly, work on your own branch.\r * If you are working on a part of your project, submit a PR when your entire feature\r   is done so that it can be reviewed by Managers and Team Leaders before being committed.",
-  "main": "index.js",
-  "keywords": [],
-  "author": "",
-  "license": "ISC"
 }
