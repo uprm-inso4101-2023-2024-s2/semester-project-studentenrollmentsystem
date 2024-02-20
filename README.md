@@ -16,3 +16,6 @@ Further learning for the tools we are using or links to other stuff we use.
  * [React Docs](https://react.dev/learn)
  * [Express Docs](https://expressjs.com/en/guide/routing.html)
  * [Sequelize](https://sequelize.org/docs/v6/getting-started/)
+
+
+Course Card Component
