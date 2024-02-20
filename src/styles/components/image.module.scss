@@ -1,0 +1,11 @@
+.vertical-rectangle {
+    background-size: cover; 
+    background-position: center; 
+    display: inline-block; 
+  }
+
+  @media only screen and (max-width: 600px) {
+    .vertical-rectangle {
+      display: none;
+    }
+  }
