@@ -1,0 +1,50 @@
+.Courses {
+    background-color: rgb(108, 108, 108);
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* Additional styles for better responsiveness can be added here */
+    padding: 20px; /* Adds some padding around the content */
+  }
+  
+  .Courses-header {
+    text-align: center;
+    font-size: 24px;
+    color: #333;
+  }
+  
+
+.CourseCard {
+    border: 1px solid #e5e7eb; /* Light gray border */
+    max-width: 320px; /* Adjust based on your preference */
+    display: flex;
+    flex-direction: column;
+    background-color: #f9fafb; /* Light gray background */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Simple box shadow */
+    border-radius: 8px; /* Rounded corners */
+    overflow: hidden;
+    margin: 20px; /* Space it out from surrounding elements */
+  }
+  
+  .CourseCard-header {
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .CourseCard-thumbnail {
+    width: 100%;
+  }
+  
+  .CourseCard-body {
+    padding: 16px;
+  }
+  
+  .CourseCard-footer {
+    padding: 16px;
+    display: flex;
+    justify-content: center;
+  }
+  
