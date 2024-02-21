@@ -1,71 +1,90 @@
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
-
-.LoginPage {
-    background-color: rgb(255, 255, 255);
-    width: 100%;
-  
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.signupContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
 }
 
-.LoginPage-header {
-      text-align: center;
-      font-size: 24px;
-      color: #333; 
+.SignupBox {
+  background-color: #D9D9D9;
+  width: 400px;
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
 }
 
-h1 {
-    font-family: "Bebas Neue", sans-serif;
-    font-size: 6rem;
+h2 {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.nameFields {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.field:not(:last-child) {
+  margin-bottom: 15px; // Add margin-bottom to all fields except the last one
+}
+
+form label {
+  font-size: 18px;
+  text-align: left;
+  margin-bottom: 5px;
+}
+
+form input[type="text"],
+form input[type="email"],
+form input[type="password"] {
+  padding: 10px;
+  border: 1px solid gray;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+input[type="button"] {
+  width: 100%;
+  padding: 10px 0;
+  margin-top: 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: #05B774;
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s;
+
+  &:hover {
+    background-color: #04865a;
+  }
 }
 
 p {
-    font-size: 100%;
+  text-align: center;
+  margin-top: 20px;
 }
 
+a {
+  color: #05B774;
+  text-decoration: none;
 
-.loginButton {
-    margin-top: 10px;
-    border-radius: 20px;
-    padding: 10px;
-    font-size: 20px;
-    width: 40%;
-    background-color: #40976A;
-    cursor: pointer;
-    color: white;
-    border: 2px solid #40976A;
-    transition: background-color 0.3s ease, transform 0.3s ease;
+  &:hover {
+    text-decoration: underline;
   }
-  
-  .loginButton:hover {
-    background-color: #2a6955;
-    transform: scale(1.05);
-  }
-
-  .signUpButton {
-    text-decoration: none;
-    font-size: 100%;
-    text-align: center;
-    background-color: #D9D9D9;
-    border-radius: 20px;
-    width: 70px;
-    color: GrayText;
-    padding: 0.2%;
-    transition: background-color 0.3s ease, transform 0.3s ease;
-  }
-  
-  .signUpButton:hover {
-    background-color: #CCCCCC;
-    transform: scale(1.05);
-  }
-  
-@media only screen and (max-width: 600px) {
-    .image {
-      display: none;
-    }
-
-    h1 {
-        font-size: xx-large;
-    }
-  }
+}
