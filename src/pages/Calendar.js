@@ -3,6 +3,8 @@ import styles from "../styles/pages/calendar.module.scss";
 import Button from "../components/button";
 import TextInput from "../components/textinput";
 import Card from "../components/card";
+import DailySchedule from "../components/DailySchedule"; // assuming Schedule component is located in the same directory
+import MonthlySchedule from "../components/MonthlySchedule";
 import WeeklySchedule from "../components/WeeklySchedule";
 
 export default function CalendarPage() {
@@ -15,12 +17,16 @@ export default function CalendarPage() {
             <Button>Day</Button>
             <Button>Month</Button>
             <Button>Week</Button>
-          </div>
-        </div>
-      </div>
+          </div> 
+        </div> 
+      </div> 
+
+      <div className={styles.calendarContainer}> {/* Add a container for the calendar */}
+        <DailySchedule /> 
+      </div> 
       <div className={styles.schedule}>
         <WeeklySchedule />
       </div>
-    </div>
+    </div>    
   );
 }
