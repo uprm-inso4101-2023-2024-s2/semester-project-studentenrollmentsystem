@@ -1,0 +1,21 @@
+.filter {
+  text-align: right;
+  width: 350px;
+
+  // Menu hidden by default.
+  [id=filterMenu] {
+    display: none;
+  }
+}
+
+.button {
+  width: 30px;
+  height: 30px;
+  background-image: url("../../../public/filter.png");
+  background-repeat: no-repeat;
+  background-size: 26px 26px;
+
+  &:hover {
+    background-color: darken(#ffffff, 15%); 
+  }
+}
