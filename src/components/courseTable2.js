@@ -10,8 +10,8 @@ export default function Coursetable2()
             <th>Seccion</th>
             <th>Creditos</th>
             <th>Horarios</th>
-            <th>Profesor</th>
-            <th>Info. Adicional</th>
+            <th>Professor</th>
+            <th>Grades</th>
         </tr>
         <tr>
             <td>MATE3031</td>
