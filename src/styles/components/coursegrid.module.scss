@@ -1,0 +1,27 @@
+$grid-gap: 20px;
+//$card-border-color: #ccc;
+//$card-shadow: 0 4px 8px rgba(0,0,0,0.1);
+
+.courseGrid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $grid-gap;
+    justify-content:flex-start;
+
+   // .course-card{
+   //     flex: 1;
+   //     min-width: 250px; //Min width for each card
+   //     max-width: 300px; //Max width for each card
+   //     border: 1px solid $card-border-color;
+   //     box-shadow: $card-shadow;
+
+   //     img {
+   //         width: 100%;
+   //         height: auto;
+ //       }
+//
+  //      h3, p {
+  //          margin: 10px 0;
+  //      }
+  //  }
+}

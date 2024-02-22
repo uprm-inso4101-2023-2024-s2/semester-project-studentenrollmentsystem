@@ -1,0 +1,31 @@
+// CourseCard.module.scss
+.courseCard {
+  flex: 1;
+  min-width: 250px;
+  max-width: 300px;
+  border: 1px solid #ccc;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  // rest of your styles
+
+
+.courseContent {
+    padding: 15px;
+
+    h3 {
+        margin-top: 0;
+        margin-bottom: 10px;
+        font-size: 1.25rem; // Example size, adjust as needed
+      }
+  
+      p {
+        margin: 0;
+        font-size: 1rem; // Example size, adjust as needed
+        color: #666; // Lighter text color for the description
+      }
+}
+
+}
