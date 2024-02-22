@@ -19,10 +19,12 @@ function OfferedCourses() {
             </div>
                 <CourseList courses={offeredCourses} />
             </div>
-
+                
+            {/* Remplaza offered courses por las tarjetas nuevas*/}
             <Card 
           imageUrl="https://upload.wikimedia.org/wikipedia/commons/e/e4/Color-blue.JPG" 
-          title="Advance Programming" 
+          courseName="Advance Programming"
+          instructor={"Bienvenido Velez"}
           credits ="4 credits" 
         />
         </body>
