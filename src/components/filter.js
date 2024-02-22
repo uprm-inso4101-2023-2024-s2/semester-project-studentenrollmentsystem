@@ -23,7 +23,8 @@ export default function Filter({courseList}) {
   const applyFilters = () => {
     const filteredCourseData = courseData
       .filter(x => x.degree == (degree == '' ? x.degree : degree))
-      .filter(y => y.credits == (credits == '' ? y.credits : credits));
+      .filter(y => y.credits == (credits == '' ? y.credits : credits))
+      .filter(z => z.name == (keyword == '' ? z.name : keyword));
     setFilteredData(filteredCourseData);
   };
 
@@ -63,7 +64,7 @@ export default function Filter({courseList}) {
                 <td>{course.degree}</td>
                 <td>{course.credits}</td>
               </tr>
-            ))};
+            ))}
           </tbody>
         </table>
       </div>
