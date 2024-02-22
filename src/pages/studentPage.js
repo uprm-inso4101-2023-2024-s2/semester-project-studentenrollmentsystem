@@ -51,8 +51,8 @@ function StudentPage() {
           <h1>Curriculum: Spring 2024</h1>
 
           <div className={styles.viewbutton}>
-            <Button onClick={toggleIsTable1}>Switch</Button>
             <Button2 onClick={toggleDropdown}>Past Semesters</Button2>
+            <Button onClick={toggleIsTable1}>Switch Views</Button>
             {isDropdownVisible && (
               <div className={styles.additionalButtons}>
                 <Button3 onClick={toggleIsTable2}>Fall Semester 2023</Button3>
