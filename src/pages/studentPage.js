@@ -2,30 +2,58 @@ import React, { useState, useEffect } from "react";
 import styles from "../styles/pages/studentPage.module.scss";
 
 function StudentPage() {
-  const [isEditing, setIsEditing] = useState(false);
+
+  const [profileImage, setProfileImage] = useState("https://as2.ftcdn.net/v2/jpg/00/64/67/27/1000_F_64672736_U5kpdGs9keUll8CRQ3p3YaEv2M6qkVY5.jpg");
+  const [name, setName] = useState("pedro");
+  const [depa, setDepa] = useState("INSO");
+  const [gpa, setGpa] = useState("4.00");
+  const [totalRemaining, setTotalRemaining] = useState(0);
+  const [totalCredits, setTotalCredits] = useState(0);
+  const [isProfileEditing, setIsProfileEditing] = useState(false);
+  const [isProfileSwitchOn, setIsProfileSwitchOn] = useState(false);
+  
   const [bio, setBio] = useState("Talk about you...");
   const [editedBio, setEditedBio] = useState("");
+  const [isBioEditing, setIsBioEditing] = useState(false);
   const [customLink1, setCustomLink1] = useState("");
   const [customLink2, setCustomLink2] = useState("");
   const [showAcademicCalendar, setShowAcademicCalendar] = useState(false);
+  const [customButtonText, setCustomButtonText] = useState(["", ""]);
+
 
   useEffect(() => {
     const setTitleToButton = () => {
       const pageTitle = document.title;
       if (customLink1) {
-        setCustomButtonText(1, pageTitle);
+
+        setCustomButtonText((prev) => {
+          const updatedArray = [...prev];
+          updatedArray[0] = pageTitle;
+          return updatedArray;
+        });
       }
       if (customLink2) {
-        setCustomButtonText(2, pageTitle);
+        setCustomButtonText((prev) => {
+          const updatedArray = [...prev];
+          updatedArray[1] = pageTitle;
+          return updatedArray;
+        });
       }
     };
     setTitleToButton();
   }, [customLink1, customLink2]);
 
-  const [customButtonText, setCustomButtonText] = useState(["", ""]);
 
-  const handleEdit = () => {
-    setIsEditing(true);
+  const handleProfileEdit = () => {
+    setIsProfileEditing(true);
+  };
+
+  const handleProfileSwitchToggle = () => {
+    setIsProfileSwitchOn((prev) => !prev);
+  };
+
+  const handleBioEdit = () => {
+    setIsBioEditing(true);
     setEditedBio(bio);
   };
 
@@ -33,13 +61,14 @@ function StudentPage() {
     setBio(e.target.value);
   };
 
-  const handleSave = () => {
-    setIsEditing(false);
+
+  const handleSaveBio = () => {
+    setIsBioEditing(false);
     console.log("Bio saved:", bio);
   };
 
-  const handleCancel = () => {
-    setIsEditing(false);
+  const handleCancelBio = () => {
+    setIsBioEditing(false);
     setBio(editedBio);
   };
 
@@ -50,17 +79,45 @@ function StudentPage() {
       const link = prompt("Enter the link:");
       if (link) {
         setLinkState(link);
-        setCustomButtonText(index, document.title);
+
+        setCustomButtonText((prev) => {
+          const updatedArray = [...prev];
+          updatedArray[index - 1] = document.title;
+          return updatedArray;
+        });
       }
     }
   };
 
+  const handleImageUpload = (event) => {
+    const file = event.target.files[0];
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      setProfileImage(reader.result);
+    };
+    if (file) {
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const handleSave = () => {
+    console.log("Name:", name);
+    console.log("Depa:", depa);
+    console.log("GPA:", gpa);
+    console.log("Total Remaining:", totalRemaining);
+    console.log("Total Credits:", totalCredits);
+    setIsProfileEditing(false);
+  };
+
+  
+  
+
   const generateDummyAcademicCalendar = () => {
     const currentDate = new Date();
     const firstDayOfMonth = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 1);
-    const numberOfDaysInMonth = new Date(firstDayOfMonth.getFullYear(), firstDayOfMonth.getMonth() + 1, 0).getDate();    
+    const numberOfDaysInMonth = new Date(firstDayOfMonth.getFullYear(), firstDayOfMonth.getMonth() + 1, 0).getDate();
     const dummyCalendarData = Array.from({ length: numberOfDaysInMonth }, (_, index) => {
-      const date = new Date(firstDayOfMonth.getFullYear(), firstDayOfMonth.getMonth(), index + 1);     
+      const date = new Date(firstDayOfMonth.getFullYear(), firstDayOfMonth.getMonth(), index + 1);
       return `${date.toLocaleDateString("en-US", { weekday: "long" })} ${date.getDate()} ${date.toLocaleDateString("en-US", { month: "long" })} ${date.getFullYear()} - Event`;
     });
 
@@ -77,22 +134,109 @@ function StudentPage() {
   };
 
   return (
-    <>
+    <div className={styles.StudentPage}>
+      <label htmlFor="profile-image-upload" className={styles.newProfileIcon} onClick={() => document.getElementById('profile-image-upload').click()}>
+        <img
+          src={profileImage || "/default-profile-icon.png"}
+          className={styles.profileIcon}
+          alt="profile"
+        />
+      </label>
+
       <div className={styles.topbar} id="topbarid">
-        <span className={styles.btntitle}>Perfil Estudiantil</span>
+        <span className={styles.btntitle} onClick={() => window.scrollTo(0, 0)}>
+          Perfil Estudiantil
+        </span>
         <span className={styles.user}>
-          <img
-            src="https://as2.ftcdn.net/v2/jpg/00/64/67/27/1000_F_64672736_U5kpdGs9keUll8CRQ3p3YaEv2M6qkVY5.jpg"
-            className={styles.userimg}
-            alt="user"
-          />
+          <label htmlFor="profile-image-upload">
+            <img
+              src={profileImage || "/default-profile-icon.png"}
+              className={styles.userimg}
+              alt="user"
+            />
+          </label>
         </span>
       </div>
+
+      <input
+        id="profile-image-upload"
+        type="file"
+        accept="image/*"
+        onChange={handleImageUpload}
+        style={{ display: "none" }}
+      />
 
       <div className={styles.mainpage}>
         <div className={styles.profileside}>
           <h1>Profile</h1>
+          <form>
+            {isProfileSwitchOn ? (
+              <>
+                <label htmlFor="totalRemaining">Total Remaining:</label>
+                <input
+                  type="text"
+                  id="totalRemaining"
+                  value={totalRemaining}
+                  onChange={(e) => setTotalRemaining(e.target.value)}
+                  readOnly={!isProfileEditing}
+                />
+                <label htmlFor="totalCredits">Total Credits:</label>
+                <input
+                  type="text"
+                  id="totalCredits"
+                  value={totalCredits}
+                  onChange={(e) => setTotalCredits(e.target.value)}
+                  readOnly={!isProfileEditing}
+                />
+              </>
+            ) : (
+              <>
+                <label htmlFor="name">Name:</label>
+                <input
+                  type="text"
+                  id="name"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  readOnly={!isProfileEditing}
+                />
+                <label htmlFor="depa">Depa:</label>
+                <input
+                  type="text"
+                  id="depa"
+                  value={depa}
+                  onChange={(e) => setDepa(e.target.value)}
+                  readOnly={!isProfileEditing}
+                />
+                <label htmlFor="gpa">GPA:</label>
+                <input
+                  type="text"
+                  id="gpa"
+                  value={gpa}
+                  onChange={(e) => setGpa(e.target.value)}
+                  readOnly={!isProfileEditing}
+                />
+              </>
+            )}
+
+            <div className={styles.switchContainer}>
+              <div onClick={handleProfileSwitchToggle} className={styles.switch}>
+                <span className={styles.slider} />
+                <img
+                  src="/switch_icon.png"
+                  alt="Switch Icon"
+                  className={`${styles.switchIcon} ${isProfileSwitchOn ? styles.switchOn : styles.switchOff}`}
+                />
+              </div>
+            </div>
+          </form>
+
+          {isProfileEditing ? (
+            <button onClick={handleSave}>Save</button>
+          ) : (
+            <button onClick={handleProfileEdit}>Edit</button>
+          )}
         </div>
+
         <div className={styles.curriculumside}>
           <h1>Curriculum</h1>
         </div>
@@ -101,22 +245,25 @@ function StudentPage() {
       <div className={styles["green-square-container"]}>
         <div className={styles["green-square"]}>
           <p className={styles["bio-title"]}>Bio</p>
-          {isEditing ? (
+
+          {isBioEditing ? (
             <div className={styles["green-square"]}>
               <textarea
                 value={bio}
                 onChange={handleChange}
                 className={styles["bio-textarea"]}
               ></textarea>
-              <button className={styles["save-button"]} onClick={handleSave}>
+
+              <button className={styles["save-button"]} onClick={handleSaveBio}>
                 Save
               </button>
-              <button className={styles["save-button"]} onClick={handleCancel}>
+              <button className={styles["save-button"]} onClick={handleCancelBio}>
                 Cancel
               </button>
             </div>
           ) : (
-            <div onClick={handleEdit}>
+
+            <div onClick={handleBioEdit}>
               <p>{bio}</p>
               <button className={`${styles["edit-button"]} ${styles["hover-highlight"]}`}>
                 Edit
@@ -140,16 +287,19 @@ function StudentPage() {
           className={`${styles["custom-button"]} ${styles["hover-highlight"]}`}
           onClick={() => handleCustomButtonClick(customLink1, setCustomLink1, 1)}
         >
-          {customLink1 ? customButtonText[1] || "Custom Button 1" : "Set Custom Link 1"}
+
+          {customLink1 ? customButtonText[0] || "Custom Button 1" : "Set Custom Link 1"}
+
         </button>
         <button
           className={`${styles["custom-button"]} ${styles["hover-highlight"]}`}
           onClick={() => handleCustomButtonClick(customLink2, setCustomLink2, 2)}
         >
-          {customLink2 ? customButtonText[2] || "Custom Button 2" : "Set Custom Link 2"}
+
+          {customLink2 ? customButtonText[1] || "Custom Button 2" : "Set Custom Link 2"}
         </button>
       </div>
-    </>
+    </div>
   );
 }
 
