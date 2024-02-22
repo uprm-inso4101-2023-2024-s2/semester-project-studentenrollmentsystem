@@ -18,19 +18,33 @@
   }
   
   .content {
-    padding: 50px;
+    padding: 20px;
+    display: flex; /* Also use flex here */
+    flex-direction: column; /* Stack children vertically */
+    flex: 1; /* This allows the content to expand and push the button down */
+    justify-content: space-between; /* Helps in spacing the content and button */
   }
   
   .courseName {
     font-size: 16px;
     font-weight: bold;
     margin-bottom: 5px;
+    background-color: #b8b5b5;
+    padding: 10px;
   }
 
   .instructor {
     font-size: 12px;
     font-weight: bold;
     margin-bottom: 5px;
+    padding: 10px;
+  }
+
+  .description {
+    font-size: 14px;
+    background-color: #ebebeb;
+    margin: auto;
+    padding: 10px;
   }
   
   .credits {
