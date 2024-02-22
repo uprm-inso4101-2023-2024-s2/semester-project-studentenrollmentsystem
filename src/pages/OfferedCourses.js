@@ -1,6 +1,7 @@
 import React from 'react';
 import CourseList from '../components/courselist.js'; // Adjust the import path as needed
 import styles from '../styles/pages/offeredcourses.module.scss';
+import Card from '../components/card.js';
 
 function OfferedCourses() {
     const offeredCourses = [
@@ -11,13 +12,21 @@ function OfferedCourses() {
     ];
 
     return (
-        <div className={styles.offeredCourses}>
+        <body>        
+            <div className={styles.offeredCourses}>
             <div className={styles.header}>
                 <h2>OFFERED COURSES</h2>
             </div>
-            <CourseList courses={offeredCourses} />
-        </div>
-    );
+                <CourseList courses={offeredCourses} />
+            </div>
+
+            <Card 
+          imageUrl="https://upload.wikimedia.org/wikipedia/commons/e/e4/Color-blue.JPG" 
+          title="Advance Programming" 
+          credits ="4 credits" 
+        />
+        </body>
+);
 }
 
 export default OfferedCourses;
