@@ -1,24 +1,29 @@
 import React from "react";
 import styles from "../styles/pages/courses.module.scss"
-import CourseCard from "../components/courseCard"
+import CourseCard from "../components/card"
+import Card from "../components/card";
 
 
 export default function Courses() {
   return (
+    <body className={styles.courses}>
     <div className={styles.Courses}>
-      <CourseCard 
-          courseName="Introduction to Computer Programming" 
-          courseCredits="4crs" 
-          professorName="Heidy Sierra Gil" 
-          thumbnailColor="bg-blue-500" 
-        />
-        <CourseCard 
-          courseName="CIIC4010 " 
-          courseCredits="4crs" 
-          professorName="Bienvenido Vélez" 
-          thumbnailColor="bg-blue-500" 
+      <Card 
+          imageUrl="https://upload.wikimedia.org/wikipedia/commons/e/e4/Color-blue.JPG" 
+          title="Introduction to Computer Programming" 
+          credits ="4 credits" 
         />
     </div>
+
+    <div className={styles.Courses}>
+      <Card 
+          imageUrl="https://upload.wikimedia.org/wikipedia/commons/e/e4/Color-blue.JPG" 
+          title="Advance Programming" 
+          credits ="4 credits" 
+        />
+    </div>
+    </body>
+
   );
 }
 
