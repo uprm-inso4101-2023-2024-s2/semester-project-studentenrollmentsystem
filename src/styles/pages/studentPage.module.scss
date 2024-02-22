@@ -7,132 +7,196 @@
 } */
 
 .topbar {
-  height: 1%;
+  height: 3rem; 
   width: 100%;
   padding: 0.1rem;
-  background-color: rgb(19, 107, 4);
+  background-color: rgb(0, 146, 102);
   color: white;
-  transition: all ease;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 
   .btntitle {
-      font-family: fantasy;
-      font-size: 26px;
-  }
-
-  .curriculum {
-      text-align: center;
-      float: left;
-      margin-right: 10px; 
+    font-family: fantasy;
+    font-size: 26px;
   }
 
   .user {
-      text-align: center;
-      float: right;
+    text-align: right;
 
-      .userimg {
-          width: 24px;
-          height: 24px;
-          border-radius: 50%;
-          border: 2px solid black;
-          cursor: pointer;
-          transition: all 0.3s ease;
-          margin-right: 10px;
-          box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
-
-          
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          font-size: 12px;
-          color: white;
-      }
-
-      
-      .userimg:hover {
-          border-color: #fff;
-          transform: scale(1.1);
-      }
-  }
-
-  
-    
-    .mainpage {
-        display: flex;
-    
-        .profileside {
-            flex: 30%;
-            outline: auto;
-        }
-    
-        .curriculumside {
-            flex: 5px;
-            outline: auto;
-        }
+    .userimg {
+      width: 28px;
+      border-radius: 100%;
+      border: 2px solid black;
     }
-
-      
   }
-
-  .newProfileIcon {
-    position: absolute;
-    top: 210px;
-    left: 10px;
-    cursor: pointer; 
-  }
-  
-  .profileIcon {
-    width: 95px;
-    height: 95px; 
-    border-radius: 50%; 
-    border: 2px solid black;
-    transition: transform 0.3s;
 }
-
-  
-  .newProfileIcon:hover .profileIcon {
-    transform: scale(1.2); 
-  }
-  .switchContainer {
-    display: flex;
-    align-items: center;
-  }
-  
-  .switch {
-    position: relative;
-    width: 50px;
-    height: 24px;
-    cursor: pointer;
-    background-color: transparent;
-    border-radius: 34px;
-  
-   
-  
-    .switchIcon {
-      width: 20px;
-      height: 20px;
-      position: absolute;
-      top: -20px;
-      right: -610px;
-    }
-  
-   
-    
-    
-  }
-  
-  /* Add any additional styles or adjustments as needed */
-  
 
 .mainpage {
   display: flex;
 
   .profileside {
-      flex: 0%;
-      outline: auto;
+    flex: 30%;
+    outline: auto;
   }
 
   .curriculumside {
-      flex: 5px;
-      outline: auto;
+    flex: 70%;
+    outline: auto;
   }
+}
+
+.bio-title {
+  position: absolute;
+  top: -30px;
+  left: 140px;
+  color: rgb(255, 255, 255);
+  font-size: 30px;
+}
+
+.green-square-container {
+  position: relative; 
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.green-square {
+  position: fixed;
+  top: 43%;
+  left: 3%;
+  width: 300px;
+  max-width: 80%;
+  height: 300px;
+  background-color: rgb(0, 146, 102);
+  color: rgb(255, 255, 255) ;
+  outline: none;
+  overflow: auto;
+  line-height: 1.5;
+  overflow-wrap: break-word;
+  white-space: pre-wrap;
+  border-radius: 20px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.bio-textarea {
+  width: calc(100% - 20px);
+  height: calc(100% - 120px);
+  resize: none;
+  border: none;
+  background: transparent;
+  font-size: 16px;
+  color: rgb(255, 255, 255);
+  outline: none;
+  overflow: auto;
+  line-height: 1.5;
+  overflow-wrap: break-word;
+  white-space: pre-wrap;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid #fff;
+}
+
+.academicCalendar {
+  position: absolute;
+  top: 43%;
+  left: 3%;
+  width: 300px;
+  max-width: 80%;
+  height: 300px;
+  background-color: rgb(0, 146, 102);
+  color: rgb(255, 255, 255);
+  outline: none;
+  overflow: auto;
+  line-height: 1.5;
+  overflow-wrap: break-word;
+  white-space: pre-wrap;
+  border-radius: 20px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.hover-highlight:hover {
+  background-color: rgba(171, 241, 19, 0.528);
+  color: #000000;
+}
+
+.save-button {
+  margin-top: 75px;
+  margin-right: 9px;
+  padding: 0.5rem 1rem;
+  background-color: white;
+  color: black;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+}
+
+.edit-button {
+  position: absolute;
+  border-radius: 10px;
+  border: none;
+  bottom: 10px;
+  right: 10px;
+}
+
+.button-container-left {
+  position: absolute;
+  bottom: 20px;
+  left: 50px;
+}
+
+.custom-button {
+  margin-right: 15px;
+  padding: 0.5rem 1rem;
+  background-color: rgb(0, 146, 102);
+  color: rgb(255, 255, 255);
+  border: none;
+  border-radius: 100px;
+  cursor: pointer;
+}
+
+.switch {
+  position: absolute;
+  border-radius: 10px;
+  border: none;
+  top:320px;
+  left: 350px; 
+  background-color: transparent;
+}
+
+.switchIcon {
+  width: 20px; 
+  height: 20px;
+  margin-left: 1px; 
+}
+
+
+
+.newProfileIcon {
+  position: absolute;
+  top: 210px;
+  left: 10px;
+  cursor: pointer; 
+}
+
+.profileIcon {
+  width: 95px;
+  height: 95px; 
+  border-radius: 50%; 
+  border: 2px solid black;
+  transition: transform 0.3s;
+}
+
+.newProfileIcon:hover .profileIcon {
+  transform: scale(1.2); 
+}
+
+.switchContainer {
+  position: absolute;
+  top: -155px; /* Adjust top positioning as needed */
+  left: -145px; /* Adjust left positioning as needed */
+  
+  align-items: center;
 }
