@@ -4,6 +4,7 @@ import './App.css';
 import Navbar from './components/navbar';
 import HomePage from './pages/HomePage';
 import Calendar from './pages/Calendar';
+import OfferedCourses from './pages/OfferedCourses';
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/calendar" element={<Calendar />} />
+        <Route path="/offered-courses" element={<OfferedCourses />} />
         {/* Add more routes as necessary */}
       </Routes>
     </div>
