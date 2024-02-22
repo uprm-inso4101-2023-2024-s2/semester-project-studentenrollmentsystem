@@ -1,7 +1,16 @@
 import React, { useState, useEffect } from "react";
 import styles from "../styles/pages/studentPage.module.scss";
+import Button from "../components/button";
+import Button2 from "../components/button2";
+import Button3 from "../components/button3";
+import Coursetable from "../components/courseTable";
+import Coursetable2 from "../components/courseTable2";
+import Scheduletable from "../components/scheduleTable";
 
 function StudentPage() {
+  const [isTable1Visible, setIsTable1Visible] = useState(true);
+  const [isDropdownVisible, setIsDropdownVisible] = useState(false);
+  const [isTable2Visible, setIsTable2Visible] = useState(false);
 
   const [profileImage, setProfileImage] = useState("https://as2.ftcdn.net/v2/jpg/00/64/67/27/1000_F_64672736_U5kpdGs9keUll8CRQ3p3YaEv2M6qkVY5.jpg");
   const [name, setName] = useState("pedro");
@@ -20,12 +29,10 @@ function StudentPage() {
   const [showAcademicCalendar, setShowAcademicCalendar] = useState(false);
   const [customButtonText, setCustomButtonText] = useState(["", ""]);
 
-
   useEffect(() => {
     const setTitleToButton = () => {
       const pageTitle = document.title;
       if (customLink1) {
-
         setCustomButtonText((prev) => {
           const updatedArray = [...prev];
           updatedArray[0] = pageTitle;
@@ -43,6 +50,22 @@ function StudentPage() {
     setTitleToButton();
   }, [customLink1, customLink2]);
 
+  const toggleIsTable1 = () => {
+    setIsTable1Visible((current) => !current);
+    setIsDropdownVisible(false); // Close the dropdown when switching tables
+    setIsTable2Visible(false); // Close Coursetable2 when switching tables
+  };
+
+  const toggleDropdown = () => {
+    setIsDropdownVisible((current) => !current);
+    //setIsTable2Visible(false); // Close Coursetable2 when opening the dropdown
+  };
+
+  const toggleIsTable2 = () => {
+    setIsTable2Visible((current) => !current);
+    setIsDropdownVisible(false); // Close the dropdown when switching tables
+    setIsTable1Visible(false); // Hide Coursetable when opening Coursetable2
+  };
 
   const handleProfileEdit = () => {
     setIsProfileEditing(true);
@@ -61,7 +84,6 @@ function StudentPage() {
     setBio(e.target.value);
   };
 
-
   const handleSaveBio = () => {
     setIsBioEditing(false);
     console.log("Bio saved:", bio);
@@ -79,7 +101,6 @@ function StudentPage() {
       const link = prompt("Enter the link:");
       if (link) {
         setLinkState(link);
-
         setCustomButtonText((prev) => {
           const updatedArray = [...prev];
           updatedArray[index - 1] = document.title;
@@ -108,9 +129,6 @@ function StudentPage() {
     console.log("Total Credits:", totalCredits);
     setIsProfileEditing(false);
   };
-
-  
-  
 
   const generateDummyAcademicCalendar = () => {
     const currentDate = new Date();
@@ -238,7 +256,24 @@ function StudentPage() {
         </div>
 
         <div className={styles.curriculumside}>
-          <h1>Curriculum</h1>
+          <h1>Curriculum: Spring 2024</h1>
+
+          <div className={styles.viewbutton}>
+            <Button2 onClick={toggleDropdown}>Past Semesters</Button2>
+            <Button onClick={toggleIsTable1}>Switch Views</Button>
+            {isDropdownVisible && (
+              <div className={styles.additionalButtons}>
+                <Button3 onClick={toggleIsTable2}>Fall Semester 2023</Button3>
+                {/* Add more buttons as needed */}
+              </div>
+            )}
+          </div>
+
+          <div className={styles.tableview}>
+            {isTable1Visible && !isTable2Visible && <Coursetable />}
+            {isTable2Visible && <Coursetable2 />}
+            {!isTable1Visible && !isTable2Visible && <Scheduletable />}
+          </div>
         </div>
       </div>
 

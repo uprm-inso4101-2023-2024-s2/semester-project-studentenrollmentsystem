@@ -1,0 +1,26 @@
+.button {
+    width: 75px;
+    height: auto;
+    color: white; 
+    background-color: #40976A; 
+    border-radius: 10px;
+    border: none; 
+    padding: 10px 20px; 
+    cursor: pointer;
+    font-size: 16px; 
+    font-weight: bold;
+    transition: background-color 0.3s;
+  
+    &:hover {
+      background-color: darken(#40976A, 10%); 
+    }
+  
+    &:focus {
+      outline: none;
+    }
+    
+    position: relative;
+    // top: -70px;
+    // left: 770px;
+  }
+  

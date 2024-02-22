@@ -1,13 +1,5 @@
-/* .StudentPage {
-    background-color: rgb(0, 146, 102);
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-} */
-
 .topbar {
-  height: 3rem; 
+  height: 3rem;
   width: 100%;
   padding: 0.1rem;
   background-color: rgb(0, 146, 102);
@@ -15,36 +7,6 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-
-
-  .btntitle {
-    font-family: fantasy;
-    font-size: 26px;
-  }
-
-  .user {
-    text-align: right;
-
-    .userimg {
-      width: 28px;
-      border-radius: 100%;
-      border: 2px solid black;
-    }
-  }
-}
-
-.mainpage {
-  display: flex;
-
-  .profileside {
-    flex: 30%;
-    outline: auto;
-  }
-
-  .curriculumside {
-    flex: 70%;
-    outline: auto;
-  }
 }
 
 .btntitle {
@@ -74,19 +36,29 @@
 .curriculumside {
   flex: 70%;
   outline: auto;
+  text-align: center;
+  position: relative;
+  transition: all ease 0.5s;
+  outline: auto;
 }
 
+.viewbutton {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
 
-.bio-title {
-  position: absolute;
-  top: -30px;
-  left: 140px;
-  color: rgb(255, 255, 255);
-  font-size: 30px;
+.tableview {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .green-square-container {
-  position: relative; 
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: flex-end;
@@ -94,14 +66,13 @@
 
 .green-square {
   position: fixed;
-
   top: 43%;
   left: 3%;
   width: 300px;
   max-width: 80%;
   height: 300px;
   background-color: rgb(0, 146, 102);
-  color: rgb(255, 255, 255) ;
+  color: rgb(255, 255, 255);
   outline: none;
   overflow: auto;
   line-height: 1.5;
@@ -110,6 +81,14 @@
   border-radius: 20px;
   padding: 20px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.bio-title {
+  position: absolute;
+  top: -30px;
+  left: 140px;
+  color: rgb(255, 255, 255);
+  font-size: 30px;
 }
 
 .bio-textarea {
@@ -188,42 +167,44 @@
   border-radius: 100px;
   cursor: pointer;
 }
+
 .switch {
   position: absolute;
   border-radius: 10px;
   border: none;
   top:320px;
-  left: 350px; 
+  left: 350px;
   background-color: transparent;
 }
 
 .switchIcon {
-  width: 20px; 
+  width: 20px;
   height: 20px;
-  margin-left: 1px; 
+  margin-left: 1px;
 }
+
 .newProfileIcon {
   position: absolute;
   top: 210px;
   left: 10px;
-  cursor: pointer; 
+  cursor: pointer;
 }
 
 .profileIcon {
   width: 95px;
-  height: 95px; 
-  border-radius: 50%; 
+  height: 95px;
+  border-radius: 50%;
   border: 2px solid black;
   transition: transform 0.3s;
 }
 
 .newProfileIcon:hover .profileIcon {
-  transform: scale(1.2); 
+  transform: scale(1.2);
 }
+
 .switchContainer {
   position: absolute;
-  top: -155px; 
-  left: -145px; 
-  
+  top: -155px;
+  left: -145px;
   align-items: center;
 }
