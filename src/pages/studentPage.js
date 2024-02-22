@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import styles from "../styles/pages/studentPage.module.scss";
 
 function StudentPage() {
+
   const [profileImage, setProfileImage] = useState("https://as2.ftcdn.net/v2/jpg/00/64/67/27/1000_F_64672736_U5kpdGs9keUll8CRQ3p3YaEv2M6qkVY5.jpg");
   const [name, setName] = useState("pedro");
   const [depa, setDepa] = useState("INSO");
@@ -10,7 +11,7 @@ function StudentPage() {
   const [totalCredits, setTotalCredits] = useState(0);
   const [isProfileEditing, setIsProfileEditing] = useState(false);
   const [isProfileSwitchOn, setIsProfileSwitchOn] = useState(false);
-  const [isSwitchOn, setIsSwitchOn] = useState(false);
+  
   const [bio, setBio] = useState("Talk about you...");
   const [editedBio, setEditedBio] = useState("");
   const [isBioEditing, setIsBioEditing] = useState(false);
@@ -19,10 +20,12 @@ function StudentPage() {
   const [showAcademicCalendar, setShowAcademicCalendar] = useState(false);
   const [customButtonText, setCustomButtonText] = useState(["", ""]);
 
+
   useEffect(() => {
     const setTitleToButton = () => {
       const pageTitle = document.title;
       if (customLink1) {
+
         setCustomButtonText((prev) => {
           const updatedArray = [...prev];
           updatedArray[0] = pageTitle;
@@ -39,6 +42,7 @@ function StudentPage() {
     };
     setTitleToButton();
   }, [customLink1, customLink2]);
+
 
   const handleProfileEdit = () => {
     setIsProfileEditing(true);
@@ -57,6 +61,7 @@ function StudentPage() {
     setBio(e.target.value);
   };
 
+
   const handleSaveBio = () => {
     setIsBioEditing(false);
     console.log("Bio saved:", bio);
@@ -74,6 +79,7 @@ function StudentPage() {
       const link = prompt("Enter the link:");
       if (link) {
         setLinkState(link);
+
         setCustomButtonText((prev) => {
           const updatedArray = [...prev];
           updatedArray[index - 1] = document.title;
@@ -103,10 +109,8 @@ function StudentPage() {
     setIsProfileEditing(false);
   };
 
-  // eslint-disable-next-line
-  const handleSwitchToggle = () => {
-    setIsSwitchOn((prev) => !prev);
-  };
+  
+  
 
   const generateDummyAcademicCalendar = () => {
     const currentDate = new Date();
@@ -241,6 +245,7 @@ function StudentPage() {
       <div className={styles["green-square-container"]}>
         <div className={styles["green-square"]}>
           <p className={styles["bio-title"]}>Bio</p>
+
           {isBioEditing ? (
             <div className={styles["green-square"]}>
               <textarea
@@ -248,6 +253,7 @@ function StudentPage() {
                 onChange={handleChange}
                 className={styles["bio-textarea"]}
               ></textarea>
+
               <button className={styles["save-button"]} onClick={handleSaveBio}>
                 Save
               </button>
@@ -256,6 +262,7 @@ function StudentPage() {
               </button>
             </div>
           ) : (
+
             <div onClick={handleBioEdit}>
               <p>{bio}</p>
               <button className={`${styles["edit-button"]} ${styles["hover-highlight"]}`}>
@@ -280,12 +287,15 @@ function StudentPage() {
           className={`${styles["custom-button"]} ${styles["hover-highlight"]}`}
           onClick={() => handleCustomButtonClick(customLink1, setCustomLink1, 1)}
         >
+
           {customLink1 ? customButtonText[0] || "Custom Button 1" : "Set Custom Link 1"}
+
         </button>
         <button
           className={`${styles["custom-button"]} ${styles["hover-highlight"]}`}
           onClick={() => handleCustomButtonClick(customLink2, setCustomLink2, 2)}
         >
+
           {customLink2 ? customButtonText[1] || "Custom Button 2" : "Set Custom Link 2"}
         </button>
       </div>
