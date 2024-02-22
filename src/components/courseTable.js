@@ -33,6 +33,7 @@ export default function Coursetable()
                         <th>Creditos</th>
                         <th>Reuniones</th>
                         <th>Profesor</th>
+                        <th>Grades</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -43,6 +44,7 @@ export default function Coursetable()
                                 <td>{row.Creditos}</td>
                                 <td>{row.Reuniones}</td>
                                 <td>{row.Profesor}</td>
+                                <td>{row.Grades}</td>
                             </tr>
                         ))}
                     </tbody>
