@@ -89,6 +89,18 @@
 }
 
 
+  .profile {
+    margin-left: auto; 
+  }
+  
+  .profileImage {
+    width: 40px; 
+    height: 40px; 
+    border-radius: 50%; 
+  }
+  
+
+
 // Adjust the media query to change the display property of the hamburger menu
 @media (max-width: 768px) {
     .navbar {
