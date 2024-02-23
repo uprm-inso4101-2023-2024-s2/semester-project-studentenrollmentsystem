@@ -10,7 +10,8 @@
 }
 
 .btntitle {
-  font-family: fantasy;
+  font-family: "Bebas Neue", sans-serif;
+  font-weight: bold;
   font-size: 26px;
 }
 
@@ -26,20 +27,18 @@
 
 .mainpage {
   display: flex;
+  gap: 20px;
 }
 
 .profileside {
   flex: 30%;
-  outline: auto;
 }
 
 .curriculumside {
   flex: 70%;
-  outline: auto;
   text-align: center;
   position: relative;
   transition: all ease 0.5s;
-  outline: auto;
 }
 
 .viewbutton {
@@ -55,6 +54,12 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  transform: translateY(10px);
+}
+
+.movedRight {
+  margin-left: 150px; 
+  
 }
 
 .green-square-container {
@@ -66,7 +71,7 @@
 
 .green-square {
   position: fixed;
-  top: 43%;
+  top: 44%;
   left: 3%;
   width: 300px;
   max-width: 80%;
@@ -111,7 +116,7 @@
 
 .academicCalendar {
   position: absolute;
-  top: 43%;
+  top: 44%;
   left: 3%;
   width: 300px;
   max-width: 80%;
@@ -155,7 +160,7 @@
 .button-container-left {
   position: absolute;
   bottom: 20px;
-  left: 50px;
+  left: 70px;
 }
 
 .custom-button {
@@ -169,11 +174,12 @@
 }
 
 .switch {
+  transform: translateY(-115px);
   position: absolute;
   border-radius: 10px;
   border: none;
-  top:320px;
-  left: 350px;
+  top:450px;
+  left: 335px;
   background-color: transparent;
 }
 
@@ -185,8 +191,8 @@
 
 .newProfileIcon {
   position: absolute;
-  top: 210px;
-  left: 10px;
+  top: 135px;
+  left: 20px;
   cursor: pointer;
 }
 
@@ -204,7 +210,7 @@
 
 .switchContainer {
   position: absolute;
-  top: -155px;
-  left: -145px;
+  top: -180px;
+  left: 8px;
   align-items: center;
 }
