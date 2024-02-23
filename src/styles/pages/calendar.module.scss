@@ -1,9 +1,16 @@
 .Home {
+    justify-content: center;
+    align-items: center;
+    width: 100%;
 
     .header {
         display: flex;
+        flex-direction: column;
         justify-content: center;
+        align-items: center;
+        width: 100%;
         margin-top: 30px;
+        margin-left: 30px;
 
         .views {
             display: flex;
@@ -12,19 +19,69 @@
             padding: 0px 25px;
             justify-content: space-between;
             background-color: #D9D9D9;
-
-            .buttons {
-                display: flex;
-                flex-direction: row;
-                justify-content: center;
-                align-items: center;
-                gap: 10px;
-
-
-            }
+            align-items: center;
         }
 
-
+        .buttons {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
     }
 
+    .calendarCenter {
+        display: flex;
+        width: 100%;
+        margin-top: 30px;
+        margin-right: 80px;
+        justify-content: center;
+
+
+        .calendarContainer {
+            width: 100%;
+            padding: 0px 20px;
+        }
+
+        .inputLocation {
+
+            display: flex;
+            flex-direction: row;
+            align-items: flex-start;
+            justify-content: flex-start;
+            margin-left: 160px;
+            margin-top: 50px;
+            width: 100%;
+
+            .inputBox {
+                display: flex;
+                flex-direction: column;
+                width: 70%;
+                border-radius: 30px;
+                padding: 10px 10px;
+                justify-content: space-between;
+                background-color: #D9D9D9;
+                align-items: center;
+
+                .dateInput {
+                    border-radius: 15px;
+                    border: 1px solid #ccc;
+                    padding: 8px;
+                    width: 100%;
+                    box-sizing: border-box;
+                    margin-bottom: 10px;
+                }
+
+                .hourInput {
+                    border-radius: 15px;
+                    border: 1px solid #ccc;
+                    padding: 8px;
+                    width: 100%;
+                    box-sizing: border-box;
+                    margin-bottom: 10px;
+                }
+            }
+        }
+    }
 }
