@@ -1,13 +1,13 @@
 import React from 'react';
 import CourseList from '../components/courselist.js'; // Adjust the import path as needed
 import styles from '../styles/pages/offeredcourses.module.scss';
-import Card from '../components/card.js';
+
 
 function OfferedCourses() {
     const offeredCourses = [
-        { id: 1, image: 'https://upload.wikimedia.org/wikipedia/commons/e/e4/Color-blue.JPG', title: 'Advance Programming', description: 'Advanced programming techniques applied to the solution of engineering problems.', instructor: 'Bienvenido Velez', credits: '4 credits'},
-        { id: 2, image: '/logo512.png', title: 'Data Structures', description: 'Learn the fundamentals of data structures'},
-        { id: 3, image: '/logo512.png', title: 'Machine Learning', description: 'Learn the fundamentals of machine learning'},
+        { id: 1, image: 'https://upload.wikimedia.org/wikipedia/commons/e/e4/Color-blue.JPG', title: 'Advance Programming', description: 'Advanced programming techniques.', credits: '4'},
+        { id: 2, image: '/logo512.png', title: 'Data Structures', description: 'Learn the fundamentals of data structures.',  credits: '4'},
+        { id: 3, image: '/logo512.png', title: 'Machine Learning', description: 'Learn the fundamentals of machine learning.',  credits: '3'},
         // Add more courses as needed
     ];
 
