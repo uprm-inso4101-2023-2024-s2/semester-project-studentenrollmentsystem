@@ -1,21 +1,38 @@
-import React from 'react';
-import FullCalendar from '@fullcalendar/react';
-import dayGridPlugin from '@fullcalendar/daygrid';
-import timeGridPlugin from '@fullcalendar/timegrid';
-import interactionPlugin from '@fullcalendar/interaction';
+import React from "react";
+import FullCalendar from "@fullcalendar/react";
+import dayGridPlugin from "@fullcalendar/daygrid";
+import timeGridPlugin from "@fullcalendar/timegrid";
+import interactionPlugin from "@fullcalendar/interaction";
 
 // Accept events and onAddEvent as props
 export default function MonthlySchedule({ onAddEvent }) {
   // Hardcoded events
   const hardcodedEvents = [
-    { title: 'Event 1', start: '2024-03-01', end: '2024-03-02', allDay: true },
-    { title: 'Event 2', start: '2024-03-05', end: '2024-03-05', allDay: true },
-    { title: 'Long Event', start: '2024-03-07', end: '2024-03-10', allDay: true },
-    { title: 'Conference', start: '2024-03-20', end: '2024-03-23', allDay: true },
+    { title: "Calc 2", start: "2024-04-02", end: "2024-03-05", allDay: true },
+    { title: "Calc 2", start: "2024-04-04", end: "2024-03-05", allDay: true },
+    { title: "Calc 2", start: "2024-03-05", end: "2024-03-05", allDay: true },
+    { title: "Calc 2", start: "2024-03-07", end: "2024-03-05", allDay: true },
+    { title: "Calc 2", start: "2024-03-12", end: "2024-03-05", allDay: true },
+    { title: "Calc 2", start: "2024-03-19", end: "2024-03-05", allDay: true },
+    { title: "Calc 2", start: "2024-03-26", end: "2024-03-05", allDay: true },
+    { title: "Calc 2", start: "2024-03-14", end: "2024-03-05", allDay: true },
+    { title: "Calc 2", start: "2024-03-21", end: "2024-03-05", allDay: true },
+    { title: "Calc 2", start: "2024-03-28", end: "2024-03-05", allDay: true },
+
+    { title: "Calc 2", start: "2024-04-09", end: "2024-03-05", allDay: true },
+    { title: "Calc 2", start: "2024-04-16", end: "2024-03-05", allDay: true },
+    { title: "Calc 2", start: "2024-04-23", end: "2024-03-05", allDay: true },
+    { title: "Calc 2", start: "2024-04-30", end: "2024-03-05", allDay: true },
+    { title: "Calc 2", start: "2024-04-11", end: "2024-03-05", allDay: true },
+    { title: "Calc 2", start: "2024-04-18", end: "2024-03-05", allDay: true },
+    { title: "Calc 2", start: "2024-04-25", end: "2024-03-05", allDay: true },
+    { title: "Calc 2", start: "2024-05-02", end: "2024-03-05", allDay: true },
+    { title: "Calc 2", start: "2024-05-07", end: "2024-03-05", allDay: true },
+    { title: "Calc 2", start: "2024-05-09", end: "2024-03-05", allDay: true },
   ];
 
   const handleDateSelect = (selectInfo) => {
-    let title = prompt('Please enter a new title for your event');
+    let title = prompt("Please enter a new title for your event");
 
     if (title) {
       // Construct the new event object
@@ -23,7 +40,7 @@ export default function MonthlySchedule({ onAddEvent }) {
         title,
         start: selectInfo.startStr,
         end: selectInfo.endStr,
-        allDay: selectInfo.allDay
+        allDay: selectInfo.allDay,
       };
 
       // Use the passed onAddEvent function to add this new event
@@ -35,11 +52,12 @@ export default function MonthlySchedule({ onAddEvent }) {
     <FullCalendar
       plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
       headerToolbar={{
-        left: 'prev,next today',
-        center: 'title',
-        right: ''
+        left: "prev,next today",
+        center: "title",
+        right: "",
       }}
-      initialView='dayGridMonth'
+      eventColor="#05B774"
+      initialView="dayGridMonth"
       editable={true}
       selectable={true}
       selectMirror={true}

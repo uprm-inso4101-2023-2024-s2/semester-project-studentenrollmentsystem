@@ -92,7 +92,7 @@ export default function CalendarPage() {
       <div className={styles.calendarCenter}>
         <div className={styles.inputLocation}>
           <div className={styles.inputBox}>
-            <h2>Event Details</h2>
+            <h2>Class Details</h2>
             <input
               type="text"
               value={eventName}
