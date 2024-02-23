@@ -1,4 +1,8 @@
 /*
+    Microsoft Auth things, por si en algun momento se vuelve a utilizar
+*/
+
+/*
  * Copyright (c) Microsoft Corporation. All rights reserved.
  * Licensed under the MIT License.
  */

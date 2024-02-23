@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import styles from "../styles/pages/loginPage.module.scss";
 import Portimage from "../components/image";
-import { AuthenticatedTemplate, UnauthenticatedTemplate, useMsal, MsalProvider } from "@azure/msal-react";
+/*import { AuthenticatedTemplate, UnauthenticatedTemplate, useMsal, MsalProvider } from "@azure/msal-react";
 import { loginRequest } from "../authConfig";
+*/
 import { GoogleLogin } from '@react-oauth/google';
 import { jwtDecode } from "jwt-decode";
 
@@ -20,7 +21,8 @@ export default function LoginPage() {
     alert("Login clicked! Check the console for email and password values.");
   };
 
-  const { instance } = useMsal();
+  /* Microsoft Auth remainder, si no se piensa usar luego se puede borrar*/
+  /*const { instance } = useMsal();
   const activeAccount = instance.getActiveAccount();
 
   const handleMSRedirect = () => {
@@ -31,7 +33,7 @@ export default function LoginPage() {
           })
           .catch((error) => console.log(error));
   };
-
+*/
   return (
     <div className={styles.signupContainer}>
       <div className={styles.SignupBox}>
@@ -59,25 +61,16 @@ export default function LoginPage() {
            }}
          />
         </span>
-        <AuthenticatedTemplate>
-                 {activeAccount ? (
-                  <p>
-                    Authenticated Succesfully
-                  </p>
-                 ) : null}
-             </AuthenticatedTemplate>
-             <UnauthenticatedTemplate>
-              <input type="button" value="Sign in with Microsoft" onClick={handleMSRedirect} />
-             </UnauthenticatedTemplate>
       </div>
     </div>
   );
 }
-
-const App = ({ instance }) => {
+/* Microsoft Auth remainder, si no se piensa usar luego se puede borrar*/
+/*const App = ({ instance }) => {
   return (
       <MsalProvider instance={instance}>
         
       </MsalProvider>
   );
 };
+*/
