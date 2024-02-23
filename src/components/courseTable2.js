@@ -24,7 +24,7 @@ export default function Coursetable2()
             <td>
                 Uroyoan Walker
             </td>
-            <td>[Redacted]</td>
+            <td>A</td>
         </tr>
         <tr>
             <td>QUIM3131</td>
@@ -32,30 +32,30 @@ export default function Coursetable2()
             <td>3</td>
             <td>1:00pm-2:50pm MJ Q201</td>
             <td>Martha Lopez</td>
+            <td>B</td>
+        </tr>
+        <tr>
+            <td>[Redacted]</td>
+            <td>[Redacted]</td>
+            <td>[Redacted]</td>
+            <td>[Redacted]</td>
+            <td>[Redacted]</td>
             <td>[Redacted]</td>
         </tr>
         <tr>
-            <td>A</td>
-            <td>B</td>
-            <td>B</td>
-            <td>C</td>
-            <td>D</td>
+            <td>[Redacted]</td>
+            <td>[Redacted]</td>
+            <td>[Redacted]</td>
+            <td>[Redacted]</td>
+            <td>[Redacted]</td>
             <td>[Redacted]</td>
         </tr>
         <tr>
-            <td>A</td>
-            <td>B</td>
-            <td>B</td>
-            <td>C</td>
-            <td>D</td>
             <td>[Redacted]</td>
-        </tr>
-        <tr>
-            <td>A</td>
-            <td>B</td>
-            <td>B</td>
-            <td>C</td>
-            <td>D</td>
+            <td>[Redacted]</td>
+            <td>[Redacted]</td>
+            <td>[Redacted]</td>
+            <td>[Redacted]</td>
             <td>[Redacted]</td>
         </tr>
         </table>

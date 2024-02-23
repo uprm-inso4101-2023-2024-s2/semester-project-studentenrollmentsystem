@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styles from "../styles/pages/studentPage.module.scss";
 import Button from "../components/button";
-import Button2 from "../components/button2";
-import Button3 from "../components/button3";
 import Coursetable from "../components/courseTable";
 import Coursetable2 from "../components/courseTable2";
 import Scheduletable from "../components/scheduleTable";
@@ -274,11 +272,11 @@ function StudentPage() {
           <h1>Curriculum: Spring 2024</h1>
 
           <div className={styles.viewbutton}>
-            <Button2 onClick={toggleDropdown}>Past Semesters</Button2>
+            <Button onClick={toggleDropdown}>Past Semesters</Button>
             <Button onClick={toggleIsTable1}>Switch Views</Button>
             {isDropdownVisible && (
               <div className={styles.additionalButtons}>
-                <Button3 onClick={toggleIsTable2}>Fall Semester 2023</Button3>
+                <Button onClick={toggleIsTable2}>Fall Semester 2023</Button>
                 {/* Add more buttons as needed */}
               </div>
             )}
