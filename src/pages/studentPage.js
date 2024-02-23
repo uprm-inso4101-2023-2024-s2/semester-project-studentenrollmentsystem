@@ -190,48 +190,53 @@ function StudentPage() {
           <form>
             {isProfileSwitchOn ? (
               <>
-                <label htmlFor="totalRemaining">Total Remaining:</label>
+                <label htmlFor="totalRemaining"className={styles.movedRight}>Total Remaining:</label>
                 <input
                   type="text"
                   id="totalRemaining"
                   value={totalRemaining}
                   onChange={(e) => setTotalRemaining(e.target.value)}
                   readOnly={!isProfileEditing}
+                  className={styles.movedRight}
                 />
-                <label htmlFor="totalCredits">Total Credits:</label>
+                <label htmlFor="totalCredits"className={styles.movedRight}>Total Credits:</label>
                 <input
                   type="text"
                   id="totalCredits"
                   value={totalCredits}
                   onChange={(e) => setTotalCredits(e.target.value)}
                   readOnly={!isProfileEditing}
+                  className={styles.movedRight}
                 />
               </>
             ) : (
               <>
-                <label htmlFor="name">Name:</label>
+                <label htmlFor="name"className={styles.movedRight}>Name:</label>
                 <input
                   type="text"
                   id="name"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   readOnly={!isProfileEditing}
+                  className={styles.movedRight}
                 />
-                <label htmlFor="depa">Depa:</label>
+                <label htmlFor="depa"className={styles.movedRight}>Depa:</label>
                 <input
                   type="text"
                   id="depa"
                   value={depa}
                   onChange={(e) => setDepa(e.target.value)}
                   readOnly={!isProfileEditing}
+                  className={styles.movedRight}
                 />
-                <label htmlFor="gpa">GPA:</label>
+                <label htmlFor="gpa"className={styles.movedRight}>GPA:</label>
                 <input
                   type="text"
                   id="gpa"
                   value={gpa}
                   onChange={(e) => setGpa(e.target.value)}
                   readOnly={!isProfileEditing}
+                  className={styles.movedRight}
                 />
               </>
             )}
