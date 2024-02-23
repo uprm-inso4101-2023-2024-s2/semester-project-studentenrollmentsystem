@@ -1,3 +1,5 @@
+## MAIN BRANCH IS NOW New-Main
+
 ## Contributing
 * Do not work on the main branch directly, work on your own branch.
 * If you are working on a part of your project, submit a PR when your entire feature
