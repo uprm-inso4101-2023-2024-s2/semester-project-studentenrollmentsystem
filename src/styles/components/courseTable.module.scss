@@ -1,0 +1,21 @@
+.Coursetable
+{
+    font-size:15px;
+    background-color: rgb(0, 146, 102);
+    transition: all ease 0.5s;
+    border-collapse: collapse;
+    color:white;
+    td
+    {
+        border:solid black;
+    }
+    
+    th
+    {
+        border:solid black;
+    }
+}
+
+@media screen {
+    
+}

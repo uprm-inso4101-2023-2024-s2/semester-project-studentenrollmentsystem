@@ -52,6 +52,9 @@ export default function Navbar() {
         <li onClick={closeNavItem}>
           <Link to="/calendar">Calendar</Link>
         </li>
+        <li onClick={closeNavItem}>
+          <Link to="/studentpage">StudentPage</Link>
+        </li>
       </ul>
     </nav>
   );
