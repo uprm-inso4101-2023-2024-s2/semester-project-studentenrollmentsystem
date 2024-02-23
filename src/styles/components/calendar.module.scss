@@ -1,0 +1,12 @@
+.daily-schedule .hours {
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .daily-schedule .hour {
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+  }
+  
