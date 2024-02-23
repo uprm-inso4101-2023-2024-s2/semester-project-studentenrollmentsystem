@@ -1,7 +1,5 @@
-// CourseCard component
-// CourseCard component
 import React from 'react';
-import Card from './card.js'; // Make sure the import path is correct
+import Card from './card.js';
 import styles from "../styles/components/coursecard.module.scss";
 
 export default function CourseCard({
