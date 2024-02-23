@@ -5,7 +5,7 @@ import Coursetable from "../components/courseTable";
 import Coursetable2 from "../components/courseTable2";
 import Scheduletable from "../components/scheduleTable";
 
-function StudentPage() {
+export default function StudentPage() {
   const [isTable1Visible, setIsTable1Visible] = useState(true);
   const [isDropdownVisible, setIsDropdownVisible] = useState(false);
   const [isTable2Visible, setIsTable2Visible] = useState(false);
@@ -350,5 +350,3 @@ function StudentPage() {
     </div>
   );
 }
-
-export default StudentPage;
