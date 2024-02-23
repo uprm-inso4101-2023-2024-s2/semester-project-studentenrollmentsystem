@@ -1,17 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "../styles/pages/calendar.module.scss";
 import Button from "../components/button";
-import DailySchedule from "../components/DailySchedule"; // assuming Schedule component is located in the same directory
+import TextInput from "../components/textinput";
+import DailySchedule from "../components/DailySchedule";
 import MonthlySchedule from "../components/MonthlySchedule";
 import WeeklySchedule from "../components/WeeklySchedule";
-import { useState } from "react";
 
 export default function CalendarPage() {
   const [currentView, setCurrentView] = useState("Daily");
+  const [eventDate, setEventDate] = useState("");
+  const [eventDescription, setEventDescription] = useState("");
 
   const changeView = (view) => {
     setCurrentView(view);
   };
+
+  const handleInsertEvent = () => {
+
+  }
 
   const renderScheduleView = () => {
     switch (currentView) {
@@ -38,10 +44,27 @@ export default function CalendarPage() {
           </div>
         </div>
       </div>
+
       <div className={styles.calendarCenter}>
+        <div className={styles.inputLocation}>
+          <div className={styles.inputBox}>
+            <h2>Event Details</h2>
+            <TextInput 
+
+            />
+            <TextInput 
+
+            />
+            <div className={styles.buttons}>
+              <Button onClick={handleInsertEvent}>
+                Insert
+              </Button>
+            </div>
+          </div>
+        </div>
         <div className={styles.calendarContainer}>
           {renderScheduleView()} {/* Render the current view */}
-        </div>{" "}
+        </div>
       </div>
     </div>
   );
