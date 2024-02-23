@@ -7,6 +7,8 @@ import WeeklySchedule from "../components/WeeklySchedule";
 
 export default function CalendarPage() {
   const [currentView, setCurrentView] = useState("Daily");
+  const [events, setEvents] = useState([]); // State to store events
+  const [eventName, setEventName] = useState(""); // New state for event name
   const [eventDate, setEventDate] = useState("");
   const [eventStartHour, setEventStartHour] = useState("");
   const [eventEndHour, setEventEndHour] = useState("");
@@ -16,27 +18,61 @@ export default function CalendarPage() {
     setCurrentView(view);
   };
 
+  // Define the createEventId function here
+  const createEventId = () => {
+    return String(events.length + 1);
+  };
+
   const handleInsertEvent = () => {
-    // Here you would usually handle the event insertion logic,
-    // For example, saving to a state or sending to a server.
-    console.log("Inserting event:", {
-      eventDate,
-      eventStartHour,
-      eventEndHour,
-      eventDescription,
-    });
+    const newEvent = {
+      name: eventName,
+      date: eventDate,
+      startHour: eventStartHour,
+      endHour: eventEndHour,
+      description: eventDescription,
+    };
+    setEvents([...events, { ...newEvent, id: createEventId() }]); // Add the new event to the existing events array
+    // Clear input fields after insertion
+    setEventName("");
+    setEventDate("");
+    setEventStartHour("");
+    setEventEndHour("");
+    setEventDescription("");
   };
 
   const renderScheduleView = () => {
     switch (currentView) {
       case "Daily":
-        return <DailySchedule />;
+        return (
+          <DailySchedule
+            events={events}
+            onAddEvent={(newEvent) =>
+              setEvents([...events, { ...newEvent, id: createEventId() }])
+            }
+          />
+        );
       case "Weekly":
-        return <WeeklySchedule />;
+        return (
+          <WeeklySchedule
+            events={events}
+            onAddEvent={(newEvent) =>
+              setEvents([...events, { ...newEvent, id: createEventId() }])
+            }
+          />
+        );
+
       case "Monthly":
-        return <MonthlySchedule />;
+        return (
+          <MonthlySchedule
+            events={events}
+            onAddEvent={(newEvent) =>
+              setEvents([...events, { ...newEvent, id: createEventId() }])
+            }
+          />
+        );
+
       default:
-        return <DailySchedule />;
+        return <DailySchedule events={events} />;
     }
   };
 
@@ -58,25 +94,32 @@ export default function CalendarPage() {
           <div className={styles.inputBox}>
             <h2>Event Details</h2>
             <input
+              type="text"
+              value={eventName}
+              onChange={(e) => setEventName(e.target.value)}
+              placeholder="Event Name"
+              className={styles.dateInput}
+            />
+            <input
               type="date"
               value={eventDate}
               onChange={(e) => setEventDate(e.target.value)}
               placeholder="Pick a date"
-              className={styles.dateInput} // Corrected from style to className
+              className={styles.dateInput}
             />
             <input
               type="time"
               value={eventStartHour}
               onChange={(e) => setEventStartHour(e.target.value)}
               placeholder="Start Hour"
-              className={styles.hourInput} // Corrected from style to className
+              className={styles.hourInput}
             />
             <input
               type="time"
               value={eventEndHour}
               onChange={(e) => setEventEndHour(e.target.value)}
               placeholder="End Hour"
-              className={styles.hourInput} // Corrected from style to className
+              className={styles.hourInput}
             />
 
             <div className={styles.buttons}>
@@ -84,8 +127,10 @@ export default function CalendarPage() {
             </div>
           </div>
         </div>
-        <div className={styles.calendarContainer}>
-          {renderScheduleView()} {/* Render the current view */}
+        <div className={styles.calendarCenter}>
+          <div className={styles.calendarContainer}>
+            {renderScheduleView()} {/* Render the current view with events */}
+          </div>
         </div>
       </div>
     </div>

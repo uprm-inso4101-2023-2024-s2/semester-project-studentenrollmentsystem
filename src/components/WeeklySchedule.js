@@ -1,17 +1,13 @@
-import React, { useState } from 'react';
+import React from 'react';
 import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
-import interactionPlugin from '@fullcalendar/interaction'; 
-import styles from "../styles/components/weeklySchedule.module.scss"
+import interactionPlugin from '@fullcalendar/interaction';
+import styles from "../styles/components/weeklySchedule.module.scss";
 
-function WeeklySchedule() {
-    const [events, setEvents] = useState([
-        { title: 'Event 1', start: '2024-02-18T10:00:00', end: '2024-02-18T12:00:00' },
-        { title: 'Event 2', start: '2024-02-19T13:00:00', end: '2024-02-19T15:00:00' }
-        // Initialize with default events or empty array
-    ]);
-
+// Accept events and onAddEvent function as props
+function WeeklySchedule({ events, onAddEvent }) {
+    
     const handleDateSelect = (selectInfo) => {
         let title = prompt('Please enter a new title for your event:');
 
@@ -27,7 +23,8 @@ function WeeklySchedule() {
                 allDay: selectInfo.allDay
             };
 
-            setEvents(currentEvents => [...currentEvents, newEvent]);
+            // Call the onAddEvent function passed through props
+            onAddEvent(newEvent);
         }
     };
 
@@ -38,7 +35,7 @@ function WeeklySchedule() {
             initialView="timeGridWeek"
             selectable={true}
             select={handleDateSelect}
-            events={events}
+            events={events} // Use the events passed through props
             eventColor="#05B774" 
             headerToolbar={{
                 left: 'prev,next today',

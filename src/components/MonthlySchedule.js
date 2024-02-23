@@ -1,38 +1,35 @@
-import React, { useState } from 'react';
+import React from 'react';
 import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import interactionPlugin from '@fullcalendar/interaction';
 
-export default function MonthlySchedule() {
-  // State to keep track of events
-  const [events, setEvents] = useState([]);
+// Accept events and onAddEvent as props
+export default function MonthlySchedule({ onAddEvent }) {
+  // Hardcoded events
+  const hardcodedEvents = [
+    { title: 'Event 1', start: '2024-03-01', end: '2024-03-02', allDay: true },
+    { title: 'Event 2', start: '2024-03-05', end: '2024-03-05', allDay: true },
+    { title: 'Long Event', start: '2024-03-07', end: '2024-03-10', allDay: true },
+    { title: 'Conference', start: '2024-03-20', end: '2024-03-23', allDay: true },
+  ];
 
-  // Handler for adding a new event
   const handleDateSelect = (selectInfo) => {
-    // Prompt for entering a title for the new event
     let title = prompt('Please enter a new title for your event');
 
-    const calendarApi = selectInfo.view.calendar;
-
-    calendarApi.unselect();
-
     if (title) {
-      // Add new event to the calendar
-      setEvents([
-        ...events,
-        {
-          id: createEventId(), 
-          title,
-          start: selectInfo.startStr,
-          end: selectInfo.endStr,
-          allDay: selectInfo.allDay
-        }
-      ]);
+      // Construct the new event object
+      const newEvent = {
+        title,
+        start: selectInfo.startStr,
+        end: selectInfo.endStr,
+        allDay: selectInfo.allDay
+      };
+
+      // Use the passed onAddEvent function to add this new event
+      onAddEvent(newEvent);
     }
   };
-
-  const createEventId = () => String(events.length + 1);
 
   return (
     <FullCalendar
@@ -47,8 +44,8 @@ export default function MonthlySchedule() {
       selectable={true}
       selectMirror={true}
       dayMaxEvents={true}
-      events={events} 
-      select={handleDateSelect} 
+      events={hardcodedEvents} // Use hardcoded events for display
+      select={handleDateSelect}
     />
   );
 }

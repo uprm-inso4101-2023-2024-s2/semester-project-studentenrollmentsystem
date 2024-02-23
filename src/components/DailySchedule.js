@@ -1,39 +1,29 @@
-import React, { useState } from 'react';
+import React from 'react';
 import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import interactionPlugin from '@fullcalendar/interaction';
 
-export default function MonthlySchedule() {
-  // State to store events
-  const [events, setEvents] = useState([]);
+// Props are added to accept events and a function to add new events
+export default function DailySchedule({ events, onAddEvent }) {
 
   // Function to handle date/time selection
   const handleDateSelect = (selectInfo) => {
-    // Prompt for event title
     let title = prompt('Please enter a new title for your event');
-
     let calendarApi = selectInfo.view.calendar;
 
     calendarApi.unselect(); // clear date selection
 
     if (title) {
-      // Add new event to the calendar 
-      setEvents([
-        ...events,
-        {
-          id: createEventId(),
-          title,
-          start: selectInfo.startStr,
-          end: selectInfo.endStr,
-          allDay: selectInfo.allDay
-        },
-      ]);
+      // This function will be passed from the parent component
+      // It is responsible for updating the events state in the parent
+      onAddEvent({
+        title,
+        start: selectInfo.startStr,
+        end: selectInfo.endStr,
+        allDay: selectInfo.allDay
+      });
     }
-  };
-
-  const createEventId = () => {
-    return String(events.length + 1);
   };
 
   return (
@@ -49,8 +39,8 @@ export default function MonthlySchedule() {
       selectable={true}
       selectMirror={true}
       dayMaxEvents={true}
-      events={events}
-      select={handleDateSelect} 
+      events={events} // Use the events passed down as props
+      select={handleDateSelect}
       style={{ width: '100%', height: '100%' }} 
     />
   );
