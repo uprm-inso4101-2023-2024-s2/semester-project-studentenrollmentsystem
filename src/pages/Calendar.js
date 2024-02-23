@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import styles from "../styles/pages/calendar.module.scss";
 import Button from "../components/button";
-import TextInput from "../components/textinput";
 import DailySchedule from "../components/DailySchedule";
 import MonthlySchedule from "../components/MonthlySchedule";
 import WeeklySchedule from "../components/WeeklySchedule";
@@ -9,6 +8,8 @@ import WeeklySchedule from "../components/WeeklySchedule";
 export default function CalendarPage() {
   const [currentView, setCurrentView] = useState("Daily");
   const [eventDate, setEventDate] = useState("");
+  const [eventStartHour, setEventStartHour] = useState("");
+  const [eventEndHour, setEventEndHour] = useState("");
   const [eventDescription, setEventDescription] = useState("");
 
   const changeView = (view) => {
@@ -16,8 +17,15 @@ export default function CalendarPage() {
   };
 
   const handleInsertEvent = () => {
-
-  }
+    // Here you would usually handle the event insertion logic,
+    // For example, saving to a state or sending to a server.
+    console.log("Inserting event:", {
+      eventDate,
+      eventStartHour,
+      eventEndHour,
+      eventDescription,
+    });
+  };
 
   const renderScheduleView = () => {
     switch (currentView) {
@@ -49,16 +57,30 @@ export default function CalendarPage() {
         <div className={styles.inputLocation}>
           <div className={styles.inputBox}>
             <h2>Event Details</h2>
-            <TextInput 
-
+            <input
+              type="date"
+              value={eventDate}
+              onChange={(e) => setEventDate(e.target.value)}
+              placeholder="Pick a date"
+              className={styles.dateInput} // Corrected from style to className
             />
-            <TextInput 
-
+            <input
+              type="time"
+              value={eventStartHour}
+              onChange={(e) => setEventStartHour(e.target.value)}
+              placeholder="Start Hour"
+              className={styles.hourInput} // Corrected from style to className
             />
+            <input
+              type="time"
+              value={eventEndHour}
+              onChange={(e) => setEventEndHour(e.target.value)}
+              placeholder="End Hour"
+              className={styles.hourInput} // Corrected from style to className
+            />
+
             <div className={styles.buttons}>
-              <Button onClick={handleInsertEvent}>
-                Insert
-              </Button>
+              <Button onClick={handleInsertEvent}>Insert</Button>
             </div>
           </div>
         </div>
