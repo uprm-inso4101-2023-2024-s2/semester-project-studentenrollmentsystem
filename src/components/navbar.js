@@ -56,6 +56,12 @@ export default function Navbar() {
         <li onClick={closeNavItem}>
           <Link to="/studentpage">StudentPage</Link>
         </li>
+        <li onClick={closeNavItem}>
+          <Link to="/offered-courses">Courses Offered</Link>
+        </li>
+        <li onClick={closeNavItem}>
+          <Link to="/filter-test">Filter-test</Link>
+        </li>
       </ul>
       <div className={styles.profile}>
         <Link to="/login">

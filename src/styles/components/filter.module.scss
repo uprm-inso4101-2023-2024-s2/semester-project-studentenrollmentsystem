@@ -1,0 +1,48 @@
+.filter {
+  text-align: right;
+  width: 350px;
+
+  // Menu hidden by default.
+  [id=filterMenu] {
+    display: none;
+  }
+}
+
+.button {
+  width: 30px;
+  height: 30px;
+  background-image: url("../../../public/filter.png");
+  background-repeat: no-repeat;
+  background-size: 26px 26px;
+
+  &:hover {
+    background-color: darken(#ffffff, 15%); 
+  }
+}
+
+.table {
+  table-layout: fixed;
+  width: 100%;
+  border-collapse: collapse;
+  font-family: Arial, sans-serif;
+  font-size: small;
+
+  th, td {
+    text-align: center;
+    width: 100%;
+    padding: 3px;
+    border: 1px solid #000000;
+  }
+
+  th {
+    color: #000000;
+  }
+
+  tr:nth-child(even) {
+    background-color: #ffffff;
+  }
+
+  tr:nth-child(odd) {
+    background-color: #f2f2f2;
+  }
+}
