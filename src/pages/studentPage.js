@@ -208,6 +208,16 @@ function StudentPage() {
                   readOnly={!isProfileEditing}
                   className={styles.movedRight}
                 />
+                <label htmlFor="totalCredits"className={styles.movedRight}style={{ visibility: 'hidden' }}>Total Credits:</label>
+                <input
+                  style={{ visibility: 'hidden' }}
+                  type="text"
+                  id="totalCredits"
+                  value={totalCredits}
+                  onChange={(e) => setTotalCredits(e.target.value)}
+                  readOnly={!isProfileEditing}
+                  className={styles.movedRight}
+                />
               </>
             ) : (
               <>
