@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import styles from "../styles/components/navbar.module.scss";
 import { Link } from "react-router-dom";
+import profileImage from "../img/profile.png"; // Import your profile image
 
 export default function Navbar() {
   // Determine if NavBar menu is open or closed
@@ -38,9 +39,11 @@ export default function Navbar() {
         <div className={styles.bar}></div>
       </div>
       <div className={styles.logo} onClick={closeNavItem}>
+        <Link to="/">MATRICULA UPRM</Link>
+      </div>
       
-        <Link to="/home">MATRICULA UPRM</Link>
-     
+      <div className={styles.logo} onClick={closeNavItem}>
+        <Link to="/signup" >Sign Up</Link>
       </div>
       
       <ul className={`${styles.navLinks} ${isOpen ? styles.showMenu : ""}`}>
@@ -51,12 +54,20 @@ export default function Navbar() {
           <Link to="/calendar">Calendar</Link>
         </li>
         <li onClick={closeNavItem}>
+          <Link to="/studentpage">StudentPage</Link>
+        </li>
+        <li onClick={closeNavItem}>
           <Link to="/offered-courses">Courses Offered</Link>
         </li>
         <li onClick={closeNavItem}>
           <Link to="/filter-test">Filter-test</Link>
         </li>
       </ul>
+      <div className={styles.profile}>
+        <Link to="/login">
+          <img src={profileImage} alt="Profile" className={styles.profileImage} />
+        </Link>
+      </div>
     </nav>
   );
 }
