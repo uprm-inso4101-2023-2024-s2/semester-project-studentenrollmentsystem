@@ -1,3 +1,11 @@
+## For working on the course table
+* The student will need to install papaparse package (*npm install papaparse*).
+* This table is dinamically created depending on csv file entries.
+
+## For working on the Student Page
+* The student page file is *studentPage.js* (src/pages/studentPage.js).
+* The student page file for style is *studentPage.css* (src/styles/pages/studentPage.css).
+
 ## Contributing
 * Do not work on the main branch directly, work on your own branch.
 * If you are working on a part of your project, submit a PR when your entire feature
