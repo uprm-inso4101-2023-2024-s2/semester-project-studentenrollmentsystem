@@ -1,13 +1,12 @@
 import React from 'react';
 import Grid from './grid'; // Import the generic Grid component
-import Card from './card.js';
-import styles from '../styles/components/courselist.module.scss'; // Path to your CourseList CSS module
+import CourseCard from './coursecard.js';
 
 const CourseList = ({ courses }) => {
     return (
         <Grid>
             {courses.map((course) => (
-               <Card
+               <CourseCard
                key={course.id}
                imageUrl={course.image}
                courseName={course.title}
