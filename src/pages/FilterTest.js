@@ -1,5 +1,6 @@
 import React from "react";
 import Filter from "../components/filter";
+import SearchBar from "../components/searchBar";
 
 export default function FilterTestPage() {
   const randList = [
@@ -12,6 +13,7 @@ export default function FilterTestPage() {
   
   return (
     <div>
+      <SearchBar data={randList}/>
       <Filter courseList={randList}/>
     </div>
   );
