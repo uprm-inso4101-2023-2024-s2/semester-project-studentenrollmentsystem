@@ -5,7 +5,6 @@ import Navbar from './components/navbar';
 import HomePage from './pages/HomePage';
 import Calendar from './pages/Calendar';
 import LoginPage from './pages/Login';
-import SignUp from './pages/SignUp';
 
 function App() {
   return (
@@ -15,7 +14,6 @@ function App() {
         <Route path="/home" element={<HomePage />} />
         <Route path="/calendar" element={<Calendar />} />
         <Route path="/login" element={<LoginPage />} />
-        <Route path='/signup' element={<SignUp />}/>
         {/* Add more routes as necessary */}
       </Routes>
     </div>
