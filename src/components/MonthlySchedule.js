@@ -6,7 +6,11 @@ import interactionPlugin from '@fullcalendar/interaction';
 
 export default function MonthlySchedule() {
   // State to keep track of events
-  const [events, setEvents] = useState([]);
+  const [events, setEvents] = useState([
+    { title: 'Event 1', start: '2024-02-18T10:00:00', end: '2024-02-18T12:00:00' },
+    { title: 'Event 2', start: '2024-02-19T13:00:00', end: '2024-02-19T15:00:00' }
+    // Initialize with default events or empty array
+]);
 
   // Handler for adding a new event
   const handleDateSelect = (selectInfo) => {
