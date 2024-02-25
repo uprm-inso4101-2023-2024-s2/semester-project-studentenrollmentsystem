@@ -1,17 +1,37 @@
 import React from 'react';
 import styles from "../styles/components/card.module.scss";
 
-export default function Card({courseName, credits, instructor, imageUrl, description, buttontext = 'Click Me'}){
-    return(
-        <div className={styles.card}>
-        <img src={imageUrl} alt="Card" className={styles.image} />
-        <div className={styles.content}>
-          <h2 className={styles.courseName}>{courseName}</h2>
-          <h1 className={styles.instructor}>{instructor}</h1>
-          <p className={styles.description}>{description}</p>
-          <p className={styles.credits}>{credits}</p>
-          <button className={styles.button}>{buttontext}</button>
-        </div>
+const Card = ({
+  className,
+  imageUrl,
+  title,
+  titleClassName,
+  children,
+  buttontext = 'Click Me',
+  buttonClassName,
+  imageClassName,
+  onButtonClick
+}) => {
+  // Use provided class names or default to module styles if not provided
+  const cardClassName = className || styles.card;
+  const titleClass = titleClassName || styles.title;
+  const buttonClass = buttonClassName || styles.button;
+  const imageClass = imageClassName || styles.image;
+
+  return (
+    <div className={cardClassName}>
+      <img src={imageUrl} alt={title} className={imageClass} />
+      <div className={styles.content}>
+        <h2 className={titleClass}>{title}</h2>
+        {children}
+        {buttontext && (
+          <button onClick={onButtonClick} className={buttonClass}>
+            {buttontext}
+          </button>
+        )}
       </div>
-    ); 
-}
+    </div>
+  );
+};
+
+export default Card;

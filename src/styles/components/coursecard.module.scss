@@ -1,0 +1,67 @@
+.courseCard {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 250px;
+    height: 350px; // Fixed height for the card
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    margin-bottom: 2rem; // Space between cards vertically
+    padding: 1rem; // Padding around the content inside the card
+    padding-bottom: 3rem; // Space for the credits and the button
+  }
+  
+  .description {
+    flex-grow: 1; // Takes the remaining space between title and credits
+    display: flex;
+    align-items: center; // Centers text vertically in the available space
+    text-align: center; // Centers text horizontally
+    margin: 0 1rem; // Keeps the text from touching the card edges
+    overflow-y: auto; // Enables scrolling for overflow content
+    background-color: rgb(194, 194, 194);
+    border-radius: 10px;
+    font-size: 16px;
+    padding: px;
+  }
+
+  .title {
+    background-color: rgb(236, 236, 236);
+    border-radius: 10px;
+    font-size: 20px;
+    padding: 5px;
+  }
+  
+  .credits {
+    position: absolute;
+    bottom: 3rem; // Position the credits a fixed distance from the bottom
+    left: 1rem; // Align with the card's padding
+    right: 1rem; // Align with the card's padding
+    // Other styles as needed
+  }
+  
+  .button {
+    position: absolute;
+    bottom: 1rem; // Position the button a fixed distance from the bottom
+    left: 1rem;
+    right: 1rem;
+    padding: 10px 20px;
+    background-color: #40976A;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+    text-align: center;
+    transition: background-color 0.2s ease;
+    &:hover {
+      background-color: #255d40;
+    }
+  }
+  
+  .courseImage {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+  }
+  
