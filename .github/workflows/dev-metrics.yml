@@ -45,7 +45,7 @@ jobs:
           poetry run python generateMilestoneMetricsForActions.py ${{ github.workspace }}/gh_metrics_config.json
         shell: bash
         env:
-          GITHUB_API_TOKEN: ${{ secrets.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 }}
+          GITHUB_API_TOKEN: ${{ secrets.GH_API_TOKEN }}
           ORGANIZATION: ${{ github.repository_owner }}
       - name: Move Generated Metrics to Source Repo
         run: |
