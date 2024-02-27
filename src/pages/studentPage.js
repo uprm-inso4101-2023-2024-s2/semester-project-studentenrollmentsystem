@@ -158,22 +158,7 @@ export default function StudentPage() {
           alt="profile"
         />
       </label>
-
-      <div className={styles.topbar} id="topbarid">
-        <span className={styles.btntitle} onClick={() => window.scrollTo(0, 0)}>
-          Perfil Estudiantil
-        </span>
-        <span className={styles.user}>
-          <label htmlFor="profile-image-upload">
-            <img
-              src={profileImage || "/default-profile-icon.png"}
-              className={styles.userimg}
-              alt="user"
-            />
-          </label>
-        </span>
-      </div>
-
+      
       <input
         id="profile-image-upload"
         type="file"
