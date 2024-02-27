@@ -1,10 +1,10 @@
 {
     "organization": "uprm-inso4101-2023-2024-S2",
     "projectName" : "Student-Enrollment-System",
+    "milestoneName": "Milestone #2",
     "teams": {
       "College Toolbox": {
         "managers": ["SamuelRUM", "ErnestWilliam"],
-        "milestoneName": "Milestone #2",
         "projectedMilestoneGroupGrade": 100.0
       }
     },
