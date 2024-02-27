@@ -1,10 +1,9 @@
-{
-    "organization": "uprm-inso4101-2023-2024-S2",
-    "projectName" : "Student-Enrollment-System",
+  {
+    "projectName": "Student Enrollment System",
     "managers": ["SamuelRUM", "ErnestWilliam"],
-    "milestoneName": "Milestone #2",
+    "milestoneName": "Milestone #1",
     "projectedMilestoneGroupGrade": 100.0,
-    "milestoneStartDate": "2024-02-26",
-    "milestoneEndDate": "2024-03-21",
+    "milestoneStartDate": "2024-01-01",
+    "milestoneEndDate": "2024-01-31",
     "lectureTopicTaskQuota": 4
   }
