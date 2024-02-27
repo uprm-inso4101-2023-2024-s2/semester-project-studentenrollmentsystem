@@ -4,7 +4,7 @@
     "teams": {
       "College Toolbox": {
         "managers": ["SamuelRUM", "ErnestWilliam"],
-        "milestoneName": "Milestone#2",
+        "milestoneName": "Milestone #2",
         "projectedMilestoneGroupGrade": 100.0
       }
     },
