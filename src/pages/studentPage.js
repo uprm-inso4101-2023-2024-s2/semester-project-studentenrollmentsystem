@@ -4,6 +4,7 @@ import Button from "../components/button";
 import Coursetable from "../components/courseTable";
 import Coursetable2 from "../components/courseTable2";
 import Scheduletable from "../components/scheduleTable";
+import Examtable from "../components/activeExams";
 
 export default function StudentPage() {
   const [isTable1Visible, setIsTable1Visible] = useState(true);
@@ -286,6 +287,11 @@ export default function StudentPage() {
             {isTable1Visible && !isTable2Visible && <Coursetable />}
             {isTable2Visible && <Coursetable2 />}
             {!isTable1Visible && !isTable2Visible && <Scheduletable />}
+          </div>
+
+          <div className={styles.examview}>
+            {isTable1Visible && <h1>Exam Grades</h1>}
+            {isTable1Visible && <Examtable></Examtable>}
           </div>
         </div>
       </div>
