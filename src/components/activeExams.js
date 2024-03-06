@@ -29,24 +29,24 @@ export default function Examtable()
                     <thead>
                         <tr>
                         <th>Curso</th>
-                        <th>Examen1</th>
-                        <th>Examen2</th>
-                        <th>Examen3</th>
-                        <th>Examen4</th>
-                        <th>Examen5</th>
-                        <th>ExamenFinal</th>
+                        <th>Examen 1</th>
+                        <th>Examen 2</th>
+                        <th>Examen 3</th>
+                        <th>Examen 4</th>
+                        <th>Examen 5</th>
+                        <th>Examen Final</th>
                         </tr>
                     </thead>
                     <tbody>
                         {data.map((row,index)=>(
                             <tr key ={index}>
                                 <td>{row.Curso}</td>
-                                <td>{row.Examen1}</td>
-                                <td>{row.Examen2}</td>
-                                <td>{row.Examen3}</td>
-                                <td>{row.Examen4}</td>
-                                <td>{row.Examen5}</td>
-                                <td>{row.ExamenFinal}</td>
+                                <td>{row.Examen_1}</td>
+                                <td>{row.Examen_2}</td>
+                                <td>{row.Examen_3}</td>
+                                <td>{row.Examen_4}</td>
+                                <td>{row.Examen_5}</td>
+                                <td>{row.Examen_Final}</td>
                             </tr>
                         ))}
                     </tbody>
