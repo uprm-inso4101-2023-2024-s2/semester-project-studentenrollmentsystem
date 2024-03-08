@@ -1,8 +1,13 @@
 import React from "react";
 import styles from "../styles/components/scheduleTable.module.scss";
 import {useState, useEffect} from "react";
-import Data from "../dummydata/dumbdata.csv";
-import Papa from "papaparse"
+import Data from "../dummydata/spring2024.csv";
+import Papa from "papaparse";
+import FullCalendar from "@fullcalendar/react";
+import dayGridPlugin from "@fullcalendar/daygrid";
+import timeGridPlugin from "@fullcalendar/timegrid";
+import Calendar from 'react-calendar';
+import "react-calendar/dist/Calendar.css"
 
 export default function Scheduletable()
 {
@@ -22,163 +27,60 @@ export default function Scheduletable()
         fetchData();
     }, []);
 
+    const getClassEvents = [
+        {
+            title: "MATE4145",
+            start: "2024-03-MonT13:00:00",
+            end: "2024-03-MonT14:50:00",
+        },
+        {
+            title: "MATE4145",
+            start: "2024-03-13T13:00:00",
+            end: "2024-03-13T14:50:00",
+        },
+        {
+            title: "MATE4145",
+            start: "2024-03-15T13:00:00",
+            end: "2024-03-15T13:50:00",
+        },
+
+    ]
+
+    const range = (keyCount) => [...Array(keyCount).keys()];
+    const timeX = ["6:30am","--------","7:30am","--------","8:30am","--------","9:30am","--------","10:30am","--------","11:30am","--------","12:30pm","--------","1:30pm","--------","2:30pm","--------","3:30pm","--------","4:30pm","--------","5:30pm","--------","6:30pm","--------","7:30pm","--------","8:30pm","--------","9:30pm"];
     return(
         <>
             <table className={styles.Scheduletable}>
-            <tr>
-                <th></th>
-                <th>Monday</th>
-                <th>Tuesday</th>
-                <th>Wednesday</th>
-                <th>Thursday</th>
-                <th>Friday</th>
-                <th>Saturday</th>
-            </tr>
-            <tr>
-                <td>6:30am</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>7:30am</td>
-                <td ></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>8:30am</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>9:30am</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>10:30am</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>11:30am</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>12:30pm</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>1:30pm</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>2:30pm</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>3:30pm</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>4:30pm</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>5:30pm</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>6:30pm</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>7:30pm</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>8:30pm</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>9:30pm</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
+                <thead>
+                    <tr>
+                        <th>Time</th>
+                        <th>Monday</th>
+                        <th>Tuesday</th>
+                        <th>Wednesday</th>
+                        <th>Thursday</th>
+                        <th>Friday</th>
+                        <th>Saturday</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {range(31).map((time)=>(
+                        <tr id={time}>{timeX[time]}
+                            <td>A</td>
+                            <td>B</td>
+                            <td>C</td>
+                            <td>D</td>
+                            <td>E</td>
+                            <td>F</td>
+                        </tr>
+                    ))}
+                </tbody>
             </table>
+            {/* <FullCalendar
+                plugins={[dayGridPlugin,timeGridPlugin]}
+                initialView="timeGridWeek"
+                aspectRatio={0.8}
+                events={getClassEvents}
+            /> */}
         </>
     );
 }       

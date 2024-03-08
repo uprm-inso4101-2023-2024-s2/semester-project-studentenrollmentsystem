@@ -149,6 +149,10 @@ export default function StudentPage() {
     );
   };
 
+
+  const renderScheduleTable = () => {
+    
+  }
   return (
     <div className={styles.StudentPage}>
       <label htmlFor="profile-image-upload" className={styles.newProfileIcon} onClick={() => document.getElementById('profile-image-upload').click()}>
@@ -272,8 +276,8 @@ export default function StudentPage() {
           <h1>Curriculum: Spring 2024</h1>
 
           <div className={styles.viewbutton}>
-            <Button onClick={toggleDropdown}>Past Semesters</Button>
-            <Button onClick={toggleIsTable1}>Switch Views</Button>
+            <button className={styles.buttonX} onClick={toggleDropdown}>Past Semesters</button>
+            <button className={styles.buttonY} onClick={toggleIsTable1}>Switch Views</button>
             {isDropdownVisible && (
               <div className={styles.additionalButtons}>
                 <Button onClick={toggleIsTable2}>Fall Semester 2023</Button>

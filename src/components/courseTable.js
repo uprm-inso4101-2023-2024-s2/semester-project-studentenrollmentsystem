@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "../styles/components/courseTable.module.scss";
 import {useState, useEffect} from "react";
-import Data from "../dummydata/dumbdata.csv";
+import Data from "../dummydata/spring2024.csv";
 import Papa from "papaparse"
 
 export default function Coursetable()
