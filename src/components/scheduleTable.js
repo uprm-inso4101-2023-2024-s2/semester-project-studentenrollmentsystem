@@ -48,6 +48,15 @@ export default function Scheduletable()
 
     const range = (keyCount) => [...Array(keyCount).keys()];
     const timeX = ["6:30am","--------","7:30am","--------","8:30am","--------","9:30am","--------","10:30am","--------","11:30am","--------","12:30pm","--------","1:30pm","--------","2:30pm","--------","3:30pm","--------","4:30pm","--------","5:30pm","--------","6:30pm","--------","7:30pm","--------","8:30pm","--------","9:30pm"];
+
+    function classGen(CLASS,DAY){
+        if(CLASS=="13" && (DAY=="L" || DAY=="W" || DAY=="V"))
+        {
+            return(<>MATE4145</>)
+        }
+        return(<></>)
+    }
+
     return(
         <>
             <table className={styles.Scheduletable}>
@@ -65,16 +74,20 @@ export default function Scheduletable()
                 <tbody>
                     {range(31).map((time)=>(
                         <tr id={time}>{timeX[time]}
-                            <td>A</td>
-                            <td>B</td>
-                            <td>C</td>
-                            <td>D</td>
-                            <td>E</td>
-                            <td>F</td>
+                            <td id="L">{classGen(time,"L")}</td>
+                            <td id="M">{classGen(time,"M")}</td>
+                            <td id="W">{classGen(time,"W")}</td>
+                            <td id="J">{classGen(time,"J")}</td>
+                            <td id="V">{classGen(time,"V")}</td>
+                            <td id="S">{classGen(time,"S")}</td>
                         </tr>
                     ))}
                 </tbody>
             </table>
+
+            <>
+                {}
+            </>
             {/* <FullCalendar
                 plugins={[dayGridPlugin,timeGridPlugin]}
                 initialView="timeGridWeek"
