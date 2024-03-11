@@ -1,9 +1,9 @@
   {
     "projectName": "studentEnrollmentSystem",
     "managers": ["SamuelRUM", "ErnestWilliam"],
-    "milestoneName": "Milestone #2",
+    "milestoneName": "Milestone #1",
     "projectedMilestoneGroupGrade": 100.0,
-    "milestoneStartDate": "2024-02-24",
-    "milestoneEndDate": "2024-03-22",
+    "milestoneStartDate": "2024-01-17",
+    "milestoneEndDate": "2024-02-23",
     "lectureTopicTaskQuota": 4
   }
