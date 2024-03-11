@@ -6,6 +6,10 @@
 * The student page file is *studentPage.js* (src/pages/studentPage.js).
 * The student page file for style is *studentPage.css* (src/styles/pages/studentPage.css).
 
+## For working with the Dummy Data Maker Interface
+* Run `node DataMakerServer.js` from *src/dummydata* (use `cd src/dummydata`)
+  and leave it running in a separate terminal while using Dummy Data Maker.
+
 ## Contributing
 * Do not work on the main branch directly, work on your own branch.
 * If you are working on a part of your project, submit a PR when your entire feature
