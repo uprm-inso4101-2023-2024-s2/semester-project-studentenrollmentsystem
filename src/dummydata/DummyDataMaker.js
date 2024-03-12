@@ -1,6 +1,5 @@
 import React from "react";
 import styles from "./datamaker.module.scss";
-import Button from "../components/button";
 import CourseMaker from "./CourseMaker";
 
 export default function DummyDataMakerPage() {
@@ -13,29 +12,41 @@ export default function DummyDataMakerPage() {
     switch (currentMaker) {
       case "Courses": 
         return <CourseMaker />
+      case "Proffessors":
+        return <div>To be Implemented</div>
       case "Other":
-        return (
-          <div>To be Implemented</div>
-        );
-      default: 
+        return <div>To be Implemented</div>
+      default:
         return <CourseMaker />;
     }
   }
 
+  // Add component to see current courses.
+  const renderDataView = () => {
+    return (
+      <div>Data View</div>
+    );
+  }
+
   return (
-    <div className={styles.Home}>
+    <div className={styles.DataMaker}>
       <div className={styles.header}>
         <div className={styles.views}>
-          <h2>Dummy Data Maker</h2>
-          <div className={styles.buttons}>
-            <Button onClick={() => changeMaker("Courses")}>Courses</Button>
-            <Button onClick={() => changeMaker("Other")}>Other</Button>
+          <div className={styles.views}>
+            <h2>Dummy Data Maker</h2>
+            <div className={styles.buttons}>
+              <button onClick={() => changeMaker("Courses")}>Courses</button>
+              <button onClick={() => changeMaker("Proffessors")}>Proffessors</button>
+              <button onClick={() => changeMaker("Other")}>Other</button>
+            </div>
           </div>
+          <p>Dummy Data Maker Description</p>
         </div>
+        <div className={styles.dataMakerCenter}>{renderDataMaker()}</div>
       </div>
       <div className={styles.dataMakerCenter}>
         <div className={styles.dataMakerContainer}>
-          {renderDataMaker()}
+          {renderDataView()}
         </div>
       </div>
     </div>

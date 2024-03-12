@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import styles from "./datamaker.module.scss";
 
 export default function CourseMaker() {
   const[course, setCourse] = React.useState([]);
@@ -23,19 +24,21 @@ export default function CourseMaker() {
 
   return (
     <div>
-      <input type="text" placeholder="Course"
-          onChange={(e)=>setCourse(e.target.value)}/>
-      <input type="text" placeholder="Section"
-          onChange={(e)=>setSection(e.target.value)}/>
-      <input type="text" placeholder="Credits"
-          onChange={(e)=>setCredits(e.target.value)}/>
-      <input type="text" placeholder="Meetings"
-          onChange={(e)=>setMeetings(e.target.value)}/>
-      <input type="text" placeholder="Professor"
-          onChange={(e)=>setProfessor(e.target.value)}/>
-      <input type="text" placeholder="Grade"
-          onChange={(e)=>setGrade(e.target.value)}/>
-      <button onClick={()=> saveData()}>Save</button>
+      <div className={styles.dataMakerCenter}>
+        <input type="text" placeholder="Course"
+            onChange={(e)=>setCourse(e.target.value)}/>
+        <input type="text" placeholder="Section"
+            onChange={(e)=>setSection(e.target.value)}/>
+        <input type="text" placeholder="Credits"
+            onChange={(e)=>setCredits(e.target.value)}/>
+        <input type="text" placeholder="Meetings"
+            onChange={(e)=>setMeetings(e.target.value)}/>
+        <input type="text" placeholder="Professor"
+            onChange={(e)=>setProfessor(e.target.value)}/>
+        <input type="text" placeholder="Grade"
+            onChange={(e)=>setGrade(e.target.value)}/>
+      </div>
+      <div><button onClick={()=> saveData()}>Save</button></div>
     </div>
   );
 }
