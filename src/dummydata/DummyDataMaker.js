@@ -31,22 +31,23 @@ export default function DummyDataMakerPage() {
   return (
     <div className={styles.DataMaker}>
       <div className={styles.header}>
-        <div className={styles.views}>
-          <div className={styles.views}>
+        <div className={styles.upperCont}>
+          <div>
             <h2>Dummy Data Maker</h2>
-            <div className={styles.buttons}>
-              <button onClick={() => changeMaker("Courses")}>Courses</button>
-              <button onClick={() => changeMaker("Proffessors")}>Proffessors</button>
-              <button onClick={() => changeMaker("Other")}>Other</button>
-            </div>
           </div>
-          <p>Dummy Data Maker Description</p>
+          <div className={styles.buttons}>
+            <button onClick={() => changeMaker("Courses")}>Courses</button>
+            <button onClick={() => changeMaker("Proffessors")}>Proffessors</button>
+            <button onClick={() => changeMaker("Other")}>Other</button>
+          </div>
         </div>
-        <div className={styles.dataMakerCenter}>{renderDataMaker()}</div>
-      </div>
-      <div className={styles.dataMakerCenter}>
-        <div className={styles.dataMakerContainer}>
-          {renderDataView()}
+        <div className={styles.buttonCont}>
+          <div className={styles.description}>
+            Simple interface allows the creation of dummy data to be used within
+            this page. Please be sure to run in a separate terminal the
+            `DataMakerServer` by running `node DataMakerServer.js` in the
+            `src/dummydata` folder.
+          </div>
         </div>
       </div>
     </div>
