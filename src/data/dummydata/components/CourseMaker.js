@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-import styles from "./datamaker.module.scss";
+import styles from "../styles/datamaker.module.scss";
 
 export default function CourseMaker() {
   const[course, setCourse] = React.useState([]);

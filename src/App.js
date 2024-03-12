@@ -9,7 +9,7 @@ import FilterTest from './pages/FilterTest';
 import OfferedCourses from './pages/OfferedCourses';
 import SignUp from './pages/SignUp';
 import LoginPage from './pages/Login';
-import DummyDataMaker from './dummydata/DummyDataMaker';
+import DummyDataMaker from './data/dummydata/DummyDataMaker';
 
 export default function App() {
   return (

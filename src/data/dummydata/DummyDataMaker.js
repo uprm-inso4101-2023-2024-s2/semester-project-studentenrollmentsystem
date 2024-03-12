@@ -1,6 +1,7 @@
 import React from "react";
-import styles from "./datamaker.module.scss";
-import CourseMaker from "./CourseMaker";
+import styles from "./styles/datamaker.module.scss";
+import CourseMaker from "./components/CourseMaker";
+import DataView from "./components/DataView";
 
 export default function DummyDataMakerPage() {
   const [currentMaker, setCurrentMaker] = React.useState("Courses");
@@ -19,13 +20,6 @@ export default function DummyDataMakerPage() {
       default:
         return <CourseMaker />;
     }
-  }
-
-  // Add component to see current courses.
-  const renderDataView = () => {
-    return (
-      <div>Data View</div>
-    );
   }
 
   return (
@@ -55,7 +49,7 @@ export default function DummyDataMakerPage() {
           {renderDataMaker()}
         </div>
         <div className={styles.rightCont}>
-          {renderDataView()}
+          <DataView />
         </div>
       </div>
     </div>
