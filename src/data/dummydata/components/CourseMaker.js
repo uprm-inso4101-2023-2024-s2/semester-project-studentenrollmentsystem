@@ -12,14 +12,20 @@ export default function CourseMaker() {
 
   const saveData = async () => {
     const data = `${course},${section},${credits},${meetings},${professor},${grade}\n`;
-
-    // Appends `data` to "../dummydata/dumbdata.csv".
     try {
       await axios.post('http://localhost:3001/saveToFile', {text: data});
       console.log('File saved successfully!');
     } catch (error) {
       console.error('Error saving file:', error);
     }
+
+    // Reset data on fields.
+    setCourse("");
+    setSection("");
+    setCredits("");
+    setMeetings("");
+    setProfessor("");
+    setGrade("");
   }
 
   return (

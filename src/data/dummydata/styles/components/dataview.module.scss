@@ -1,4 +1,14 @@
 .DataView {
+  background-color: lightblue;
+  border-radius: 30px;
   display: flex;
-  flex-direction: column;
+  justify-content: center;
+  margin: 10px;
+  height: 540px;
+  overflow-y: auto;
+
+  .viewingBox {
+    display: flex;
+    flex-direction: column;
+  }
 }
