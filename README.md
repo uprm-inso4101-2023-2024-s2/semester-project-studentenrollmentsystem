@@ -7,7 +7,7 @@
 * The student page file for style is *studentPage.css* (src/styles/pages/studentPage.css).
 
 ## For working with the Dummy Data Maker Interface
-* Run `node DataMakerServer.js` from *src/dummydata* (use `cd src/dummydata`)
+* Run `node DataMakerServer.js` from *src/data/dummydata* (use `cd src/data/dummydata`)
   and leave it running in a separate terminal while using Dummy Data Maker.
 
 ## Contributing
