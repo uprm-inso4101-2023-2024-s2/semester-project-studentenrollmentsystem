@@ -50,6 +50,14 @@ export default function DummyDataMakerPage() {
           </div>
         </div>
       </div>
+      <div className={styles.toolSpace}>
+        <div className={styles.leftCont}>
+          {renderDataMaker()}
+        </div>
+        <div className={styles.rightCont}>
+          {renderDataView()}
+        </div>
+      </div>
     </div>
   );
 }

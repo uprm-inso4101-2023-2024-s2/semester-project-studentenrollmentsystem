@@ -44,4 +44,28 @@
       }
     }
   }
+
+  .toolSpace {
+    background-color: lightblue;
+    margin-top: 5px;
+    display: flex;
+    flex-direction: row;
+    height: 560px;
+    width: 95%;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+
+    .leftCont {
+      background-color: red;
+      height: 100%;
+      width: 50%;
+    }
+
+    .rightCont {
+      //background-color: blue;
+      height: 100%;
+      width: 50%;
+    }
+  }
 }
