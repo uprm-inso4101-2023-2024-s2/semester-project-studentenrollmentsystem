@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "../styles/components/dataview.module.scss";
+import styles from "../styles/dataview.module.scss";
 import InfiniteScroll from "react-infinite-scroll-component";
 import Data from "../dumbdata.csv";
 import Papa from "papaparse"
