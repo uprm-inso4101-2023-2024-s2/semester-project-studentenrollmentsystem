@@ -1,14 +1,38 @@
 .DataView {
-  border-style: solid;
-  border-radius: 30px;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  justify-content: flex-start;
   margin: 10px;
   height: 540px;
   overflow-y: auto;
 
-  .viewingBox {
+  .header {
     display: flex;
     flex-direction: column;
+    border-radius: 30px;
+    justify-content: center;
+    height: 25%;
+    margin-left: 10px;
+    margin-right: 10px;
+
+    .title {
+      text-align: left;
+      height: 50%;
+    }
+
+    .description {
+      text-align: left;
+      margin-top: 5px;
+    }
+  }
+
+  .toolBox {
+    height: 100%;
+
+    .viewingBox {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+    }
   }
 }

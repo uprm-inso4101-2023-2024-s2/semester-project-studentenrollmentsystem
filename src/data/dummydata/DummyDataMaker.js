@@ -14,9 +14,9 @@ export default function DummyDataMakerPage() {
       case "Courses": 
         return <CourseMaker />
       case "Proffessors":
-        return <div>To be Implemented</div>
+        return <div>Proffesor Maker: To be Implemented.</div>
       case "Other":
-        return <div>To be Implemented</div>
+        return <div>To be Implemented.</div>
       default:
         return <CourseMaker />;
     }
@@ -26,13 +26,14 @@ export default function DummyDataMakerPage() {
     <div className={styles.DataMaker}>
       <div className={styles.header}>
         <div className={styles.upperCont}>
-          <div>
-            <h2>Dummy Data Maker</h2>
-          </div>
-          <div className={styles.buttons}>
-            <button onClick={() => changeMaker("Courses")}>Courses</button>
-            <button onClick={() => changeMaker("Proffessors")}>Proffessors</button>
-            <button onClick={() => changeMaker("Other")}>Other</button>
+          <div><h2>Dummy Data Maker</h2></div>
+          <div className={styles.buttonBox}>
+            <button className={styles.buttons}
+              onClick={() => changeMaker("Courses")}>Courses</button>
+            <button className={styles.buttons}
+              onClick={() => changeMaker("Proffessors")}>Proffessors</button>
+            <button className={styles.buttons}
+              onClick={() => changeMaker("Other")}>Other</button>
           </div>
         </div>
         <div className={styles.buttonCont}>

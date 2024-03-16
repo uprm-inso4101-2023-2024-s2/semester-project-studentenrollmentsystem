@@ -1,6 +1,4 @@
 .CourseMaker {
-  border-style: solid;
-  border-radius: 30px;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -50,39 +48,6 @@
           box-sizing: border-box;
         }
       }
-
-      .buttonBox {
-        height: 7%;
-        align-items: center;
-
-        .buttons {
-          width: 87.5%;
-          padding: 2px;
-        }
-      }
-
-      // Add style for preview and presets.
-      .preview {
-        background-color: red;
-        height: 13%;
-        margin-top: 10px;
-
-        .object {
-          border-style: solid;
-          border-width: 1px;
-          border-color: green;
-          height: 100%;
-          margin-left: 5px;
-          margin-right: 5px;
-          text-align: center;
-        }
-      }
-    }
-
-    // Add style for preview and presets.
-    .presets {
-      background-color: blue;
-      height: 15%;
     }
   }
 }

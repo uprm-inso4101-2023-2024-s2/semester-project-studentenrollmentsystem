@@ -6,7 +6,6 @@
   margin-top: 25px;
 
   .header {
-    background-color: #D9D9D9;
     display: flex;
     flex-direction: column;
     height: 140px;
@@ -14,27 +13,44 @@
     justify-content: center;
     align-items: center;
     border-radius: 20px;
+    background-color: #D9D9D9;
   
     .upperCont {
-      width: 95%;
       display: flex;
       flex-direction: row;
+      width: 95%;
       justify-content: space-between;
       align-items: center;
 
-      .buttons {
+      .buttonBox {
         display: flex;
         flex-direction: row;
         justify-content: center;
         align-items: center;
         gap: 5px;
+
+        .buttons {
+          color: white; 
+          background-color: #40976A; 
+          border-radius: 10px;
+          border: none; 
+          padding: 10px 20px; 
+          cursor: pointer;
+          font-size: 16px; 
+          font-weight: bold;
+          transition: background-color 0.3s;
+        
+          &:hover {
+            background-color: darken(#40976A, 10%); 
+          }
+        }
       }
     }
   
     .buttonCont {
-      width: 95%;
       display: flex;
       flex-direction: row;
+      width: 95%;
       justify-content: space-between;
       align-items: center;
   
@@ -46,8 +62,6 @@
   }
 
   .toolSpace {
-    background-color: #D9D9D9;
-    margin-top: 5px;
     display: flex;
     flex-direction: row;
     height: 560px;
@@ -55,15 +69,35 @@
     justify-content: center;
     align-items: center;
     border-radius: 20px;
+    margin-top: 5px;
+    background-color: #D9D9D9;
 
     .leftCont {
-      height: 100%;
-      width: 50%;
+      display: flex;
+      flex-direction: column;
+      height: 90%;
+      width: 45%;
+      align-items: center;
+      justify-content: center;
+      border-radius: 8px;
+      margin: 5px;
+      padding: 20px 30px;
+      gap: 13px;
+      background-color:white;
     }
 
     .rightCont {
-      height: 100%;
-      width: 50%;
+      display: flex;
+      flex-direction: column;
+      height: 90%;
+      width: 45%;
+      align-items: center;
+      justify-content: center;
+      border-radius: 8px;
+      margin: 5px;
+      padding: 20px 30px;
+      gap: 13px;
+      background-color:white;
     }
   }
 }

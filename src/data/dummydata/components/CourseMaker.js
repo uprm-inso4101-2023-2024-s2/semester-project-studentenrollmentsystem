@@ -18,6 +18,7 @@ export default function CourseMaker() {
         await axios.post('http://localhost:3001/saveToFile', {text: data});
         console.log('File saved successfully!');
       } catch (error) {
+        alert('Error saving file:', error)
         console.error('Error saving file:', error);
       }
     } else {
@@ -32,7 +33,7 @@ export default function CourseMaker() {
           <h2 className={styles.title}>Course Maker</h2>  
         </div>
         <div className={styles.description}>
-          Create and add courses.
+          Create dummy courses. At least one field must have a valid input.
         </div>
       </div>
       <div className={styles.toolBox}>
@@ -50,18 +51,8 @@ export default function CourseMaker() {
               onChange={(e)=>setProfessor(e.target.value)}/>
             <input className={styles.input} type="text" placeholder="Grade"
               onChange={(e)=>setGrade(e.target.value)}/>
+            <button className={styles.input} onClick={()=> saveData()}>Save</button>
           </div>
-          <div className={styles.buttonBox}>
-            <button className={styles.buttons} onClick={()=> saveData()}>Save</button>
-          </div>
-          <div className={styles.preview}>
-            <div className={styles.object}>
-              Course: {course} Credits: {credits}
-            </div>
-          </div>
-        </div>
-        <div className={styles.presets}>
-          Presets
         </div>
       </div>
     </div>
