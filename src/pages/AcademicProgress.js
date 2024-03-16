@@ -28,12 +28,12 @@ export default function AcademicProgress() {
           <p>{progressData.program}</p>
           <button>View Curriculum</button>
         </div>
-        <div className="status">
-          <h2>Status</h2>
+        <div className="152">
+          <h2>Total Credits</h2>
           <p>{progressData.status}</p>
         </div>
         <div className="credits">
-          <h2>Credits</h2>
+          <h2>Taken Credits</h2>
           <p>{progressData.credits}</p>
         </div>
         <div className="start-date">
