@@ -11,7 +11,7 @@ export default function StudentPage() {
   const [isTable2Visible, setIsTable2Visible] = useState(false);
 
   const [profileImage, setProfileImage] = useState("https://as2.ftcdn.net/v2/jpg/00/64/67/27/1000_F_64672736_U5kpdGs9keUll8CRQ3p3YaEv2M6qkVY5.jpg");
-  const [name, setName] = useState("pedro");
+  // const [name, setName] = useState("pedro");
   const [depa, setDepa] = useState("INSO");
   const [gpa, setGpa] = useState("4.00");
   const [totalRemaining, setTotalRemaining] = useState(0);
@@ -27,6 +27,23 @@ export default function StudentPage() {
   const [showAcademicCalendar, setShowAcademicCalendar] = useState(false);
   const [customButtonText, setCustomButtonText] = useState(["", ""]);
 
+
+  const [name, setName] = useState('');
+  const [profilePic, setProfilePic] = useState(null);
+
+  const handleProfilePicChange = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      setProfilePic(URL.createObjectURL(file));
+    }
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    // Handle form submission logic here
+    alert(`Submitting Name: ${name}`);
+  };
+  
   useEffect(() => {
     const setTitleToButton = () => {
       const pageTitle = document.title;
@@ -333,5 +350,32 @@ export default function StudentPage() {
         </button>
       </div>
     </div>
+  //   <div className={styles.styles}>
+  //   <form className={styles.formContainer} onSubmit={handleSubmit}>
+  //     <div className={styles.formGroup}>
+  //       <label htmlFor="name">Name</label>
+  //       <input
+  //         type="text"
+  //         id="name"
+  //         value={name}
+  //         onChange={(e) => setName(e.target.value)}
+  //       />
+  //     </div>
+  //     <div className={styles.formGroup}>
+  //       <label htmlFor="profilePic">Profile Picture</label>
+  //       <input
+  //         type="file"
+  //         id="profilePic"
+  //         onChange={handleProfilePicChange}
+  //       />
+  //     </div>
+  //     <button type="submit">Submit</button>
+  //   </form>
+  //   {profilePic && (
+  //     <div className={styles.profilePreview}>
+  //       <img src={profilePic} alt="Profile Preview" />
+  //     </div>
+  //   )}
+  // </div>
   );
 }
