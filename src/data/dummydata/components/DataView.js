@@ -35,7 +35,7 @@ export default function DataView() {
           {data.map((item, index)=>{
             return <SmallCard data={item} id={index + 1}/>
           })}
-        </InfiniteScroll>
+        </InfiniteScroll>  
       </div>
     </div>
   );

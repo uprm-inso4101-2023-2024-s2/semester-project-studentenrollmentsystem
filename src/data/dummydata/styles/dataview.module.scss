@@ -4,7 +4,6 @@
   justify-content: flex-start;
   margin: 10px;
   height: 540px;
-  overflow-y: auto;
 
   .header {
     display: flex;
@@ -28,6 +27,7 @@
 
   .toolBox {
     height: 100%;
+    overflow-y: auto;
 
     .viewingBox {
       display: flex;

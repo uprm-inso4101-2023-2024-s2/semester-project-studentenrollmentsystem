@@ -3,12 +3,14 @@ import styles from "../styles/components/smallcard.module.scss";
 
 export default function SmallCard({data, id}) {
   const displayDetails = () => {
-    return alert("To be implemented.");
+    alert(`Course Name: ${data.Course} \nSection: ${data.Section}` +
+      `\nCredits: ${data.Credits} \nMeetings: ${data.Meetings}` +
+      `\nProffessor: ${data.Proffessor} \nGrade: ${data.Grades}`);
   }
 
   const displayCreditsBubble = () => {
     let color = "black";
-    switch (data.Creditos) {
+    switch (data.Credits) {
       case "1":
         color = "#dafaed";  // light green.
         break;
@@ -30,7 +32,7 @@ export default function SmallCard({data, id}) {
 
     return (
       <div className={styles.bubble} style={{ backgroundColor: color }}>
-        {data.Creditos}
+        {data.Credits}
       </div>
     );
   }
@@ -41,8 +43,8 @@ export default function SmallCard({data, id}) {
         <button className={styles.button}
         onClick={displayDetails}>Details</button>
       </div>
-      <div className={styles.id}>{id}</div>
-      <div className={styles.courseBox}>{data.Curso}</div>
+      <div className={styles.id}>No. {id}</div>
+      <div className={styles.courseBox}>{data.Course}</div>
       <div className={styles.creditBox}>
         {displayCreditsBubble()}
       </div>
