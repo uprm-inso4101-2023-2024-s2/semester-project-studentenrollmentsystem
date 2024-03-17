@@ -9,17 +9,57 @@
 
 .curriculumside {
   flex: 70%;
-  text-align: center;
   position: relative;
   transition: all ease 0.5s;
 }
 
 .viewbutton {
-  display: flex;
-  flex-direction: row;
+  display:flex;
   justify-content: center;
   align-items: center;
-  position: relative;
+  gap: 5px;
+
+  .buttonX {
+    width: auto;
+    height: 25px;
+    color: white; 
+    background-color: #40976A; 
+    border-radius: 10px;
+    border: none; 
+    cursor: pointer;
+    font-size: 16px; 
+    font-weight: bold;
+    transition: background-color 0.3s;
+  
+    &:hover {
+      background-color: darken(#40976A, 10%); 
+    }
+  
+    &:focus {
+      outline: none;
+    }
+  }
+
+  .buttonY {
+    width: auto;
+    height: 25px;
+    color: white; 
+    background-color: #40976A; 
+    border-radius: 10px;
+    border: none; 
+    cursor: pointer;
+    font-size: 16px; 
+    font-weight: bold;
+    transition: background-color 0.3s;
+  
+    &:hover {
+      background-color: darken(#40976A, 10%); 
+    }
+  
+    &:focus {
+      outline: none;
+    }
+  }
 }
 
 .tableview {
@@ -32,7 +72,6 @@
 
 .movedRight {
   margin-left: 150px; 
-  
 }
 
 .green-square-container {
