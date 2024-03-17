@@ -9,6 +9,7 @@ import FilterTest from './pages/FilterTest';
 import OfferedCourses from './pages/OfferedCourses';
 import SignUp from './pages/SignUp';
 import LoginPage from './pages/Login';
+import Footer from './components/footer';
 
 export default function App() {
   return (
@@ -24,6 +25,7 @@ export default function App() {
         <Route path="/offered-courses" element={<OfferedCourses />} />
         {/* Add more routes as necessary */}
       </Routes>
+      <Footer/>
     </div>
   );
 }
