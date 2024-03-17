@@ -59,7 +59,6 @@
 
 .movedRight {
   margin-left: 150px; 
-  
 }
 
 .green-square-container {
@@ -213,4 +212,31 @@
   top: -180px;
   left: 8px;
   align-items: center;
+}
+
+/* new code */
+
+.label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.input {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.nameInput {
+  width: 100%;
+}
+
+.selectInput {
+  width: 100%;
+}
+
+.gpaInput {
+  width: 100px; 
 }
