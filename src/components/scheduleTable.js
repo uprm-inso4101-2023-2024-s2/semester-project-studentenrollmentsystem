@@ -2,13 +2,14 @@ import styles from "../styles/components/scheduleTable.module.scss";
 import {useState, useEffect, useRef} from "react";
 import Papa from "papaparse";
 import Rodcreator from "./scheduleTableRod";
+import RodcreatorOH from "./scheduleTableRodOH";
 
-export default function Scheduletable({DATA})
+export default function Scheduletable({DATA,DATAOH,DISPLAYOH})
 {
     //Only works with npm papaparse (npm install papaparse)
     //Will potentially be changed in the future depending on data inputs
-    const [data,setData] = useState([])
     const [values,setValues] = useState([])
+    const [valuesOH,setValuesOH] = useState([])
     useEffect(()=> {
         const fetchData = async()=> {
             const response = await fetch(DATA);
@@ -18,8 +19,23 @@ export default function Scheduletable({DATA})
             const csvData = decoder.decode(result.value);
             const valuesArray=[];
             const parsedData = Papa.parse(csvData, {header:true, skipEmptyLines:true, complete: function (results) {results.data.map((d)=>{valuesArray.push(Object.values(d)+",")})}}).data;
-            setData(parsedData);
+            //setData(parsedData);
             setValues(valuesArray);
+        };
+        fetchData();
+    }, []);
+
+    useEffect(()=> {
+        const fetchData = async()=> {
+            const response = await fetch(DATAOH);
+            const reader = response.body.getReader();
+            const result = await reader.read();
+            const decoder = new TextDecoder("utf-8");
+            const csvData = decoder.decode(result.value);
+            const valuesArray=[];
+            const parsedData = Papa.parse(csvData, {header:true, skipEmptyLines:true, complete: function (results) {results.data.map((d)=>{valuesArray.push(Object.values(d)+",")})}}).data;
+            //setOHData(parsedData);
+            setValuesOH(valuesArray);
         };
         fetchData();
     }, []);
@@ -113,6 +129,61 @@ export default function Scheduletable({DATA})
         return(<></>)
     }
 
+    function OHGen(TIME,DAY){
+        if(!DISPLAYOH)
+        {
+            return(<></>)
+        }
+
+        for(var i = 0; i<valuesOH.length; i++)
+        {
+            var profname = ""; //For displaying
+            var runtime = ""; //For getting information
+            var office = "";
+            var commacount = 0;
+            for(var j = 0; j<valuesOH[i].length; j++)
+            {
+                if(valuesOH[i][j]==",")
+                {
+                    commacount++;
+                }
+                else if(commacount==0 || commacount==1 || commacount==2)
+                {
+                    if(commacount==0)
+                    {
+                        //Name of professor
+                        profname = profname + valuesOH[i][j];
+                    }
+                    else if(commacount==1)
+                    {
+                        //Runtime of office hours
+                        runtime = runtime + valuesOH[i][j];
+                    }
+                    else if(commacount==2)
+                    {
+                        //Place of office hours
+                        office = office + valuesOH[i][j];
+                    }
+                }
+            }
+
+            var startTime = timeX.findIndex(x=>x==runtime.slice(0,runtime.indexOf("-")));
+            var startTime2 = runtime.slice(0,runtime.indexOf("-"));
+            var endTime = runtime.slice(runtime.indexOf("-")+1,runtime.indexOf(" "));
+            if(runtime.includes("|"))
+            {
+                //If a class has different schedules on different days, it is assumed it will be split so on the csv file with a "|"
+                
+            }
+
+            if(TIME==startTime && runtime.includes(DAY))
+            {
+                return(<>{RodcreatorOH([profname,office,createHeighter(startTime2,endTime)*(height/940)])}</>)
+            }
+        }
+        return(<></>)
+    }
+
     //Converts US time reading to military time and calculates minutes between classes
     function createHeighter(START,END)
     {
@@ -198,7 +269,7 @@ export default function Scheduletable({DATA})
                     {range(31).map((time)=>(
                         <tr className={styles.timerow} id={time}>{timer(time)}
                             <td className={styles.rows} id="L">{classGen(time,"L")}</td>
-                            <td className={styles.rows} id="M">{classGen(time,"M")}</td>
+                            <td className={styles.rows} id="M">{classGen(time,"M")}{OHGen(time,"M")}</td>
                             <td className={styles.rows} id="W">{classGen(time,"W")}</td>
                             <td className={styles.rows} id="J">{classGen(time,"J")}</td>
                             <td className={styles.rows} id="V">{classGen(time,"V")}</td>
