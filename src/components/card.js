@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import styles from "../styles/components/card.module.scss";
-import SectionsModal from './SectionsModal'; // Import the sections modal component
 import ReviewsModal from './ReviewsModal'; // Import the reviews modal component
 
 export default function Card({ courseName, credits, instructor, imageUrl, description }) {
@@ -21,7 +20,6 @@ export default function Card({ courseName, credits, instructor, imageUrl, descri
         <p className={styles.credits}>{credits}</p>
         
         <button className={styles.button} onClick={() => setShowSectionsModal(true)}>Available Sections</button>
-        {showSectionsModal && <SectionsModal onClose={() => setShowSectionsModal(false)} sections={sections} />}
        
         <button className={styles.button} onClick={() => setShowReviewsModal(true)}>Reviews</button>
       {showReviewsModal && <ReviewsModal onClose={() => setShowReviewsModal(false)} reviews={reviews} />}
