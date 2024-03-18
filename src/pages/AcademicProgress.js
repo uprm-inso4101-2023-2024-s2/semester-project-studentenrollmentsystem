@@ -1,7 +1,9 @@
 import React from "react";
 
 export default function AcademicProgress() {
-  // This could be fetched/called from the backend 
+ 
+ 
+  // Dummy Data   
   const progressData = {
     program: "Computer Science",
     status: "Enrolled",
