@@ -16,6 +16,7 @@
             text-decoration: none;
             font-size: 30px;
             margin-left: 20px;
+            display: flex;
         }
     }    
 
@@ -88,6 +89,12 @@
 
 }
 
+.dateAndTime {
+    font-family: 'Bebas Neue', sans-serif; 
+    font-size: 26px; /* Adjust the font size as needed */
+    margin-left: 900px; /* Adjust the left margin for spacing */
+  }
+
 
   .profile {
     margin-left: auto; 
@@ -98,6 +105,13 @@
     height: 40px; 
     border-radius: 50%; 
   }
+
+  
+  .logoImage {
+    width: 50px;
+    height: auto;
+    margin-left: 40px; /* Adjust the spacing between text and image */
+  }  
   
 
 

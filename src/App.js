@@ -9,6 +9,9 @@ import FilterTest from './pages/FilterTest';
 import OfferedCourses from './pages/OfferedCourses';
 import SignUp from './pages/SignUp';
 import LoginPage from './pages/Login';
+import ProfessorReview from './pages/ProfessorReview';
+
+
 
 export default function App() {
   return (
@@ -22,6 +25,9 @@ export default function App() {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/filter-test" element={<FilterTest />} />
         <Route path="/offered-courses" element={<OfferedCourses />} />
+        <Route path="/professor-info" element={<ProfessorReview />} />
+
+       
         {/* Add more routes as necessary */}
       </Routes>
     </div>
