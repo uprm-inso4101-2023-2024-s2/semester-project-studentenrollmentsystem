@@ -4,6 +4,7 @@ import Button from "../components/button";
 import Coursetable from "../components/courseTable";
 import Coursetable2 from "../components/courseTable2";
 import Scheduletable from "../components/scheduleTable";
+import Evualation from "../functionality/evaulation"
 
 export default function StudentPage() {
     const [isTable1Visible, setIsTable1Visible] = useState(true);
@@ -14,6 +15,8 @@ export default function StudentPage() {
     const [name, setName] = useState("pedro");
     const [depa, setDepa] = useState("INSO");
     const [gpa, setGpa] = useState("4.00");
+
+
     const [totalRemaining, setTotalRemaining] = useState(0);
     const [totalCredits, setTotalCredits] = useState(0);
     const [isProfileEditing, setIsProfileEditing] = useState(false);
@@ -428,6 +431,8 @@ export default function StudentPage() {
             <div className={styles.mainpage}>
                 <div className={styles.profileside}>
                     <h1>Profile</h1>
+
+                    <Evualation />
                     <form>
                         {isProfileSwitchOn ? (
                             <>
