@@ -32,7 +32,8 @@ export default function AcademicProgress() {
         <div className="program-info">
         {/*later deal with the case when the student doesnt have any major */}
           <h2>Minor in {progressData.minor}</h2>
-          <button>View Curriculum</button>
+          <button onClick={() => window.location.href = 'https://www.uprm.edu/cse/wp-content/uploads/sites/153/2022/07/Curriculum_INSO_BS-2.pdf'}> View Curriculum</button>
+
         </div>
 
         <div className="152">
