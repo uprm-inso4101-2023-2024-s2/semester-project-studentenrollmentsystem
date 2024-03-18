@@ -4,6 +4,7 @@ import Button from "../components/button";
 import Coursetable from "../components/courseTable";
 import Coursetable2 from "../components/courseTable2";
 import Scheduletable from "../components/scheduleTable";
+import Examtable from "../components/activeExams";
 
 export default function StudentPage() {
     const [isTable1Visible, setIsTable1Visible] = useState(true);
@@ -136,127 +137,127 @@ export default function StudentPage() {
             "January", "February", "March", "April", "May", "June",
             "July", "August", "September", "October", "November", "December"
         ];
-    
+
         const academicCalendarData = months.map((month, index) => {
             const year = 2024;
             const numberOfDaysInMonth = new Date(year, index + 1, 0).getDate();
-    
-            
+
+
             let importantEvents = [];
 
-        // Define important events for each month
-        switch (index) {
-            case 0: // January
-                importantEvents = [
-                    { day: 8, title: "Ajustes de matrícula.", time: "4:00pm" },
-                    { day: 10, title: "Cancelación y ajustes de matricula." },
-                    { day: 12, title: "Matrícula tardía." },
-                    { day: 13, title: "Comienzo de clases sabatinas." },
-                    { day: 16, title: "Comienzo de clases." },
-                ];
-                break;
-            case 1: 
-                importantEvents = [
-                    { day: 12, title: "Último día de reclamaciones sobre calificaciones finales del semestre anterior al profesor del curso." },
-                    { day: 15, title: "Último día para radicar solicitud de graduación y pagar diploma." },
-                    { day: 20, title: "Día que se reunirán las clases y laboratorios corresponden a un lunes."},
-                    { day: 29, title: "Último día para entregar planes de estudio para los estudiantes graduados que comenzaron estudios el semestre anterior."},
-                ];
-                break;
+            // Define important events for each month
+            switch (index) {
+                case 0: // January
+                    importantEvents = [
+                        { day: 8, title: "Ajustes de matrícula.", time: "4:00pm" },
+                        { day: 10, title: "Cancelación y ajustes de matricula." },
+                        { day: 12, title: "Matrícula tardía." },
+                        { day: 13, title: "Comienzo de clases sabatinas." },
+                        { day: 16, title: "Comienzo de clases." },
+                    ];
+                    break;
+                case 1:
+                    importantEvents = [
+                        { day: 12, title: "Último día de reclamaciones sobre calificaciones finales del semestre anterior al profesor del curso." },
+                        { day: 15, title: "Último día para radicar solicitud de graduación y pagar diploma." },
+                        { day: 20, title: "Día que se reunirán las clases y laboratorios corresponden a un lunes." },
+                        { day: 29, title: "Último día para entregar planes de estudio para los estudiantes graduados que comenzaron estudios el semestre anterior." },
+                    ];
+                    break;
                 case 2: //marzo
-                importantEvents = [
-                    {day: 2, title: "Feriado Día de la Ciudadanía Americana."},
-                    {day: 12, title: "Asamblea General de Estudiantes.", time: "11:00am"},
-                    {day: 22, title: "Feriado – Día de la Abolición de la Esclavitud." },
-                    {day: 27, title: "Día en que se reunirán las clases y laboratorios corresponde a viernes."},
-                    {day: 28, title: "Receso Académico de Semana Santa."},
-                    {day: 29, title: "Receso Académico de Semana Santa."},
-                    {day: 30, title: "Receso Académico de Semana Santa."},
-                ];
-                break; 
+                    importantEvents = [
+                        { day: 2, title: "Feriado Día de la Ciudadanía Americana." },
+                        { day: 12, title: "Asamblea General de Estudiantes.", time: "11:00am" },
+                        { day: 22, title: "Feriado – Día de la Abolición de la Esclavitud." },
+                        { day: 27, title: "Día en que se reunirán las clases y laboratorios corresponde a viernes." },
+                        { day: 28, title: "Receso Académico de Semana Santa." },
+                        { day: 29, title: "Receso Académico de Semana Santa." },
+                        { day: 30, title: "Receso Académico de Semana Santa." },
+                    ];
+                    break;
                 case 3://abril
                     importantEvents = [
-                        {day: 5, title: "Último día para solicitar exámenes orales de Estudios Graduados."},
-                        {day: 12, title: "Último día para bajas parciales."},
-                        {day: 26, title: "Último día para ofrecer exámenes parciales. "},
-                        {day: 27, title: "Receso Académico – Justas Interuniversitarias"}
+                        { day: 5, title: "Último día para solicitar exámenes orales de Estudios Graduados." },
+                        { day: 12, title: "Último día para bajas parciales." },
+                        { day: 26, title: "Último día para ofrecer exámenes parciales. " },
+                        { day: 27, title: "Receso Académico – Justas Interuniversitarias" }
                     ]
-                break;    
+                    break;
                 case 4: //mayo
                     importantEvents = [
-                    {day: 3, title: "Último día de clases."},
-                    {day: 6, title: "Período de Exámenes Finales hasta 15 de mayo."},
-                    {day: 17, title: "Termina el período para entregar calificaciones finales de este semestre"},
-                    {day: 24, title: "Ajustes y pago a la matrícula, disponible para la primera sesión de verano"},
-                    {day: 28, title: "A partir de la 1:00 p.m. matrícula tardía con recargos."},
-                    {day: 29, title: "Comienzo de clases para la primera sesión de verano"}
+                        { day: 3, title: "Último día de clases." },
+                        { day: 6, title: "Período de Exámenes Finales hasta 15 de mayo." },
+                        { day: 17, title: "Termina el período para entregar calificaciones finales de este semestre" },
+                        { day: 24, title: "Ajustes y pago a la matrícula, disponible para la primera sesión de verano" },
+                        { day: 28, title: "A partir de la 1:00 p.m. matrícula tardía con recargos." },
+                        { day: 29, title: "Comienzo de clases para la primera sesión de verano" }
                     ]
-                break;
-            default:
-                importantEvents = [];
-                break;
-        }
+                    break;
+                default:
+                    importantEvents = [];
+                    break;
+            }
 
-        // Generate calendar data for the month
-                return {
-                    month: month,
-                    year: year,
-                    days: Array.from({ length: numberOfDaysInMonth }, (_, dayIndex) => {
-                        const date = new Date(year, index, dayIndex + 1);
-                        const dayOfWeek = date.toLocaleDateString("en-US", { weekday: "short" });
-                        const formattedDate = date.toISOString().split('T')[0];
-                        const day = dayIndex + 1;
+            // Generate calendar data for the month
+            return {
+                month: month,
+                year: year,
+                days: Array.from({ length: numberOfDaysInMonth }, (_, dayIndex) => {
+                    const date = new Date(year, index, dayIndex + 1);
+                    const dayOfWeek = date.toLocaleDateString("en-US", { weekday: "short" });
+                    const formattedDate = date.toISOString().split('T')[0];
+                    const day = dayIndex + 1;
 
-                        // Filter events for the current day
-                        const eventsForDay = importantEvents.filter(event => event.day === day);
+                    // Filter events for the current day
+                    const eventsForDay = importantEvents.filter(event => event.day === day);
 
-                        return { dayOfWeek, day, date: formattedDate, events: eventsForDay };
-                    })
-                };
-            });
+                    return { dayOfWeek, day, date: formattedDate, events: eventsForDay };
+                })
+            };
+        });
 
-            return academicCalendarData;
-        };
-        
+        return academicCalendarData;
+    };
+
     const addEventToCalendar = (date) => {
         const eventTitle = prompt("Enter event title:");
-        
+
         if (eventTitle !== null) { // Prompt returns null if canceled
             const addTime = window.confirm("Do you want to add a time for this event?");
-        
+
             if (addTime) {
                 // Create a time input element
                 const timeInput = document.createElement("input");
                 timeInput.type = "time";
                 timeInput.className = "event-time-input";
-        
+
                 // Create a container for the time input
                 const timeContainer = document.createElement("div");
                 timeContainer.className = "time-container";
                 timeContainer.appendChild(timeInput);
-        
+
                 timeContainer.style.position = "absolute";
                 timeContainer.style.left = "240px";
                 timeContainer.style.bottom = "22px";
-        
+
                 // Create a save button
                 const saveButton = document.createElement("button");
                 saveButton.textContent = "Save";
                 saveButton.addEventListener("click", () => {
                     const eventTime = timeInput.value;
-                    if (eventTime) { 
+                    if (eventTime) {
                         const formattedDate = date.toISOString().split('T')[0];
                         const year = date.getFullYear();
                         const month = date.getMonth() + 1;
                         const day = date.getDate();
                         const yearMonthKey = `${year}-${month.toString().padStart(2, "0")}`;
-        
-                        
+
+
                         const isEventExist = academicEvents[yearMonthKey]?.[day]?.some(event => event.date === formattedDate && event.title === eventTitle && event.time === eventTime);
                         if (!isEventExist) {
                             setAcademicEvents((prevEvents) => {
                                 const updatedEvents = { ...prevEvents };
-        
+
                                 if (updatedEvents[yearMonthKey]) {
                                     if (updatedEvents[yearMonthKey][day]) {
                                         updatedEvents[yearMonthKey][day].push({ date: formattedDate, title: eventTitle, time: eventTime });
@@ -266,19 +267,19 @@ export default function StudentPage() {
                                 } else {
                                     updatedEvents[yearMonthKey] = { [day]: [{ date: formattedDate, title: eventTitle, time: eventTime }] };
                                 }
-        
+
                                 return updatedEvents;
                             });
-                            
+
                             document.body.removeChild(dialog);
-                            
+
                             setSelectedEvents([{ title: eventTitle, time: eventTime }]);
                         } else {
                             alert("Event already exists for this date, time, and title.");
                         }
                     }
                 });
-        
+
                 // Display a dialog with the time input wrapped in the container and save button
                 const dialog = document.createElement("div");
                 dialog.appendChild(document.createTextNode("Select event time: "));
@@ -286,9 +287,9 @@ export default function StudentPage() {
                 dialog.appendChild(saveButton);
                 dialog.appendChild(document.createElement("br"));
                 dialog.appendChild(document.createTextNode("Event title: " + eventTitle));
-        
+
                 document.body.appendChild(dialog);
-    
+
                 const rect = timeContainer.getBoundingClientRect();
                 const offset = 30;
                 dialog.style.position = "absolute";
@@ -300,12 +301,12 @@ export default function StudentPage() {
                 const month = date.getMonth() + 1;
                 const day = date.getDate();
                 const yearMonthKey = `${year}-${month.toString().padStart(2, "0")}`;
-        
+
                 const isEventExist = academicEvents[yearMonthKey]?.[day]?.some(event => event.date === formattedDate && event.title === eventTitle);
                 if (!isEventExist) {
                     setAcademicEvents((prevEvents) => {
                         const updatedEvents = { ...prevEvents };
-        
+
                         if (updatedEvents[yearMonthKey]) {
                             if (updatedEvents[yearMonthKey][day]) {
                                 updatedEvents[yearMonthKey][day].push({ date: formattedDate, title: eventTitle });
@@ -315,10 +316,10 @@ export default function StudentPage() {
                         } else {
                             updatedEvents[yearMonthKey] = { [day]: [{ date: formattedDate, title: eventTitle }] };
                         }
-        
+
                         return updatedEvents;
                     });
-                    
+
                     setSelectedEvents([{ title: eventTitle }]);
                 } else {
                     alert("Event already exists for this date and title.");
@@ -350,18 +351,18 @@ export default function StudentPage() {
         const handleDayClick = (date) => {
             if (isAddingEvent) {
                 addEventToCalendar(date);
-                setIsAddingEvent(false); 
+                setIsAddingEvent(false);
             } else {
                 const year = date.getFullYear();
                 const month = date.getMonth() + 1;
                 const day = date.getDate();
                 const yearMonthKey = `${year}-${month.toString().padStart(2, "0")}`;
-        
+
                 const userAddedEvents = academicEvents[yearMonthKey]?.[day] || [];
                 const importantEvents = academicCalendar[currentMonthIndex].days[day - 1].events;
-        
+
                 const allEvents = [...userAddedEvents, ...importantEvents];
-        
+
                 setSelectedEvents(allEvents.map(event => ({ ...event, date, year, month, day })));
             }
         };
@@ -383,30 +384,30 @@ export default function StudentPage() {
                             </div>
                         ))}
                         {academicCalendar[currentMonthIndex].days.map((day, dayIndex) => {
-                        const yearMonthKey = `${academicCalendar[currentMonthIndex].year}-${(currentMonthIndex + 1).toString().padStart(2, "0")}`;
-                        const importantEvents = day.events.filter(event => event.important);
-                        const eventsForDay = academicEvents[yearMonthKey]?.[day.day] || day.events;
-                        const hasMultipleEvents = eventsForDay.length + importantEvents.length > 1;
+                            const yearMonthKey = `${academicCalendar[currentMonthIndex].year}-${(currentMonthIndex + 1).toString().padStart(2, "0")}`;
+                            const importantEvents = day.events.filter(event => event.important);
+                            const eventsForDay = academicEvents[yearMonthKey]?.[day.day] || day.events;
+                            const hasMultipleEvents = eventsForDay.length + importantEvents.length > 1;
 
-                        return (
-                            <div key={dayIndex} className={`${styles.day} ${hasMultipleEvents ? styles.multipleEvents : ''}`} onClick={() => handleDayClick(new Date(academicCalendar[currentMonthIndex].year, currentMonthIndex, day.day))}>
-                                <span>{day.day}</span>
-                                <div className={styles.eventsContainer}>
-                                    {eventsForDay.slice(0, 1).map((event, eventIndex) => (
-                                        <div key={eventIndex} className={styles.event}>
-                                            <span>{event.title}</span>
-                                        </div>
-                                    ))}
-                                    {hasMultipleEvents && <div className={styles.multipleEventsIndicator}>...</div>}
+                            return (
+                                <div key={dayIndex} className={`${styles.day} ${hasMultipleEvents ? styles.multipleEvents : ''}`} onClick={() => handleDayClick(new Date(academicCalendar[currentMonthIndex].year, currentMonthIndex, day.day))}>
+                                    <span>{day.day}</span>
+                                    <div className={styles.eventsContainer}>
+                                        {eventsForDay.slice(0, 1).map((event, eventIndex) => (
+                                            <div key={eventIndex} className={styles.event}>
+                                                <span>{event.title}</span>
+                                            </div>
+                                        ))}
+                                        {hasMultipleEvents && <div className={styles.multipleEventsIndicator}>...</div>}
+                                    </div>
                                 </div>
-                            </div>
-                        );
-                    })}
-                  </div>
-              </div>
-          </div>
-      );
-  }
+                            );
+                        })}
+                    </div>
+                </div>
+            </div>
+        );
+    }
 
     return (
         <div className={styles.StudentPage}>
@@ -529,6 +530,11 @@ export default function StudentPage() {
                         {isTable1Visible && !isTable2Visible && <Coursetable />}
                         {isTable2Visible && <Coursetable2 />}
                         {!isTable1Visible && !isTable2Visible && <Scheduletable />}
+                    </div>
+
+                    <div className={styles.examview}>
+                        {isTable1Visible && <h1>Exam Grades</h1>}
+                        {isTable1Visible && <Examtable></Examtable>}
                     </div>
                 </div>
             </div>
