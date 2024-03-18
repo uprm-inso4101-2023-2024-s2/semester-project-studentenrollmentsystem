@@ -8,128 +8,238 @@ import officeHours from "../dummydata/profOHspring2024.csv"
 import Examtable from "../components/activeExams";
 
 export default function StudentPage() {
-  var DataSet = [Datafall2023,Dataspring2024];
-  var [Data,setState] = useState(Dataspring2024);
-  var [currentSemester, setCurrentSemester] = useState(true);
-  var [displayOH, setDisplayOH] = useState(false);
+    var DataSet = [Datafall2023,Dataspring2024];
+    var [Data,setState] = useState(Dataspring2024);
+    var [currentSemester, setCurrentSemester] = useState(true);
+    var [displayOH, setDisplayOH] = useState(false);
 
-  const changeSemester = (SEMESTER) => {
-    if(SEMESTER!=Data.toString(Data).slice(14,Data.toString(Data).indexOf(".")))
-    {
-      for(var i = 0; i<DataSet.length; i++)
+    const changeSemester = (SEMESTER) => {
+      if(SEMESTER!=Data.toString(Data).slice(14,Data.toString(Data).indexOf(".")))
       {
-        if(SEMESTER==DataSet[i].toString(DataSet[i]).slice(14,DataSet[i].toString(DataSet[i]).indexOf(".")))
+        for(var i = 0; i<DataSet.length; i++)
         {
-          setState(DataSet[i]);
-          setIsTable1Visible(false);
-          setTimeout(setIsTable1Visible,1,true);
-          setIsDropdownVisible(false);
-          if(DataSet[i]!=DataSet[DataSet.length-1])
+          if(SEMESTER==DataSet[i].toString(DataSet[i]).slice(14,DataSet[i].toString(DataSet[i]).indexOf(".")))
           {
-            setCurrentSemester(false);
-            setDisplayOH(false);
+            setState(DataSet[i]);
+            setIsTable1Visible(false);
+            setTimeout(setIsTable1Visible,1,true);
+            setIsDropdownVisible(false);
+            if(DataSet[i]!=DataSet[DataSet.length-1])
+            {
+              setCurrentSemester(false);
+              setDisplayOH(false);
+            }
+            else if(DataSet[i]==DataSet[DataSet.length-1])
+            {
+              setCurrentSemester(true);
+            }
+            break;
           }
-          else if(DataSet[i]==DataSet[DataSet.length-1])
-          {
-            setCurrentSemester(true);
-          }
-          break;
         }
       }
-    }
-  };
-  const [isTable1Visible, setIsTable1Visible] = useState(true);
-  const [isDropdownVisible, setIsDropdownVisible] = useState(false);
-
-  const [profileImage, setProfileImage] = useState("https://as2.ftcdn.net/v2/jpg/00/64/67/27/1000_F_64672736_U5kpdGs9keUll8CRQ3p3YaEv2M6qkVY5.jpg");
-  const [name, setName] = useState("pedro");
-  const [depa, setDepa] = useState("INSO");
-  const [gpa, setGpa] = useState("4.00");
-  const [totalRemaining, setTotalRemaining] = useState(0);
-  const [totalCredits, setTotalCredits] = useState(0);
-  const [isProfileEditing, setIsProfileEditing] = useState(false);
-  const [isProfileSwitchOn, setIsProfileSwitchOn] = useState(false);
-  
-  const [bio, setBio] = useState("Talk about you...");
-  const [editedBio, setEditedBio] = useState("");
-  const [isBioEditing, setIsBioEditing] = useState(false);
-  const [customLink1, setCustomLink1] = useState("");
-  const [customLink2, setCustomLink2] = useState("");
-  const [showAcademicCalendar, setShowAcademicCalendar] = useState(false);
-  const [customButtonText, setCustomButtonText] = useState(["", ""]);
-
-  useEffect(() => {
-    const setTitleToButton = () => {
-      const pageTitle = document.title;
-      if (customLink1) {
-        setCustomButtonText((prev) => {
-          const updatedArray = [...prev];
-          updatedArray[0] = pageTitle;
-          return updatedArray;
-        });
-      }
-      if (customLink2) {
-        setCustomButtonText((prev) => {
-          const updatedArray = [...prev];
-          updatedArray[1] = pageTitle;
-          return updatedArray;
-        });
-      }
     };
-    setTitleToButton();
-  }, [customLink1, customLink2]);
+    const [isTable1Visible, setIsTable1Visible] = useState(true);
+    const [isDropdownVisible, setIsDropdownVisible] = useState(false);
 
-  const toggleDisplayOh = () => {
-    setDisplayOH((current)=> !current);
-  }
+    const [profileImage, setProfileImage] = useState("https://as2.ftcdn.net/v2/jpg/00/64/67/27/1000_F_64672736_U5kpdGs9keUll8CRQ3p3YaEv2M6qkVY5.jpg");
+    const [name, setName] = useState("pedro");
+    const [depa, setDepa] = useState("INSO");
+    const [gpa, setGpa] = useState("4.00");
+    const [totalRemaining, setTotalRemaining] = useState(0);
+    const [totalCredits, setTotalCredits] = useState(0);
+    const [isProfileEditing, setIsProfileEditing] = useState(false);
+    const [isProfileSwitchOn, setIsProfileSwitchOn] = useState(false);
 
-  const toggleIsTable1 = () => {
-    setIsTable1Visible((current) => !current);
-    setIsDropdownVisible(false); // Close the dropdown when switching tables
-  };
+    const [bio, setBio] = useState("Talk about you...");
+    const [editedBio, setEditedBio] = useState("");
+    const [isBioEditing, setIsBioEditing] = useState(false);
+    const [customLink1, setCustomLink1] = useState("");
+    const [customLink2, setCustomLink2] = useState("");
+    const [showAcademicCalendar, setShowAcademicCalendar] = useState(false);
+    const [customButtonText, setCustomButtonText] = useState(["", ""]);
 
-  const toggleDropdown = () => {
-    setIsDropdownVisible((current) => !current);
-  };
+    const [academicEvents, setAcademicEvents] = useState({});
+    const [selectedEvents, setSelectedEvents] = useState([]);
 
-  const handleProfileEdit = () => {
-    setIsProfileEditing(true);
-  };
+    useEffect(() => {
+        const setTitleToButton = () => {
+            const pageTitle = document.title;
+            if (customLink1) {
+                setCustomButtonText((prev) => {
+                    const updatedArray = [...prev];
+                    updatedArray[0] = pageTitle;
+                    return updatedArray;
+                });
+            }
+            if (customLink2) {
+                setCustomButtonText((prev) => {
+                    const updatedArray = [...prev];
+                    updatedArray[1] = pageTitle;
+                    return updatedArray;
+                });
+            }
+        };
+        setTitleToButton();
+    }, [customLink1, customLink2]);
 
-  const handleProfileSwitchToggle = () => {
-    setIsProfileSwitchOn((prev) => !prev);
-  };
+    const toggleIsTable1 = () => {
+        setIsTable1Visible((current) => !current);
+        setIsDropdownVisible(false); // Close the dropdown when switching tables
+    };
 
-  const handleBioEdit = () => {
-    setIsBioEditing(true);
-    setEditedBio(bio);
-  };
+    const toggleDisplayOh = () => {
+      setDisplayOH((current)=> !current);
+    };
 
-  const handleChange = (e) => {
-    setBio(e.target.value);
-  };
+    const toggleDropdown = () => {
+        setIsDropdownVisible((current) => !current);
+    };
 
-  const handleSaveBio = () => {
-    setIsBioEditing(false);
-    console.log("Bio saved:", bio);
-  };
+    const handleProfileEdit = () => {
+        setIsProfileEditing(true);
+    };
 
-  const handleCancelBio = () => {
-    setIsBioEditing(false);
-    setBio(editedBio);
-  };
+    const handleProfileSwitchToggle = () => {
+        setIsProfileSwitchOn((prev) => !prev);
+    };
 
-  const handleCustomButtonClick = (linkState, setLinkState, index) => {
-    if (linkState) {
-      window.open(linkState, "_blank");
-    } else {
-      const link = prompt("Enter the link:");
-      if (link) {
-        setLinkState(link);
-        setCustomButtonText((prev) => {
-          const updatedArray = [...prev];
-          updatedArray[index - 1] = document.title;
-          return updatedArray;
+    const handleBioEdit = () => {
+        setIsBioEditing(true);
+        setEditedBio(bio);
+    };
+
+    const handleChange = (e) => {
+        setBio(e.target.value);
+    };
+
+    const handleSaveBio = () => {
+        setIsBioEditing(false);
+        console.log("Bio saved:", bio);
+    };
+
+    const handleCancelBio = () => {
+        setIsBioEditing(false);
+        setBio(editedBio);
+    };
+
+    const handleCustomButtonClick = (linkState, setLinkState, index) => {
+        if (linkState) {
+            window.open(linkState, "_blank");
+        } else {
+            const link = prompt("Enter the link:");
+            if (link) {
+                setLinkState(link);
+                setCustomButtonText((prev) => {
+                    const updatedArray = [...prev];
+                    updatedArray[index - 1] = document.title;
+                    return updatedArray;
+                });
+            }
+        }
+    };
+
+    const handleImageUpload = (event) => {
+        const file = event.target.files[0];
+        const reader = new FileReader();
+        reader.onloadend = () => {
+            setProfileImage(reader.result);
+        };
+        if (file) {
+            reader.readAsDataURL(file);
+        }
+    };
+
+    const handleSave = () => {
+        console.log("Name:", name);
+        console.log("Depa:", depa);
+        console.log("GPA:", gpa);
+        console.log("Total Remaining:", totalRemaining);
+        console.log("Total Credits:", totalCredits);
+        setIsProfileEditing(false);
+    };
+
+    const generateAcademicCalendar = () => {
+        const months = [
+            "January", "February", "March", "April", "May", "June",
+            "July", "August", "September", "October", "November", "December"
+        ];
+
+        const academicCalendarData = months.map((month, index) => {
+            const year = 2024;
+            const numberOfDaysInMonth = new Date(year, index + 1, 0).getDate();
+
+
+            let importantEvents = [];
+
+            // Define important events for each month
+            switch (index) {
+                case 0: // January
+                    importantEvents = [
+                        { day: 8, title: "Ajustes de matrícula.", time: "4:00pm" },
+                        { day: 10, title: "Cancelación y ajustes de matricula." },
+                        { day: 12, title: "Matrícula tardía." },
+                        { day: 13, title: "Comienzo de clases sabatinas." },
+                        { day: 16, title: "Comienzo de clases." },
+                    ];
+                    break;
+                case 1:
+                    importantEvents = [
+                        { day: 12, title: "Último día de reclamaciones sobre calificaciones finales del semestre anterior al profesor del curso." },
+                        { day: 15, title: "Último día para radicar solicitud de graduación y pagar diploma." },
+                        { day: 20, title: "Día que se reunirán las clases y laboratorios corresponden a un lunes." },
+                        { day: 29, title: "Último día para entregar planes de estudio para los estudiantes graduados que comenzaron estudios el semestre anterior." },
+                    ];
+                    break;
+                case 2: //marzo
+                    importantEvents = [
+                        { day: 2, title: "Feriado Día de la Ciudadanía Americana." },
+                        { day: 12, title: "Asamblea General de Estudiantes.", time: "11:00am" },
+                        { day: 22, title: "Feriado – Día de la Abolición de la Esclavitud." },
+                        { day: 27, title: "Día en que se reunirán las clases y laboratorios corresponde a viernes." },
+                        { day: 28, title: "Receso Académico de Semana Santa." },
+                        { day: 29, title: "Receso Académico de Semana Santa." },
+                        { day: 30, title: "Receso Académico de Semana Santa." },
+                    ];
+                    break;
+                case 3://abril
+                    importantEvents = [
+                        { day: 5, title: "Último día para solicitar exámenes orales de Estudios Graduados." },
+                        { day: 12, title: "Último día para bajas parciales." },
+                        { day: 26, title: "Último día para ofrecer exámenes parciales. " },
+                        { day: 27, title: "Receso Académico – Justas Interuniversitarias" }
+                    ]
+                    break;
+                case 4: //mayo
+                    importantEvents = [
+                        { day: 3, title: "Último día de clases." },
+                        { day: 6, title: "Período de Exámenes Finales hasta 15 de mayo." },
+                        { day: 17, title: "Termina el período para entregar calificaciones finales de este semestre" },
+                        { day: 24, title: "Ajustes y pago a la matrícula, disponible para la primera sesión de verano" },
+                        { day: 28, title: "A partir de la 1:00 p.m. matrícula tardía con recargos." },
+                        { day: 29, title: "Comienzo de clases para la primera sesión de verano" }
+                    ]
+                    break;
+                default:
+                    importantEvents = [];
+                    break;
+            }
+
+            // Generate calendar data for the month
+            return {
+                month: month,
+                year: year,
+                days: Array.from({ length: numberOfDaysInMonth }, (_, dayIndex) => {
+                    const date = new Date(year, index, dayIndex + 1);
+                    const dayOfWeek = date.toLocaleDateString("en-US", { weekday: "short" });
+                    const formattedDate = date.toISOString().split('T')[0];
+                    const day = dayIndex + 1;
+
+                    // Filter events for the current day
+                    const eventsForDay = importantEvents.filter(event => event.day === day);
+
+                    return { dayOfWeek, day, date: formattedDate, events: eventsForDay };
+                })
+            };
         });
 
         return academicCalendarData;
@@ -326,105 +436,8 @@ export default function StudentPage() {
     }
 
     return (
-      <div className={styles.academicCalendar}>
-        <h1>Academic Calendar</h1>
-        <ul>
-          {dummyCalendarData.map((item, index) => (
-            <li key={index}>{item}</li>
-          ))}
-        </ul>
-      </div>
-    );
-  };
-
-  return (
-    <div className={styles.StudentPage}>
-      <label htmlFor="profile-image-upload" className={styles.newProfileIcon} onClick={() => document.getElementById('profile-image-upload').click()}>
-        <img
-          src={profileImage || "/default-profile-icon.png"}
-          className={styles.profileIcon}
-          alt="profile"
-        />
-      </label>
-
-      <input
-        id="profile-image-upload"
-        type="file"
-        accept="image/*"
-        onChange={handleImageUpload}
-        style={{ display: "none" }}
-      />
-
-      <div className={styles.mainpage}>
-        <div className={styles.profileside}>
-          <h1>Profile</h1>
-          <form>
-            {isProfileSwitchOn ? (
-              <>
-                <label htmlFor="totalRemaining"className={styles.movedRight}>Total Remaining:</label>
-                <input
-                  type="text"
-                  id="totalRemaining"
-                  value={totalRemaining}
-                  onChange={(e) => setTotalRemaining(e.target.value)}
-                  readOnly={!isProfileEditing}
-                  className={styles.movedRight}
-                />
-                <label htmlFor="totalCredits"className={styles.movedRight}>Total Credits:</label>
-                <input
-                  type="text"
-                  id="totalCredits"
-                  value={totalCredits}
-                  onChange={(e) => setTotalCredits(e.target.value)}
-                  readOnly={!isProfileEditing}
-                  className={styles.movedRight}
-                />
-                <label htmlFor="totalCredits"className={styles.movedRight}style={{ visibility: 'hidden' }}>Total Credits:</label>
-                <input
-                  style={{ visibility: 'hidden' }}
-                  type="text"
-                  id="totalCredits"
-                  value={totalCredits}
-                  onChange={(e) => setTotalCredits(e.target.value)}
-                  readOnly={!isProfileEditing}
-                  className={styles.movedRight}
-                />
-              </>
-            ) : (
-              <>
-                <label htmlFor="name"className={styles.movedRight}>Name:</label>
-                <input
-                  type="text"
-                  id="name"
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                  readOnly={!isProfileEditing}
-                  className={styles.movedRight}
-                />
-                <label htmlFor="depa"className={styles.movedRight}>Depa:</label>
-                <input
-                  type="text"
-                  id="depa"
-                  value={depa}
-                  onChange={(e) => setDepa(e.target.value)}
-                  readOnly={!isProfileEditing}
-                  className={styles.movedRight}
-                />
-                <label htmlFor="gpa"className={styles.movedRight}>GPA:</label>
-                <input
-                  type="text"
-                  id="gpa"
-                  value={gpa}
-                  onChange={(e) => setGpa(e.target.value)}
-                  readOnly={!isProfileEditing}
-                  className={styles.movedRight}
-                />
-              </>
-            )}
-
-            <div className={styles.switchContainer}>
-              <div onClick={handleProfileSwitchToggle} className={styles.switch}>
-                <span className={styles.slider} />
+        <div className={styles.StudentPage}>
+            <label htmlFor="profile-image-upload" className={styles.newProfileIcon} onClick={() => document.getElementById('profile-image-upload').click()}>
                 <img
                     src={profileImage || "/default-profile-icon.png"}
                     className={styles.profileIcon}
@@ -438,46 +451,142 @@ export default function StudentPage() {
                 onChange={handleImageUpload}
                 style={{ display: "none" }}
             />
-            
-        <div className={styles.curriculumside}>
-          <h1>{"Curriculum: " + (Data.toString(Data)).charAt(14).toUpperCase() + (Data.toString(Data).slice(15,Data.toString(Data).indexOf(".")))}</h1>
-          <div className={styles.viewbutton}>
-            <button className={styles.buttonX} onClick={toggleDropdown}>Semester List</button>
-            <button className={styles.buttonX} onClick={toggleIsTable1}>Switch Views</button>
-              {isDropdownVisible && DataSet.map((data) => (
-                <button className={styles.buttonX} onClick={()=>changeSemester(data.toString(data).slice(14,data.toString(data).indexOf(".")))}>{(data.toString(data)).charAt(14).toUpperCase() + (data.toString(data).slice(15,data.toString(data).indexOf(".")))}</button>
-              ))}
-          </div>
-          {currentSemester && !isTable1Visible && <button className={styles.buttonOH} onClick={()=>toggleDisplayOh()}>Display Office Hours</button>}
-          <div className={styles.tableview}>
-            {isTable1Visible && <Coursetable DATA={Data}/>}
-            {!isTable1Visible && <Scheduletable DATA={Data} DATAOH={officeHours} DISPLAYOH={displayOH}/>}
-          </div>
-          <div className={styles.examview}>
-             {isTable1Visible && <h1>Exam Grades</h1>}
-             {isTable1Visible && <Examtable></Examtable>}
-          </div>
+
+            <div className={styles.mainpage}>
+                <div className={styles.profileside}>
+                    <h1>Profile</h1>
+                    <form>
+                        {isProfileSwitchOn ? (
+                            <>
+                                <label htmlFor="totalRemaining" className={styles.movedRight}>Total Remaining:</label>
+                                <input
+                                    type="text"
+                                    id="totalRemaining"
+                                    value={totalRemaining}
+                                    onChange={(e) => setTotalRemaining(e.target.value)}
+                                    readOnly={!isProfileEditing}
+                                    className={styles.movedRight}
+                                />
+                                <label htmlFor="totalCredits" className={styles.movedRight}>Total Credits:</label>
+                                <input
+                                    type="text"
+                                    id="totalCredits"
+                                    value={totalCredits}
+                                    onChange={(e) => setTotalCredits(e.target.value)}
+                                    readOnly={!isProfileEditing}
+                                    className={styles.movedRight}
+                                />
+                                <label htmlFor="totalCredits" className={styles.movedRight} style={{ visibility: 'hidden' }}>Total Credits:</label>
+                                <input
+                                    style={{ visibility: 'hidden' }}
+                                    type="text"
+                                    id="totalCredits"
+                                    value={totalCredits}
+                                    onChange={(e) => setTotalCredits(e.target.value)}
+                                    readOnly={!isProfileEditing}
+                                    className={styles.movedRight}
+                                />
+                            </>
+                        ) : (
+                            <>
+                                <label htmlFor="name" className={styles.movedRight}>Name:</label>
+                                <input
+                                    type="text"
+                                    id="name"
+                                    value={name}
+                                    onChange={(e) => setName(e.target.value)}
+                                    readOnly={!isProfileEditing}
+                                    className={styles.movedRight}
+                                />
+                                <label htmlFor="depa" className={styles.movedRight}>Depa:</label>
+                                <input
+                                    type="text"
+                                    id="depa"
+                                    value={depa}
+                                    onChange={(e) => setDepa(e.target.value)}
+                                    readOnly={!isProfileEditing}
+                                    className={styles.movedRight}
+                                />
+                                <label htmlFor="gpa" className={styles.movedRight}>GPA:</label>
+                                <input
+                                    type="text"
+                                    id="gpa"
+                                    value={gpa}
+                                    onChange={(e) => setGpa(e.target.value)}
+                                    readOnly={!isProfileEditing}
+                                    className={styles.movedRight}
+                                />
+                            </>
+                        )}
+
+                        <div className={styles.switchContainer}>
+                            <div onClick={handleProfileSwitchToggle} className={styles.switch}>
+                                <span className={styles.slider} />
+                                <img
+                                    src="/switch_icon.png"
+                                    alt="Switch Icon"
+                                    className={`${styles.switchIcon} ${isProfileSwitchOn ? styles.switchOn : styles.switchOff}`}
+                                />
+                            </div>
+                        </div>
+                    </form>
+
+                    {isProfileEditing ? (
+                        <button onClick={handleSave}>Save</button>
+                    ) : (
+                        <button onClick={handleProfileEdit}>Edit</button>
+                    )}
+                </div>
+
+                <div className={styles.curriculumside}>
+                <h1>{"Curriculum: " + (Data.toString(Data)).charAt(14).toUpperCase() + (Data.toString(Data).slice(15,Data.toString(Data).indexOf(".")))}</h1>
+                <div className={styles.viewbutton}>
+                  <button className={styles.buttonX} onClick={toggleDropdown}>Semester List</button>
+                  <button className={styles.buttonX} onClick={toggleIsTable1}>Switch Views</button>
+                    {isDropdownVisible && DataSet.map((data) => (
+                      <button className={styles.buttonX} onClick={()=>changeSemester(data.toString(data).slice(14,data.toString(data).indexOf(".")))}>{(data.toString(data)).charAt(14).toUpperCase() + (data.toString(data).slice(15,data.toString(data).indexOf(".")))}</button>
+                    ))}
+                </div>
+                {currentSemester && !isTable1Visible && <button className={styles.buttonOH} onClick={()=>toggleDisplayOh()}>Display Office Hours</button>}
+                <div className={styles.tableview}>
+                  {isTable1Visible && <Coursetable DATA={Data}/>}
+                  {!isTable1Visible && <Scheduletable DATA={Data} DATAOH={officeHours} DISPLAYOH={displayOH}/>}
+                </div>
+                <div className={styles.examview}>
+                  {isTable1Visible && <h1>Exam Grades</h1>}
+                  {isTable1Visible && <Examtable></Examtable>}
+                </div>
         </div>
-      </div>
-      
-      <div className={styles["green-square-container"]}>
-        <div className={styles["green-square"]}>
-          <p className={styles["bio-title"]}>Bio</p>
+            </div>
 
-          {isBioEditing ? (
-            <div className={styles["green-square"]}>
-              <textarea
-                value={bio}
-                onChange={handleChange}
-                className={styles["bio-textarea"]}
-              ></textarea>
+            <div className={styles["green-square-container"]}>
+                <div className={styles["green-square"]}>
+                    <p className={styles["bio-title"]}>Bio</p>
 
-              <button className={styles["save-button"]} onClick={handleSaveBio}>
-                Save
-              </button>
-              <button className={styles["save-button"]} onClick={handleCancelBio}>
-                Cancel
-              </button>
+                    {isBioEditing ? (
+                        <div className={styles["green-square"]}>
+                            <textarea
+                                value={bio}
+                                onChange={handleChange}
+                                className={styles["bio-textarea"]}
+                            ></textarea>
+
+                            <button className={styles["save-button"]} onClick={handleSaveBio}>
+                                Save
+                            </button>
+                            <button className={styles["save-button"]} onClick={handleCancelBio}>
+                                Cancel
+                            </button>
+                        </div>
+                    ) : (
+                        <div onClick={handleBioEdit}>
+                            <p>{bio}</p>
+                            <button className={`${styles["edit-button"]} ${styles["hover-highlight"]}`}>
+                                Edit
+                            </button>
+                        </div>
+                    )}
+                </div>
             </div>
 
             {showAcademicCalendar && <AcademicCalendar />}
@@ -525,34 +634,5 @@ export default function StudentPage() {
                 </div>
             )}
         </div>
-      </div>
-
-      {showAcademicCalendar && generateDummyAcademicCalendar()}
-
-      <button
-        className={`${styles["switch"]} ${styles["hover-highlight"]}`}
-        onClick={() => setShowAcademicCalendar(!showAcademicCalendar)}
-      >
-        <img src="/switch_icon.png" alt="Switch Icon" className={styles.switchIcon} />
-      </button>
-
-      <div className={styles["button-container-left"]}>
-        <button
-          className={`${styles["custom-button"]} ${styles["hover-highlight"]}`}
-          onClick={() => handleCustomButtonClick(customLink1, setCustomLink1, 1)}
-        >
-
-          {customLink1 ? customButtonText[0] || "Custom Button 1" : "Set Custom Link 1"}
-
-        </button>
-        <button
-          className={`${styles["custom-button"]} ${styles["hover-highlight"]}`}
-          onClick={() => handleCustomButtonClick(customLink2, setCustomLink2, 2)}
-        >
-
-          {customLink2 ? customButtonText[1] || "Custom Button 2" : "Set Custom Link 2"}
-        </button>
-      </div>
-    </div>
-  );
+    );
 }
