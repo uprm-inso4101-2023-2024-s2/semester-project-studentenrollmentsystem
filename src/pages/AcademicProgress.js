@@ -1,9 +1,9 @@
+
+import styles from "../styles/pages/AcademicProgress.module.scss";
 import React from "react";
 
 export default function AcademicProgress() {
- 
- 
-  // Dummy Data   
+  // Dummy Data
   const progressData = {
     program: "Computer Science",
     status: "Enrolled",
@@ -18,13 +18,13 @@ export default function AcademicProgress() {
   };
 
   return (
-    <div>
+    <div className="academic-progress-component">  {/* Align text to the left */}
       <header>
         <h1>Bachelor of Software Engineering</h1>
         <p>Concentration:</p>
       </header>
       
-      <section className="program-details">
+      <section className="program-details" style={{ display: 'block' }}> {/* Ensure block display */}
         <div className="program-info">
           <h2>Program</h2>
           <p>{progressData.program}</p>
@@ -62,7 +62,7 @@ export default function AcademicProgress() {
         </div>
         
         {progressData.courses.map(course => (
-          <div className="course" key={course.name}>
+          <div className="course" key={course.name} style={{ display: 'block', marginBottom: '10px' }}> {/* Adjust display and margin for courses */}
             <h3>{course.name}</h3>
             <span>{course.completed ? "Completed" : "Not Completed"}</span>
           </div>
