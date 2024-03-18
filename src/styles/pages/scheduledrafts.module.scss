@@ -1,0 +1,126 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+
+
+.scheduleContainer{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  background-color: rgb(255, 255, 255);
+}
+
+.NameSchedule{
+  margin-right: auto;
+  background-color: lightgray;
+}
+
+.scheduleHeader{
+  height: 300px;
+  padding: 10px;
+  background-color: lightgray;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+form input{
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px sold gray;
+
+}
+
+form button{
+  width: 100%; 
+  padding: 10px 20px;
+  background-color: #05B774;
+  color: white;
+  border-radius: 5px;
+  &:hover{
+    background-color: #04865a;
+    cursor: pointer;
+  }
+}
+
+td input{
+  width: 10px;
+  position: relative;
+}
+
+
+.removeSchedule{
+  margin-left: auto; 
+}
+
+.addSchedule{
+  padding: 10px 20px;
+  width: 100px;
+  background-color: #05B774;
+  &:hover{
+    background-color: #04865a;
+    cursor: pointer;
+  }
+}
+
+
+.addCourse{
+  margin-left: auto;
+  padding: 10px 20px;
+  background-color: #05B774;
+  border-radius: 100px;
+  &:hover{
+    background-color: #04865a;
+    cursor: pointer;
+  }
+}
+
+.removeCourse{
+  width: 100%;
+  padding: 10px 20px;
+  background-color: red;
+  &:hover{
+    background-color: rgb(180, 19, 19);
+    cursor:pointer;
+  }
+}
+
+
+.editCourse{
+  width: 100%;
+  padding: 10px 20px;
+  background-color: yellow;
+  &:hover{
+    background-color: rgb(161, 161, 27);
+    cursor:pointer;
+  }
+}
+
+input{
+  padding: 10px 20px;
+  margin: 0 10px;
+  outline: auto;
+  border: 1px;
+  border-radius: 10px;
+}
+
+.tableContainer{
+  height: 100px;
+  overflow: visible;
+}
+
+thead th{
+  position: relative;
+  background-color: white;
+}
+
+tbody td{
+  background-color: white;
+  font-size: smaller;
+}
+
+table{
+  width: 100%;
+  table-layout: fixed;
+  margin-top: 20px;
+  text-align: center;
+}
