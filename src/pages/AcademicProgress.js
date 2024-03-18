@@ -3,13 +3,15 @@ import styles from "../styles/pages/AcademicProgress.module.scss";
 import React from "react";
 
 export default function AcademicProgress() {
+
+
   // Dummy Data
   const progressData = {
-    program: "Computer Science",
-    status: "Enrolled",
-    credits: 120,
-    startDate: "August 1, 2021",
+    program: "Software Engineering",
+    minor: "Project Managment",
+    creditsCompleted: 90,
     progress: 25,
+    startDate: "August 1, 2021",
     courses: [
       { name: "Introduction to Computer Programming", completed: false },
       { name: "Data Structures and Algorithm", completed: true },
@@ -17,31 +19,37 @@ export default function AcademicProgress() {
     ],
   };
 
+
+
   return (
     <div className="academic-progress-component">  {/* Align text to the left */}
       <header>
-        <h1>Bachelor of Software Engineering</h1>
-        <p>Concentration:</p>
+        <h1>Bachelor of {progressData.program}</h1>
       </header>
       
       <section className="program-details" style={{ display: 'block' }}> {/* Ensure block display */}
+
         <div className="program-info">
-          <h2>Program</h2>
-          <p>{progressData.program}</p>
+        {/*later deal with the case when the student doesnt have any major */}
+          <h2>Minor in {progressData.minor}</h2>
           <button>View Curriculum</button>
         </div>
+
         <div className="152">
           <h2>Total Credits</h2>
           <p>{progressData.status}</p>
         </div>
+
         <div className="credits">
           <h2>Taken Credits</h2>
           <p>{progressData.credits}</p>
         </div>
+
         <div className="start-date">
           <h2>Start Date</h2>
           <p>{progressData.startDate}</p>
         </div>
+
         <div className="progress">
           <h2>Progress</h2>
           <progress value={progressData.progress} max="100"></progress>
