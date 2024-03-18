@@ -1,15 +1,45 @@
 import React, { useState, useEffect } from "react";
 import styles from "../styles/pages/studentPage.module.scss";
-import Button from "../components/button";
 import Coursetable from "../components/courseTable";
-import Coursetable2 from "../components/courseTable2";
 import Scheduletable from "../components/scheduleTable";
+import Datafall2023 from "../dummydata/fall2023.csv"
+import Dataspring2024 from "../dummydata/spring2024.csv"
+import officeHours from "../dummydata/profOHspring2024.csv"
 import Examtable from "../components/activeExams";
 
 export default function StudentPage() {
+    var DataSet = [Datafall2023,Dataspring2024];
+    var [Data,setState] = useState(Dataspring2024);
+    var [currentSemester, setCurrentSemester] = useState(true);
+    var [displayOH, setDisplayOH] = useState(false);
+
+    const changeSemester = (SEMESTER) => {
+      if(SEMESTER!=Data.toString(Data).slice(14,Data.toString(Data).indexOf(".")))
+      {
+        for(var i = 0; i<DataSet.length; i++)
+        {
+          if(SEMESTER==DataSet[i].toString(DataSet[i]).slice(14,DataSet[i].toString(DataSet[i]).indexOf(".")))
+          {
+            setState(DataSet[i]);
+            setIsTable1Visible(false);
+            setTimeout(setIsTable1Visible,1,true);
+            setIsDropdownVisible(false);
+            if(DataSet[i]!=DataSet[DataSet.length-1])
+            {
+              setCurrentSemester(false);
+              setDisplayOH(false);
+            }
+            else if(DataSet[i]==DataSet[DataSet.length-1])
+            {
+              setCurrentSemester(true);
+            }
+            break;
+          }
+        }
+      }
+    };
     const [isTable1Visible, setIsTable1Visible] = useState(true);
     const [isDropdownVisible, setIsDropdownVisible] = useState(false);
-    const [isTable2Visible, setIsTable2Visible] = useState(false);
 
     const [profileImage, setProfileImage] = useState("https://as2.ftcdn.net/v2/jpg/00/64/67/27/1000_F_64672736_U5kpdGs9keUll8CRQ3p3YaEv2M6qkVY5.jpg");
     const [name, setName] = useState("pedro");
@@ -55,18 +85,14 @@ export default function StudentPage() {
     const toggleIsTable1 = () => {
         setIsTable1Visible((current) => !current);
         setIsDropdownVisible(false); // Close the dropdown when switching tables
-        setIsTable2Visible(false); // Close Coursetable2 when switching tables
+    };
+
+    const toggleDisplayOh = () => {
+      setDisplayOH((current)=> !current);
     };
 
     const toggleDropdown = () => {
         setIsDropdownVisible((current) => !current);
-        //setIsTable2Visible(false); // Close Coursetable2 when opening the dropdown
-    };
-
-    const toggleIsTable2 = () => {
-        setIsTable2Visible((current) => !current);
-        setIsDropdownVisible(false); // Close the dropdown when switching tables
-        setIsTable1Visible(false); // Hide Coursetable when opening Coursetable2
     };
 
     const handleProfileEdit = () => {
@@ -513,30 +539,24 @@ export default function StudentPage() {
                 </div>
 
                 <div className={styles.curriculumside}>
-                    <h1>Curriculum: Spring 2024</h1>
-
-                    <div className={styles.viewbutton}>
-                        <Button onClick={toggleDropdown}>Past Semesters</Button>
-                        <Button onClick={toggleIsTable1}>Switch Views</Button>
-                        {isDropdownVisible && (
-                            <div className={styles.additionalButtons}>
-                                <Button onClick={toggleIsTable2}>Fall Semester 2023</Button>
-                                {/* Add more buttons as needed */}
-                            </div>
-                        )}
-                    </div>
-
-                    <div className={styles.tableview}>
-                        {isTable1Visible && !isTable2Visible && <Coursetable />}
-                        {isTable2Visible && <Coursetable2 />}
-                        {!isTable1Visible && !isTable2Visible && <Scheduletable />}
-                    </div>
-
-                    <div className={styles.examview}>
-                        {isTable1Visible && <h1>Exam Grades</h1>}
-                        {isTable1Visible && <Examtable></Examtable>}
-                    </div>
+                <h1>{"Curriculum: " + (Data.toString(Data)).charAt(14).toUpperCase() + (Data.toString(Data).slice(15,Data.toString(Data).indexOf(".")))}</h1>
+                <div className={styles.viewbutton}>
+                  <button className={styles.buttonX} onClick={toggleDropdown}>Semester List</button>
+                  <button className={styles.buttonX} onClick={toggleIsTable1}>Switch Views</button>
+                    {isDropdownVisible && DataSet.map((data) => (
+                      <button className={styles.buttonX} onClick={()=>changeSemester(data.toString(data).slice(14,data.toString(data).indexOf(".")))}>{(data.toString(data)).charAt(14).toUpperCase() + (data.toString(data).slice(15,data.toString(data).indexOf(".")))}</button>
+                    ))}
                 </div>
+                {currentSemester && !isTable1Visible && <button className={styles.buttonOH} onClick={()=>toggleDisplayOh()}>Display Office Hours</button>}
+                <div className={styles.tableview}>
+                  {isTable1Visible && <Coursetable DATA={Data}/>}
+                  {!isTable1Visible && <Scheduletable DATA={Data} DATAOH={officeHours} DISPLAYOH={displayOH}/>}
+                </div>
+                <div className={styles.examview}>
+                  {isTable1Visible && <h1>Exam Grades</h1>}
+                  {isTable1Visible && <Examtable></Examtable>}
+                </div>
+        </div>
             </div>
 
             <div className={styles["green-square-container"]}>

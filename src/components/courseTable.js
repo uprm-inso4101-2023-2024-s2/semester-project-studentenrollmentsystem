@@ -1,17 +1,16 @@
 import React from "react";
 import styles from "../styles/components/courseTable.module.scss";
 import {useState, useEffect} from "react";
-import Data from "../dummydata/spring2024.csv";
 import Papa from "papaparse"
 
-export default function Coursetable()
+export default function Coursetable({DATA})
 {
     //Only works with npm papaparse (npm install papaparse)
     //Will potentially be changed in the future depending on data inputs
     const [data,setData] = useState([])
     useEffect(()=> {
         const fetchData = async()=> {
-            const response = await fetch(Data);
+            const response = await fetch(DATA);
             const reader = response.body.getReader();
             const result = await reader.read();
             const decoder = new TextDecoder("utf-8");
@@ -44,7 +43,7 @@ export default function Coursetable()
                                 <td>{row.Creditos}</td>
                                 <td>{row.Reuniones}</td>
                                 <td>{row.Profesor}</td>
-                                <td>{row.Grades}</td>
+                                <td>{row.Grados}</td>
                             </tr>
                         ))}
                     </tbody>
