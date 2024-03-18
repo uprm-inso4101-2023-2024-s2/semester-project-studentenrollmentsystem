@@ -1,21 +1,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
 
-
-.scheduleContainer{
+.scheduleContainer {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 20px;
-  background-color: rgb(255, 255, 255);
+  background-color: #fff;
 }
 
-.NameSchedule{
+.NameSchedule {
   margin-right: auto;
   background-color: lightgray;
 }
 
-.scheduleHeader{
-  height: 300px;
+.scheduleHeader {
   padding: 10px;
   background-color: lightgray;
   display: flex;
@@ -23,79 +21,75 @@
   align-items: center;
 }
 
-form input{
+form input {
   padding: 10px;
   border-radius: 8px;
-  border: 1px sold gray;
-
+  border: 1px solid gray;
 }
 
-form button{
-  width: 100%; 
+form button {
+  width: 100%;
   padding: 10px 20px;
-  background-color: #05B774;
+  background-color: #05b774;
   color: white;
   border-radius: 5px;
-  &:hover{
+  &:hover {
     background-color: #04865a;
     cursor: pointer;
   }
 }
 
-td input{
+td input {
   width: 10px;
   position: relative;
 }
 
-
-.removeSchedule{
-  margin-left: auto; 
+.removeSchedule {
+  margin-left: auto;
 }
 
-.addSchedule{
+.addSchedule {
   padding: 10px 20px;
   width: 100px;
-  background-color: #05B774;
-  &:hover{
+  background-color: #05b774;
+  &:hover {
     background-color: #04865a;
     cursor: pointer;
   }
 }
 
-
-.addCourse{
+.addCourse {
   margin-left: auto;
   padding: 10px 20px;
-  background-color: #05B774;
+  background-color: #05b774;
   border-radius: 100px;
-  &:hover{
+  &:hover {
     background-color: #04865a;
     cursor: pointer;
   }
 }
 
-.removeCourse{
+.removeCourse {
   width: 100%;
   padding: 10px 20px;
   background-color: red;
-  &:hover{
+  &:hover {
     background-color: rgb(180, 19, 19);
-    cursor:pointer;
+    cursor: pointer;
   }
 }
 
-
-.editCourse{
+.editCourse {
   width: 100%;
   padding: 10px 20px;
   background-color: yellow;
-  &:hover{
+  &:hover {
     background-color: rgb(161, 161, 27);
-    cursor:pointer;
+    cursor: pointer;
   }
 }
 
-input{
+input {
   padding: 10px 20px;
   margin: 0 10px;
   outline: auto;
@@ -103,24 +97,30 @@ input{
   border-radius: 10px;
 }
 
-.tableContainer{
-  height: 100px;
-  overflow: visible;
+.tableContainer {
+  overflow: auto;
+  flex-grow: 1;
+  height: fit-content;
 }
 
-thead th{
+.tableContainer table {
+  min-height: calc(100% - 40px);
+}
+
+thead th {
   position: relative;
   background-color: white;
 }
 
-tbody td{
+tbody td {
   background-color: white;
   font-size: smaller;
 }
 
-table{
+table {
   width: 100%;
   table-layout: fixed;
   margin-top: 20px;
   text-align: center;
 }
+
