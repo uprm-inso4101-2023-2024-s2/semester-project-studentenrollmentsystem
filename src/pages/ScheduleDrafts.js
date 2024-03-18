@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import styles from "../styles/pages/scheduledrafts.module.scss";
 
+
 export default function ScheduleDrafts() {
+  const [drafts, setDrafts] = useState(1); 
+
   const [courses, setCourses] = useState([
     {
       credits: 4,
@@ -16,10 +19,15 @@ export default function ScheduleDrafts() {
   ]);
 
   function addCourse() {
+    const courseCodeInput = document.getElementById("coursecode").value.trim();
+    const sectionInput = document.getElementById("section").value.trim();
+    
+
+  
     const newCourse = {
       credits: 0,   
-      courseCode: "",
-      section: "", 
+      courseCode: courseCodeInput,
+      section: sectionInput, 
       courseName: "", 
       hours: "", 
       days: "", 
@@ -29,6 +37,7 @@ export default function ScheduleDrafts() {
     const updatedCourses = courses.concat(newCourse);
     setCourses(updatedCourses);
   }
+  
 
   function removeCourse(index) {
     const updatedCourses = courses.slice(); 
@@ -36,14 +45,26 @@ export default function ScheduleDrafts() {
     setCourses(updatedCourses);
   }
 
+  function addNewSchedule() {
+    setDrafts(prevDrafts => prevDrafts + 1); 
+  }
 
-  return (
-    <div>
-      <div className={styles.scheduleContainer}>
+  
+
+  function renderTables() {
+    const tables = [];
+    for (let i = 0; i < drafts; i++) {
+      tables.push(
+        <div key={i} className={styles.tableContainer}>
+          <table>
+          <div className={styles.scheduleContainer}>
         <div className={styles.scheduleHeader}>
           <input className={styles.NameSchedule} type="text" placeholder="Name" id="name"/>
+          <button className={styles.deleteSchedule}>delete</button> 
+          {/* ^have to add functionallity^ */}
           <div>
             <input type="text" placeholder="Course Code" id="coursecode"/>
+            <input type="text" placeholder="Section" id="section"/>
             <button className={styles.addCourse} onClick={addCourse}>+</button>
           </div>
           <div className={styles.tableContainer}>
@@ -79,10 +100,24 @@ export default function ScheduleDrafts() {
                 ))}
               </tbody>
             </table>
+            <button className={styles.saveDraft} >Save Draft</button>
+            {/* ^have to add functionallity^ */}
           </div>
         </div>
       </div>
-      <button className={styles.addSchedule}>New Draft</button>
+          </table>
+        </div>
+      );
+    }
+    return tables;
+  }
+
+
+  return (
+    <div>
+      {renderTables()}
+      <button className={styles.addSchedule} >New Draft</button>
+      {/* ^fixing so each table is independant */}
     </div>
   );
 }
