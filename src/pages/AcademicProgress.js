@@ -48,11 +48,11 @@ export default function AcademicProgress() {
 
         <div className="progress">
           <h2>Progress</h2>
-          <progress value={progressData.progress} max="100"></progress>
-          <span>{progressData.progress}%</span>
+          <progress value={(progressData.completedCredits / progressData.totalCredits)*100} max="100"></progress>
+          <span> {Math.round((progressData.completedCredits / progressData.totalCredits)*100)}%</span>
         </div>
       </section>
-      
+
       <hr />
       
       <section className="academic-progress">
@@ -60,7 +60,7 @@ export default function AcademicProgress() {
         <p>View your curriculum and track your progress in each course.</p>
         
         <div className="filters">
-          <button>Curriculum</button>
+          <button>Filter</button>
           <button>Completed</button>
           <button>Not Completed</button>
         </div>
