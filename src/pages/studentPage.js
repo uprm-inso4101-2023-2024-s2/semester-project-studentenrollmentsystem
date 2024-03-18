@@ -12,13 +12,13 @@ export default function StudentPage() {
 
   const [profileImage, setProfileImage] = useState("https://as2.ftcdn.net/v2/jpg/00/64/67/27/1000_F_64672736_U5kpdGs9keUll8CRQ3p3YaEv2M6qkVY5.jpg");
   const [name, setName] = useState("pedro");
-  const [depa, setDepa] = useState("INSO");
+  const [depa, setDepa] = useState("Biology");
   const [gpa, setGpa] = useState("4.00");
   const [totalRemaining, setTotalRemaining] = useState(0);
   const [totalCredits, setTotalCredits] = useState(0);
   const [isProfileEditing, setIsProfileEditing] = useState(false);
   const [isProfileSwitchOn, setIsProfileSwitchOn] = useState(false);
-  
+
   const [bio, setBio] = useState("Talk about you...");
   const [editedBio, setEditedBio] = useState("");
   const [isBioEditing, setIsBioEditing] = useState(false);
@@ -26,6 +26,44 @@ export default function StudentPage() {
   const [customLink2, setCustomLink2] = useState("");
   const [showAcademicCalendar, setShowAcademicCalendar] = useState(false);
   const [customButtonText, setCustomButtonText] = useState(["", ""]);
+
+  const departmentList = [
+    "Biology",
+    "Marine Sciences",
+    "Social Sciences",
+    "Economics",
+    "Nursing",
+    "Hispanic Studies",
+    "Physics",
+    "Geology",
+    "Humanities",
+    "English",
+    "Kinesiology",
+    "Mathematics",
+    "Psychology",
+    "Chemistry",
+    "Programs (Industrial Biotechnology)",
+    "Animal Science",
+    "Agricultural Economics and Rural Sociology",
+    "Food Science and Technology",
+    "Agricultural Education",
+    "Agroenvironmental Sciences",
+    "Agricultural and Biosystems Engineering",
+    "Engineering Sciences and Materials",
+    "Chemical Engineering",
+    "Civil Engineering and Surveying",
+    "Mechanical Engineering",
+    "Electrical and Computer Engineering",
+    "Industrial Engineering",
+    "Computer Science and Engineering",
+    "Office Administration",
+    "Accounting",
+    "Finance",
+    "Operations Management",
+    "Human Resource Management",
+    "Marketing",
+    "Computerized Information Systems",
+  ];
 
   useEffect(() => {
     const setTitleToButton = () => {
@@ -50,19 +88,18 @@ export default function StudentPage() {
 
   const toggleIsTable1 = () => {
     setIsTable1Visible((current) => !current);
-    setIsDropdownVisible(false); // Close the dropdown when switching tables
-    setIsTable2Visible(false); // Close Coursetable2 when switching tables
+    setIsDropdownVisible(false); 
+    setIsTable2Visible(false); 
   };
 
   const toggleDropdown = () => {
     setIsDropdownVisible((current) => !current);
-    //setIsTable2Visible(false); // Close Coursetable2 when opening the dropdown
   };
 
   const toggleIsTable2 = () => {
     setIsTable2Visible((current) => !current);
-    setIsDropdownVisible(false); // Close the dropdown when switching tables
-    setIsTable1Visible(false); // Hide Coursetable when opening Coursetable2
+    setIsDropdownVisible(false); 
+    setIsTable1Visible(false); 
   };
 
   const handleProfileEdit = () => {
@@ -151,7 +188,7 @@ export default function StudentPage() {
 
   return (
     <div className={styles.StudentPage}>
-      <label htmlFor="profile-image-upload" className={styles.newProfileIcon} onClick={() => document.getElementById('profile-image-upload').click()}>
+      <label htmlFor="profile-image-upload" className={styles.newProfileIcon}>
         <img
           src={profileImage || "/default-profile-icon.png"}
           className={styles.profileIcon}
@@ -173,7 +210,9 @@ export default function StudentPage() {
           <form>
             {isProfileSwitchOn ? (
               <>
-                <label htmlFor="totalRemaining"className={styles.movedRight}>Total Remaining:</label>
+                <label htmlFor="totalRemaining" className={styles.movedRight}>
+                  Total Remaining:
+                </label>
                 <input
                   type="text"
                   id="totalRemaining"
@@ -182,7 +221,9 @@ export default function StudentPage() {
                   readOnly={!isProfileEditing}
                   className={styles.movedRight}
                 />
-                <label htmlFor="totalCredits"className={styles.movedRight}>Total Credits:</label>
+                <label htmlFor="totalCredits" className={styles.movedRight}>
+                  Total Credits:
+                </label>
                 <input
                   type="text"
                   id="totalCredits"
@@ -191,7 +232,9 @@ export default function StudentPage() {
                   readOnly={!isProfileEditing}
                   className={styles.movedRight}
                 />
-                <label htmlFor="totalCredits"className={styles.movedRight}style={{ visibility: 'hidden' }}>Total Credits:</label>
+                <label htmlFor="totalCredits" className={styles.movedRight} style={{ visibility: 'hidden' }}>
+                  Total Credits:
+                </label>
                 <input
                   style={{ visibility: 'hidden' }}
                   type="text"
@@ -204,32 +247,43 @@ export default function StudentPage() {
               </>
             ) : (
               <>
-                <label htmlFor="name"className={styles.movedRight}>Name:</label>
+                <label htmlFor="name" className={`${styles.label} ${styles.movedRight}`}>
+                  Name:
+                </label>
                 <input
                   type="text"
                   id="name"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   readOnly={!isProfileEditing}
-                  className={styles.movedRight}
+                  className={`${styles.input} ${styles.nameInput} ${styles.movedRight}`}
                 />
-                <label htmlFor="depa"className={styles.movedRight}>Depa:</label>
-                <input
-                  type="text"
+                <label htmlFor="depa" className={`${styles.label} ${styles.movedRight}`}>
+                  Depa:
+                </label>
+                <select
                   id="depa"
                   value={depa}
                   onChange={(e) => setDepa(e.target.value)}
                   readOnly={!isProfileEditing}
-                  className={styles.movedRight}
-                />
-                <label htmlFor="gpa"className={styles.movedRight}>GPA:</label>
+                  className={`${styles.input} ${styles.selectInput} ${styles.movedRight}`}
+                >
+                  {departmentList.map((department) => (
+                    <option key={department} value={department}>
+                      {department}
+                    </option>
+                  ))}
+                </select>
+                <label htmlFor="gpa" className={`${styles.label} ${styles.movedRight}`}>
+                  GPA:
+                </label>
                 <input
                   type="text"
                   id="gpa"
                   value={gpa}
                   onChange={(e) => setGpa(e.target.value)}
                   readOnly={!isProfileEditing}
-                  className={styles.movedRight}
+                  className={`${styles.input} ${styles.gpaInput} ${styles.movedRight}`}
                 />
               </>
             )}
@@ -262,7 +316,7 @@ export default function StudentPage() {
             {isDropdownVisible && (
               <div className={styles.additionalButtons}>
                 <Button onClick={toggleIsTable2}>Fall Semester 2023</Button>
-                {/* Add more buttons as needed */}
+                {}
               </div>
             )}
           </div>
