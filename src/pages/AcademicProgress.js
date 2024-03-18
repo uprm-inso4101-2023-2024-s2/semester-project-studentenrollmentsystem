@@ -9,7 +9,8 @@ export default function AcademicProgress() {
   const progressData = {
     program: "Software Engineering",
     minor: "Project Managment",
-    creditsCompleted: 90,
+    completedCredits: 90,
+    totalCredits: 153,
     progress: 25,
     startDate: "August 1, 2021",
     courses: [
@@ -33,22 +34,16 @@ export default function AcademicProgress() {
         {/*later deal with the case when the student doesnt have any major */}
           <h2>Minor in {progressData.minor}</h2>
           <button onClick={() => window.location.href = 'https://www.uprm.edu/cse/wp-content/uploads/sites/153/2022/07/Curriculum_INSO_BS-2.pdf'}> View Curriculum</button>
-
         </div>
 
         <div className="152">
           <h2>Total Credits</h2>
-          <p>{progressData.status}</p>
+          <p>{progressData.totalCredits}</p>
         </div>
 
         <div className="credits">
           <h2>Taken Credits</h2>
-          <p>{progressData.credits}</p>
-        </div>
-
-        <div className="start-date">
-          <h2>Start Date</h2>
-          <p>{progressData.startDate}</p>
+          <p>{progressData.completedCredits}</p>
         </div>
 
         <div className="progress">
