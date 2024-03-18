@@ -90,7 +90,7 @@
   position: absolute;
   top: 44%;
   left: 3%;
-  width: 300px;
+  width: 450px;
   max-width: 80%;
   height: 300px;
   background-color: rgb(0, 146, 102);
@@ -103,6 +103,9 @@
   border-radius: 20px;
   padding: 20px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
 }
 
 .hover-highlight:hover {
@@ -185,6 +188,106 @@
   top: -180px;
   left: 8px;
   align-items: center;
+}
+
+/* Month container styles */
+.monthContainer {
+  margin-bottom: 20px;
+  text-align: center; /* Center the month header */
+}
+
+/* Days container styles */
+.daysContainer {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 5px;
+}
+
+/* Day styles */
+.day {
+  background-color: #ffffff;
+  color: #000;
+  padding: 10px;
+  text-align: center;
+  border-radius: 10px;
+  cursor: pointer; /* Add cursor pointer to indicate interaction */
+  flex: 1; /* Fill available space evenly */
+}
+
+.day:hover {
+  cursor: pointer;
+  background-color: #f0f0f0;
+}
+
+/* Event styles */
+.event {
+  font-size: 8.7px;
+  margin-top: 5px;
+  padding: 2px 5px;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 5px;
+}
+
+.eventPopOut {
+  position: absolute;
+  top: 70%;
+  left: 46.9%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 20px;
+  border-radius: 10px;
+  z-index: 999; 
+  display: flex;
+}
+
+.eventPopOutContent {
+  max-height: 70vh;
+  overflow-y: auto;
+  
+}
+
+.eventPopOut ul li {
+  margin-bottom: 5px;
+  display: flex;
+  align-items: center;
+}
+
+.eventPopOut ul li span {
+  margin-right: 10px;
+  margin-left: 15px;
+}
+
+.eventPopOut ul li span:first-child {
+  margin-right: 10px;
+}
+//popout event text without time
+.centeredEvent {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  
+}
+
+//modify accordingly for calendar
+.multipleEvents {
+  background-color: rgb(255, 255, 255);
+  color: #000000;
+  font-size: 12px;
+  border-radius: 10px;
+}
+//pop out x
+.close {
+  position: absolute;
+  top: 10px;
+  right: 10px; 
+  cursor: pointer;
+  color: #fff;
+  font-size: 20px;
+}
+//pop out
+.close:hover {
+  color: #ccc;
 }
 
 /* new code */
