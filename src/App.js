@@ -9,6 +9,8 @@ import FilterTest from './pages/FilterTest';
 import OfferedCourses from './pages/OfferedCourses';
 import SignUp from './pages/SignUp';
 import LoginPage from './pages/Login';
+import FreeElectivesPage from './pages/FreeElectives';
+import FreeElectives from './pages/FreeElectives';
 import Footer from './components/footer';
 
 export default function App() {
@@ -23,6 +25,7 @@ export default function App() {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/filter-test" element={<FilterTest />} />
         <Route path="/offered-courses" element={<OfferedCourses />} />
+        <Route path="/free-electives" element={<FreeElectives />} />
         {/* Add more routes as necessary */}
       </Routes>
       <Footer/>
