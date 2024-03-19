@@ -39,7 +39,7 @@ export default function Navbar() {
         <div className={styles.bar}></div>
       </div>
       <div className={styles.logo} onClick={closeNavItem}>
-        <Link to="/">MATRICULA UPRM</Link>
+        <Link to="/home">MATRICULA UPRM</Link>
       </div>      
       <ul className={`${styles.navLinks} ${isOpen ? styles.showMenu : ""}`}>
         <li onClick={closeNavItem}>

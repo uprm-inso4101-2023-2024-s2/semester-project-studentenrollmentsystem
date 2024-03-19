@@ -1,0 +1,59 @@
+
+.vertical-rectangle {
+    width: 25%;
+    height: 60%;
+    position: absolute;
+    left: 8%;
+    bottom: 8%;
+    border-radius: 8%;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+    margin-bottom: 5%;
+}
+
+.slide {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.image {
+    height: 100%;
+    width: 150%;
+    object-fit: cover;
+}
+
+.overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(transparent, rgba(0, 0, 0, 1));
+}
+
+.text {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: white;
+    font-size: 18px;
+}
+
+@media only screen and (max-width: 768px){
+    .vertical-rectangle{
+        width: 50%;
+        height: 30%; 
+        left: 25%; 
+        bottom: 35%; 
+        border-radius: 8%;
+        box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
+        overflow: hidden;
+    }
+
+    .image {
+        width: 100%;
+    }
+
+}
