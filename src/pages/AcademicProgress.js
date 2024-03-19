@@ -1,11 +1,7 @@
-
 import styles from "../styles/pages/AcademicProgress.module.scss";
 import React from "react";
 
 export default function AcademicProgress() {
-
-
-  // Dummy Data
   const progressData = {
     program: "Software Engineering",
     minor: "Project Managment",
@@ -20,58 +16,60 @@ export default function AcademicProgress() {
     ],
   };
 
-
-
   return (
-    <div className="academic-progress-component">  {/* Align text to the left */}
-      <header>
-        <h1>Bachelor of {progressData.program}</h1>
-      </header>
-      
-      <section className="program-details" style={{ display: 'block' }}> {/* Ensure block display */}
+    <body className={styles.AcademicProgress}>
+      <div className={styles.header}>
+        <h1>ACADEMIC PROGRESS</h1>
+      </div>
 
-        <div className="program-info">
-        {/*later deal with the case when the student doesnt have any major */}
-          <h2>Minor in {progressData.minor}</h2>
-          <button onClick={() => window.location.href = 'https://www.uprm.edu/cse/wp-content/uploads/sites/153/2022/07/Curriculum_INSO_BS-2.pdf'}> View Curriculum</button>
-        </div>
+      <div className={styles["academic-progress-component"]}> {/* Updated class name */}
+        <header>
+          <h2>Bachelor of {progressData.program}</h2>
+        </header>
 
-        <div className="152">
-          <h2>Total Credits</h2>
-          <p>{progressData.totalCredits}</p>
-        </div>
-
-        <div className="credits">
-          <h2>Taken Credits</h2>
-          <p>{progressData.completedCredits}</p>
-        </div>
-
-        <div className="progress">
-          <h2>Progress</h2>
-          <progress value={(progressData.completedCredits / progressData.totalCredits)*100} max="100"></progress>
-          <span> {Math.round((progressData.completedCredits / progressData.totalCredits)*100)}%</span>
-        </div>
-      </section>
-
-      <hr />
-      
-      <section className="academic-progress">
-        <h2>Academic Progress</h2>
-        <p>View your curriculum and track your progress in each course.</p>
-        
-        <div className="filters">
-          <button>Filter</button>
-          <button>Completed</button>
-          <button>Not Completed</button>
-        </div>
-        
-        {progressData.courses.map(course => (
-          <div className="course" key={course.name} style={{ display: 'block', marginBottom: '10px' }}> {/* Adjust display and margin for courses */}
-            <h3>{course.name}</h3>
-            <span>{course.completed ? "Completed" : "Not Completed"}</span>
+        <section className={styles["program-details"]}> {/* Updated class name */}
+          <div className={styles["program-info"]}> {/* Updated class name */}
+            <h2>Minor in {progressData.minor}</h2>
+            <button onClick={() => window.location.href = 'https://www.uprm.edu/cse/wp-content/uploads/sites/153/2022/07/Curriculum_INSO_BS-2.pdf'}> View Curriculum</button>
           </div>
-        ))}
-      </section>
-    </div>
+
+          <div className={styles["total-credits"]}> {/* Adjusted to match SCSS */}
+            <h2>Total Credits</h2>
+            <p>{progressData.totalCredits}</p>
+          </div>
+
+          <div className={styles["credits"]}> {/* This className was already correct */}
+            <h2>Taken Credits</h2>
+            <p>{progressData.completedCredits}</p>
+          </div>
+
+          <div className={styles["progress"]}> {/* This className was already correct */}
+            <h2>Progress</h2>
+            <progress value={(progressData.completedCredits / progressData.totalCredits) * 100} max="100"></progress>
+            <span>{Math.round((progressData.completedCredits / progressData.totalCredits) * 100)}%</span>
+          </div>
+        </section>
+
+        <hr />
+
+        <section className={styles["academic-progress"]}> {/* Updated class name */}
+          <h2>Courses</h2>
+          <p>View your curriculum and track your progress in each course.</p>
+
+          <div className={styles["filters"]}> {/* Assuming you want this styled as well */}
+            <button>Filter</button>
+            <button>Completed</button>
+            <button>Not Completed</button>
+          </div>
+
+          {progressData.courses.map(course => (
+            <div className={styles["course"]} key={course.name}>
+              <h3>{course.name}</h3>
+              <span>{course.completed ? "Completed" : "Not Completed"}</span>
+            </div>
+          ))}
+        </section>
+      </div>
+    </body>
   );
 }
