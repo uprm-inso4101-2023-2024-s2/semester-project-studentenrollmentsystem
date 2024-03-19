@@ -13,7 +13,7 @@ app.post('/saveToFile', (req, res) => {
   const { text } = req.body;
 
   try {
-    fs.appendFileSync('./dumbdata.csv', text);
+    fs.appendFileSync('../dummydata/dumbdata.csv', text);
     res.status(200).send('File saved successfully');
   } catch (error) {
     console.error(error);
