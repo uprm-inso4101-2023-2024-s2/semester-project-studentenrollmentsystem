@@ -1,0 +1,26 @@
+.loadingOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* semi-transparent black background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999; /* ensure it's above other content */
+}
+
+.spinner {
+  border: 4px solid #9dff00; /* circle color */
+  border-top: 4px solid #0099ff; /* Rotating color */
+  border-radius: 50%; /*makes square a circle */
+  width: 80px; /*circle size */
+  height: 80px; /*circle size */
+  animation: spin 0.95s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
