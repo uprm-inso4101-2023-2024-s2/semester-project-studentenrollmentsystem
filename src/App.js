@@ -10,8 +10,9 @@ import OfferedCourses from './pages/OfferedCourses';
 import SignUp from './pages/SignUp';
 import LoginPage from './pages/Login';
 import ProfessorReview from './pages/ProfessorReview';
-
-
+import FreeElectivesPage from './pages/FreeElectives';
+import FreeElectives from './pages/FreeElectives';
+import Footer from './components/footer';
 
 export default function App() {
   return (
@@ -27,9 +28,11 @@ export default function App() {
         <Route path="/offered-courses" element={<OfferedCourses />} />
         <Route path="/professor-info" element={<ProfessorReview />} />
 
-       
+        <Route path="/free-electives" element={<FreeElectives />} />
+
         {/* Add more routes as necessary */}
       </Routes>
+      <Footer/>
     </div>
   );
 }

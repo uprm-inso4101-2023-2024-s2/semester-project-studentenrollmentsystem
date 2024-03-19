@@ -1,25 +1,25 @@
-.Scheduletable
-{
-    font-size:15px;
-    background-color: rgb(0, 146, 102);
-    transition: all ease 0.5s;
+.schedule{
+  display:flex;
+  flex-direction:row;
+  justify-content: center;
+  flex-basis:auto;
+  .Scheduletable
+  {
+    font-size:10px;
     border-collapse: collapse;
-    color:white;
+    width: 80%;
+    height:470px;
     table-layout: fixed;
-    width: 70%;
-
-    td
-    {
-        border:solid black;
-    }
-
+    background-color: #40976A;
+    color:white;
+    border: solid black;
     th
     {
-        border:solid black;
+      border:solid black;
     }
-}
-  
-
-@media screen {
-    
+    td
+    {
+      border-left: solid black;
+    }
+  }
 }
