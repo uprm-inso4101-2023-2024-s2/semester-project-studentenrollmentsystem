@@ -56,10 +56,9 @@ export default function Navbar() {
         <Link to="/home">MATRICULA UPRM</Link>     
       </div>
 
-      <div className={`${styles.dateAndTime} ${styles.dateAndTimeCustom}`}>
-        {currentDateTime.toLocaleString()}
+      <div className={styles.dateAndTime}>
+        {currentDateTime.toLocaleString().replace(',', ' |')}
       </div>
-      <Link to="/">STUDENT ENROLLMENT SYSTEM</Link>
 
       <ul className={`${styles.navLinks} ${isOpen ? styles.showMenu : ""}`}>
         <li onClick={closeNavItem}>
