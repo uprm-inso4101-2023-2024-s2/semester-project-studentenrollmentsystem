@@ -4,9 +4,15 @@ import modstyle from "../styles/components/modal.module.scss";
 import table from "../styles/components/courseTable.module.scss";
 import Data from "../dummydata/dummycoursedetails.csv";
 import Papa from "papaparse"
+import ReviewsModal from './ReviewsModal';
 
-export default function Card({courseName, credits, instructor, imageUrl, description, buttontext = 'Click Me'}){ 
+export default function Card({courseName, credits, instructor, imageUrl, description, buttontext = 'Click Me', reviewButtonText = 'Reviews'}){ 
   const [modal, setModal] = useState(false);
+  const [showReviewsModal, setShowReviewsModal] = useState(false);
+  
+  //Dummy Data
+  const sections = ['Section 1', 'Section 2']; 
+  const reviews = ['Review 1', 'Review 2'];
 
   const toggleModal = () => {
     setModal(!modal);
@@ -65,6 +71,7 @@ export default function Card({courseName, credits, instructor, imageUrl, descrip
           <button className={modstyle.close-modal} onClick={toggleModal}>
             Back
           </button>
+          
         </div>
       </div>
     )}
@@ -78,8 +85,11 @@ export default function Card({courseName, credits, instructor, imageUrl, descrip
           <p className={styles.description}>{description}</p>
           <p className={styles.credits}>{credits}</p>
           <button onClick={toggleModal} className={styles.button}>{buttontext}</button>
+          
+          <button className={styles.button} onClick={() => setShowReviewsModal(true)}>{reviewButtonText}</button>
+          {showReviewsModal && <ReviewsModal onClose={() => setShowReviewsModal(false)} reviews={reviews} />}
         </div>
       </div>
     </>        
-    ); 
+    );     
 }
