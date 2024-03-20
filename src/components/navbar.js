@@ -58,12 +58,10 @@ export default function Navbar() {
         </Link>
       </div>
 
-
       <div className={`${styles.dateAndTime} ${styles.dateAndTimeCustom}`}>
-      {currentDateTime.toLocaleString()}
-    </div>
-        <Link to="/">STUDENT ENROLLMENT SYSTEM</Link>
-      </div>      
+        {currentDateTime.toLocaleString()}
+      </div>
+      <Link to="/">STUDENT ENROLLMENT SYSTEM</Link>
 
       <ul className={`${styles.navLinks} ${isOpen ? styles.showMenu : ""}`}>
         <li onClick={closeNavItem}>
@@ -83,9 +81,9 @@ export default function Navbar() {
         </li>
         <li onClick={closeNavItem}>
           <Link to="/professor-info">Professors Info</Link>
-          
+        </li>
+        <li onClick={closeNavItem}>
           <Link to="/free-electives">Free Electives</Link>
-
         </li>
       </ul>
       <div className={styles.profile}>
@@ -95,4 +93,5 @@ export default function Navbar() {
       </div>
     </nav>
   );
+
 }
