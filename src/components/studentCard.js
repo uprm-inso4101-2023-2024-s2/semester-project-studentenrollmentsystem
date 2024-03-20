@@ -23,6 +23,11 @@ const StudentCard = ({
     }
   };
 
+  const handleClick = () => {
+    // Programmatically click the hidden file input
+    document.getElementById("profile-image-upload").click();
+  };
+
   const handleImageChange = (event) => {
     const file = event.target.files[0];
     if (file) {
@@ -46,7 +51,11 @@ const StudentCard = ({
             style={{ display: "none" }}
             accept="image/*"
             onChange={handleImageChange}
+            className={styles.uploadButton}
           />
+          <button className={styles.uploadButton} onClick={handleClick}>
+            Upload Image
+          </button>{" "}
         </div>
         <div className={styles.studentInfo}>
           {isEditing ? (
@@ -59,22 +68,22 @@ const StudentCard = ({
               />
               <input
                 type="text"
-                value={gpa}
-                onChange={(e) => setGpa(e.target.value)}
-                placeholder="GPA"
-              />
-              <input
-                type="text"
                 value={major}
                 onChange={(e) => setMajor(e.target.value)}
                 placeholder="Major"
+              />
+              <input
+                type="text"
+                value={gpa}
+                onChange={(e) => setGpa(e.target.value)}
+                placeholder="GPA"
               />
             </>
           ) : (
             <>
               <div>{studentName || "STUDENT NAME"}</div>
-              <div>{gpa || "GPA"}</div>
               <div>{major || "MAJOR"}</div>
+              <div>{gpa || "GPA"}</div>
             </>
           )}
         </div>
