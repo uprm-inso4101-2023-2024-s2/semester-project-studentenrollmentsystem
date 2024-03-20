@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect } from "react";
 import styles from "../styles/pages/studentPage.module.scss";
 import Coursetable from "../components/courseTable";
 import Scheduletable from "../components/scheduleTable";
@@ -70,39 +70,43 @@ export default function StudentPage() {
   const [customLink2, setCustomLink2] = useState("");
   const [showAcademicCalendar, setShowAcademicCalendar] = useState(false);
   const [customButtonText, setCustomButtonText] = useState(["", ""]);
+  const [gpa, setGpa] = useState('');
+  const [missingCredits, setMissingCredits] = useState(""); // Assuming this method exists and calculates the credits due based on some criteria
 
-    const [academicEvents, setAcademicEvents] = useState({});
-    const [selectedEvents, setSelectedEvents] = useState([]);
-    
-   var gpa = new GradesEvaluation(['A', 'B', 'C', 'D', 'A', 'B'],[4,3,2,1,3,3]);
+  const [academicEvents, setAcademicEvents] = useState({});
+  const [selectedEvents, setSelectedEvents] = useState([]);
 
-    
-    useEffect(() => {
-        const setTitleToButton = () => {
-            const pageTitle = document.title;
-            if (customLink1) {
-                setCustomButtonText((prev) => {
-                    const updatedArray = [...prev];
-                    updatedArray[0] = pageTitle;
-                    return updatedArray;
-                });
-            }
-            if (customLink2) {
-                setCustomButtonText((prev) => {
-                    const updatedArray = [...prev];
-                    updatedArray[1] = pageTitle;
-                    return updatedArray;
-                });
-            }
-        };
-        setTitleToButton();
-    }, [customLink1, customLink2]);
+  var gpaCalculator = new GradesEvaluation(
+    ["A", "B", "C", "D", "A", "B"],
+    [4, 3, 2, 1, 3, 3]
+  );
+
+  useEffect(() => {
+    const setTitleToButton = () => {
+      const pageTitle = document.title;
+      if (customLink1) {
+        setCustomButtonText((prev) => {
+          const updatedArray = [...prev];
+          updatedArray[0] = pageTitle;
+          return updatedArray;
+        });
+      }
+      if (customLink2) {
+        setCustomButtonText((prev) => {
+          const updatedArray = [...prev];
+          updatedArray[1] = pageTitle;
+          return updatedArray;
+        });
+      }
+    };
+    setTitleToButton();
+  }, [customLink1, customLink2]);
 
   const [isEditing, setIsEditing] = useState(false);
-  const [studentName, setStudentName] = useState("John Doe");
-  const [studentNumber, setStudentNumber] = useState("12345678");
-  const [major, setMajor] = useState("Computer Science");
-  const [studentGPA, setStudentGPA] = useState("4.0");
+ 
+  const [creditsTaken, setCreditsTaken] = useState(
+    gpaCalculator.getCreditsTaken()
+  );
 
   useEffect(() => {
     const setTitleToButton = () => {
@@ -615,9 +619,7 @@ export default function StudentPage() {
       <div className={styles.header}>
         <div className={styles.views}>
           <h2>STUDENT PAGE</h2>
-          <div className={styles.buttons}>
-            <Button onClick={() => changeView("Edit")}>Edit</Button>
-          </div>
+     
         </div>
       </div>
       {/* <label htmlFor="profile-image-upload" className={styles.newProfileIcon} onClick={() => document.getElementById('profile-image-upload').click()}>
@@ -739,7 +741,12 @@ export default function StudentPage() {
                     )}
                 </div> */}
         <div className={styles.studentInfo}>
-          <StudentCard />
+          <StudentCard
+            initialGpa={gpa}
+            missingCredits={missingCredits}
+            creditsTaken={creditsTaken}
+            className={styles.stude}
+          />
 
           <LinkBox />
         </div>
@@ -863,9 +870,7 @@ export default function StudentPage() {
           </div> */}
         </div>
 
-            
-
-            {/* {showAcademicCalendar && <AcademicCalendar />}
+        {/* {showAcademicCalendar && <AcademicCalendar />}
 
             <button
                 className={`${styles["switch"]} ${styles["hover-highlight"]}`}
@@ -889,26 +894,36 @@ export default function StudentPage() {
                 </button>
             </div> */}
 
-            {selectedEvents.length > 0 && (
-                <div className={styles.eventPopOut}>
-                    <div className={styles.eventPopOutContent}>
-                        <span className={styles.close} onClick={() => setSelectedEvents([])}>&times;</span>
-                        <h2>Events for the day</h2>
-                        <ul>
-                            {selectedEvents.map((event, index) => (
-                                <li key={index} className={!event.time ? styles.centeredEvent : null}>
-                                    <span className={event.important ? styles.centeredEvent : null}>
-                                        {event.title}
-                                    </span>
-                                    {event.time && <span>-</span>}
-                                    {event.time && <span>{event.time}</span>}
-                                </li>
-                            ))}
-                        </ul>
-                    </div>
-                </div>
-            )}
-        </div>
-        </div>
-    );
+        {selectedEvents.length > 0 && (
+          <div className={styles.eventPopOut}>
+            <div className={styles.eventPopOutContent}>
+              <span
+                className={styles.close}
+                onClick={() => setSelectedEvents([])}
+              >
+                &times;
+              </span>
+              <h2>Events for the day</h2>
+              <ul>
+                {selectedEvents.map((event, index) => (
+                  <li
+                    key={index}
+                    className={!event.time ? styles.centeredEvent : null}
+                  >
+                    <span
+                      className={event.important ? styles.centeredEvent : null}
+                    >
+                      {event.title}
+                    </span>
+                    {event.time && <span>-</span>}
+                    {event.time && <span>{event.time}</span>}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
+  );
 }

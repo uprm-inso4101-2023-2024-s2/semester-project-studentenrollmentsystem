@@ -11,7 +11,7 @@
   }
 
   .scrollableContainer {
-    max-height: 120px;
+    max-height: 10px;
     width: 80%;
     overflow-y: auto;
     overflow-x: auto;
@@ -20,7 +20,6 @@
 
     ul {
       list-style: none;
-      padding: 0;
 
       li {
         margin-bottom: 5px;

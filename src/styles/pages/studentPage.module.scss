@@ -35,14 +35,14 @@
     flex-direction: row;
     justify-content: space-evenly;
     align-items: center;
-    gap: 50px;
     padding: 40px;
     margin-left: 100px;
 
     .studentInfo {
       display: flex;
       flex-direction: column;
-      gap: 40px;
+      margin-top: 45px;
+      gap: 20px;
     }
 
     .curriculumside {

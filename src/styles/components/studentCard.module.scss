@@ -8,7 +8,7 @@
   /* Stretch children to match width for alignment */
   color: white;
   width: 450px;
-  height: 180px;
+  height: 220px;
   /* Adjust height as necessary */
   font-family: "Bebas Neue", sans-serif;
   position: relative;
@@ -22,7 +22,7 @@
   font-family: "Bebas Neue", sans-serif;
   /* Specified font */
   border: 1px solid #ccc;
-  padding: 5px;
+  padding: 3px;
   margin: 5px 0;
   width: calc(100% - 20px);
   box-sizing: border-box;
@@ -72,9 +72,9 @@
   color: #000000;
   border: 1px solid #ccc;
   border-radius: 10px;
-  padding: 10px 20px;
+  padding: 5px 20px;
   font-family: "Bebas Neue", sans-serif;
-  font-size: 16px;
+  font-size: 15px;
   cursor: pointer;
   transition: background-color 0.3s;
   margin-top: auto;

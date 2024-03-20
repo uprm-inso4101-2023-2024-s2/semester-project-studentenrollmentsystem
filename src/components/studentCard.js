@@ -6,20 +6,22 @@ const StudentCard = ({
   initialStudentName,
   initialMajor,
   initialGpa,
+  initialMissingCredits, // Add initialMissingCredits prop
+  initialCreditsTaken, // Add initialCreditsTaken prop
   onSave,
 }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [studentName, setStudentName] = useState(initialStudentName);
   const [major, setMajor] = useState(initialMajor);
   const [gpa, setGpa] = useState(initialGpa);
-  const [profileImage, setProfileImage] = useState(
-    "your_initial_image_url_here"
-  );
+  const [missingCredits, setMissingCredits] = useState(initialMissingCredits); // Add missingCredits state
+  const [creditsTaken, setCreditsTaken] = useState(initialCreditsTaken); // Add creditsTaken state
+  const [profileImage, setProfileImage] = useState("your_initial_image_url_here");
 
   const saveEdits = () => {
     setIsEditing(false);
     if (onSave) {
-      onSave({ studentName, major, gpa });
+      onSave({ studentName, major, gpa, missingCredits, creditsTaken }); // Include new properties in onSave
     }
   };
 
@@ -42,8 +44,6 @@ const StudentCard = ({
   return (
     <div className={`${styles.studentCard} ${className || ""}`.trim()}>
       <div className={styles.contentContainer}>
-        {" "}
-        {/* New container */}
         <div className={styles.studentImage}>
           <input
             type="file"
@@ -55,7 +55,7 @@ const StudentCard = ({
           />
           <button className={styles.uploadButton} onClick={handleClick}>
             Upload Image
-          </button>{" "}
+          </button>
         </div>
         <div className={styles.studentInfo}>
           {isEditing ? (
@@ -78,12 +78,26 @@ const StudentCard = ({
                 onChange={(e) => setGpa(e.target.value)}
                 placeholder="GPA"
               />
+              <input
+                type="number" // Assuming credits are numeric
+                value={missingCredits}
+                onChange={(e) => setMissingCredits(e.target.value)}
+                placeholder="Missing Credits"
+              />
+              <input
+                type="number" // Assuming credits are numeric
+                value={creditsTaken}
+                onChange={(e) => setCreditsTaken(e.target.value)}
+                placeholder="Credits Taken"
+              />
             </>
           ) : (
             <>
               <div>{studentName || "STUDENT NAME"}</div>
               <div>{major || "MAJOR"}</div>
               <div>{gpa || "GPA"}</div>
+              <div>{missingCredits || "MISSING CREDITS"}</div>
+              <div>{creditsTaken || "CREDITS TAKEN"}</div>
             </>
           )}
         </div>
@@ -99,8 +113,9 @@ const StudentCard = ({
         >
           Edit
         </button>
-      )}{" "}
+      )}
     </div>
   );
 };
+
 export default StudentCard;
