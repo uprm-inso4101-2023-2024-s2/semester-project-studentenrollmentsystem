@@ -63,7 +63,7 @@ export default function Navbar() {
 
       <ul className={`${styles.navLinks} ${isOpen ? styles.showMenu : ""}`}>
         <li onClick={closeNavItem}>
-          <Link to="/" >Home</Link>
+          <Link to="/home" >Home</Link>
         </li>
         <li onClick={closeNavItem}>
           <Link to="/calendar">Calendar</Link>
