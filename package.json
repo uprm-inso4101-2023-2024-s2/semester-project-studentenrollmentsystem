@@ -3,33 +3,30 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-
+    "@azure/msal-browser": "^3.10.0",
+    "@azure/msal-react": "^2.0.12",
     "@fullcalendar/core": "^6.1.10",
-    "@fullcalendar/daygrid": "^6.1.10",
-    "@fullcalendar/interaction": "^6.1.10",
-    "@fullcalendar/react": "^6.1.10",
-    "@fullcalendar/timegrid": "^6.1.10",
-
     "@fullcalendar/daygrid": "^6.1.11",
     "@fullcalendar/interaction": "^6.1.11",
     "@fullcalendar/react": "^6.1.11",
     "@fullcalendar/timegrid": "^6.1.11",
-
-    "@azure/msal-browser": "^3.10.0",
-    "@azure/msal-react": "^2.0.12",
     "@react-oauth/google": "^0.12.1",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
+    "axios": "^1.6.8",
+    "cors": "^2.8.5",
     "express": "^4.18.2",
-    "papaparse": "^5.4.1",
     "jwt-decode": "^4.0.0",
+    "papaparse": "^5.4.1",
+    "pdf-parse": "^1.1.1",
     "pg": "^8.11.3",
     "pg-hstore": "^2.3.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-pro-sidebar": "^1.1.0",
+    "react-infinite-scroll-component": "^6.1.0",
     "react-microsoft-login": "^2.0.1",
+    "react-pro-sidebar": "^1.1.0",
     "react-router-dom": "^6.22.1",
     "react-scripts": "5.0.1",
     "sass": "^1.71.1",
@@ -59,5 +56,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11"
   }
 }
