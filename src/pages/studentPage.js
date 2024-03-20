@@ -58,7 +58,6 @@ export default function StudentPage() {
   );
   const [name, setName] = useState("pedro");
   const [depa, setDepa] = useState("INSO");
-  const [gpa, setGpa] = useState("4.00");
   const [totalRemaining, setTotalRemaining] = useState(0);
   const [totalCredits, setTotalCredits] = useState(0);
   const [isProfileEditing, setIsProfileEditing] = useState(false);
@@ -801,7 +800,7 @@ export default function StudentPage() {
             {isTable1Visible && <Examtable></Examtable>}
           </div>
 
-          <div className={styles.academicCalendar}>
+          {/* <div className={styles.academicCalendar}>
             {showAcademicCalendar && <AcademicCalendar />}
 
             <button
@@ -814,7 +813,7 @@ export default function StudentPage() {
                 className={styles.switchIcon}
               />
             </button>
-            {/* 
+
             <div className={styles["button-container-left"]}>
                 <button
                     className={`${styles["custom-button"]} ${styles["hover-highlight"]}`}
@@ -828,7 +827,7 @@ export default function StudentPage() {
                 >
                     {customLink2 ? customButtonText[1] || "Custom Button 2" : "Set Custom Link 2"}
                 </button>
-            </div> */}
+            </div> 
 
             {selectedEvents.length > 0 && (
               <div className={styles.eventPopOut}>
@@ -853,7 +852,6 @@ export default function StudentPage() {
                         >
                           {event.title}
                         </span>
-                        {/* Conditionally render the dash and time */}
                         {event.time && <span>-</span>}
                         {event.time && <span>{event.time}</span>}
                       </li>
@@ -862,12 +860,12 @@ export default function StudentPage() {
                 </div>
               </div>
             )}
-          </div>
+          </div> */}
         </div>
 
             
 
-            {showAcademicCalendar && <AcademicCalendar />}
+            {/* {showAcademicCalendar && <AcademicCalendar />}
 
             <button
                 className={`${styles["switch"]} ${styles["hover-highlight"]}`}
@@ -889,7 +887,7 @@ export default function StudentPage() {
                 >
                     {customLink2 ? customButtonText[1] || "Custom Button 2" : "Set Custom Link 2"}
                 </button>
-            </div>
+            </div> */}
 
             {selectedEvents.length > 0 && (
                 <div className={styles.eventPopOut}>
@@ -902,7 +900,6 @@ export default function StudentPage() {
                                     <span className={event.important ? styles.centeredEvent : null}>
                                         {event.title}
                                     </span>
-                                    {/* Conditionally render the dash and time */}
                                     {event.time && <span>-</span>}
                                     {event.time && <span>{event.time}</span>}
                                 </li>
@@ -911,6 +908,7 @@ export default function StudentPage() {
                     </div>
                 </div>
             )}
+        </div>
         </div>
     );
 }
