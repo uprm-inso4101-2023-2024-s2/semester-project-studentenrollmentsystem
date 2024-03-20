@@ -14,7 +14,8 @@ const CourseList = ({ courses }) => {
                instructor={course.instructor}
                description={course.description} // Extracting instructor assuming format "Instructor, Credits"
                credits={course.credits}
-               buttontext='Available Sections' // Extracting credits
+               buttontext='Section Details'
+               reviewButtonText = 'Reviews'
                 />
             ))}
         </Grid>
