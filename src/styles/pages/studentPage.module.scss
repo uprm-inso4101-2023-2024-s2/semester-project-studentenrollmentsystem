@@ -1,367 +1,426 @@
-.mainpage {
-  display: flex;
-  gap: 20px;
-}
+.mainPage {
 
-.profileside {
-  flex: 30%;
-}
+  .header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+    margin-left: 30px;
 
-.curriculumside {
-  flex: 70%;
-  position: relative;
-  transition: all ease 0.5s;
-}
-
-.viewbutton {
-  display:flex;
-  justify-content: center;
-  align-items: center;
-  gap: 5px;
-
-  .buttonX {
-    width: auto;
-    height: 25px;
-    color: white; 
-    background-color: #40976A; 
-    border-radius: 10px;
-    border: none; 
-    cursor: pointer;
-    font-size: 16px; 
-    font-weight: bold;
-    transition: background-color 0.3s;
-  
-    &:hover {
-      background-color: darken(#40976A, 10%); 
+    .views {
+      display: flex;
+      width: 80%;
+      border-radius: 20px;
+      padding: 0px 25px;
+      justify-content: space-between;
+      background-color: #D9D9D9;
+      align-items: center;
+     h2{
+     margin: 20px 10px;
+     }
     }
-  
-    &:focus {
-      outline: none;
+
+    .buttons {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
     }
   }
-}
 
-.buttonOH {
-  width: auto;
-  height: 25px;
-  color: white; 
-  background-color: #40976A; 
-  border-radius: 10px;
-  border: none; 
-  cursor: pointer;
-  font-size: 16px; 
-  font-weight: bold;
-  transition: background-color 0.3s;
-  transform: translateY(5px);
+  .body {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 50px;
+    padding: 40px;
+    margin-left: 100px;
 
-  &:hover {
-    background-color: darken(#40976A, 10%); 
+    .studentInfo {
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+    }
+
+    .curriculumside {
+      display: flex;
+      width: 50%;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      .tableTitle {
+        font-size: 42px;
+        padding: 0px;
+        margin: 0px;
+      }
+
+      .viewbutton {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 5px;
+        margin-top: 20px;
+
+        .buttonX {
+          width: auto;
+          height: 25px;
+          color: white;
+          background-color: #40976A;
+          border-radius: 10px;
+          border: none;
+          cursor: pointer;
+          font-size: 16px;
+          font-weight: bold;
+          transition: background-color 0.3s;
+
+          &:hover {
+            background-color: darken(#40976A, 10%);
+          }
+
+          &:focus {
+            outline: none;
+          }
+        }
+      }
+
+
+      .buttonOH {
+        height: 25px;
+        color: white;
+        margin-bottom: 10px;
+        background-color: #40976A;
+        border-radius: 10px;
+        border: none;
+        cursor: pointer;
+        font-size: 16px;
+        font-weight: bold;
+        transition: background-color 0.3s;
+
+        &:hover {
+          background-color: darken(#40976A, 10%);
+        }
+
+        &:focus {
+          outline: none;
+        }
+      }
+
+      .tableview {
+        display: flex;
+        width: 82%;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .examview {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        h1 {
+          margin: 0px;
+          margin-top: 20px;
+          padding: 0px;
+        }
+      }
+
+      .movedRight {
+        margin-left: 150px;
+      }
+
+      .green-square-container {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+      }
+
+      .green-square {
+        position: fixed;
+        top: 44%;
+        left: 3%;
+        width: 300px;
+        max-width: 80%;
+        height: 300px;
+        background-color: rgb(0, 146, 102);
+        color: rgb(255, 255, 255);
+        outline: none;
+        overflow: auto;
+        line-height: 1.5;
+        overflow-wrap: break-word;
+        white-space: pre-wrap;
+        border-radius: 20px;
+        padding: 20px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      .bio-title {
+        position: absolute;
+        top: -30px;
+        left: 140px;
+        color: rgb(255, 255, 255);
+        font-size: 30px;
+      }
+
+      .bio-textarea {
+        width: calc(100% - 20px);
+        height: calc(100% - 120px);
+        resize: none;
+        border: none;
+        background: transparent;
+        font-size: 16px;
+        color: rgb(255, 255, 255);
+        outline: none;
+        overflow: auto;
+        line-height: 1.5;
+        overflow-wrap: break-word;
+        white-space: pre-wrap;
+        padding: 10px;
+        border-radius: 10px;
+        border: 1px solid #fff;
+      }
+
+      .academicCalendar {
+        display: none;
+        position: absolute;
+        top: 44%;
+        left: 3%;
+        width: 450px;
+        max-width: 80%;
+        height: 300px;
+        background-color: rgb(0, 146, 102);
+        color: rgb(255, 255, 255);
+        outline: none;
+        overflow: auto;
+        line-height: 1.5;
+        overflow-wrap: break-word;
+        white-space: pre-wrap;
+        border-radius: 20px;
+        padding: 20px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .hover-highlight:hover {
+        background-color: rgba(171, 241, 19, 0.528);
+        color: #000000;
+      }
+
+      .save-button {
+        margin-top: 75px;
+        margin-right: 9px;
+        padding: 0.5rem 1rem;
+        background-color: white;
+        color: black;
+        border: none;
+        border-radius: 30px;
+        cursor: pointer;
+      }
+
+      .edit-button {
+        position: absolute;
+        border-radius: 10px;
+        border: none;
+        bottom: 10px;
+        right: 10px;
+      }
+
+      .button-container-left {
+        position: absolute;
+        bottom: 7px;
+        left: 70px;
+      }
+
+      .custom-button {
+        margin-right: 15px;
+        padding: 0.5rem 1rem;
+        background-color: rgb(0, 146, 102);
+        color: rgb(255, 255, 255);
+        border: none;
+        border-radius: 100px;
+        cursor: pointer;
+      }
+
+      .switch {
+        transform: translateY(-115px);
+        position: absolute;
+        border-radius: 10px;
+        border: none;
+        top: 450px;
+        left: 335px;
+        background-color: transparent;
+      }
+
+      .switchIcon {
+        width: 20px;
+        height: 20px;
+      }
+
+      .newProfileIcon {
+        position: absolute;
+        top: 135px;
+        left: 20px;
+        cursor: pointer;
+      }
+
+      .profileIcon {
+        width: 95px;
+        height: 95px;
+        border-radius: 50%;
+        border: 2px solid black;
+        transition: transform 0.3s;
+      }
+
+      .newProfileIcon:hover .profileIcon {
+        transform: scale(1.2);
+      }
+
+      .switchContainer {
+        position: absolute;
+        top: -180px;
+        left: 8px;
+        align-items: center;
+      }
+
+      /* Month container styles */
+      .monthContainer {
+        margin-bottom: 20px;
+        text-align: center;
+        /* Center the month header */
+      }
+
+      /* Days container styles */
+      .daysContainer {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        gap: 5px;
+      }
+
+      /* Day styles */
+      .day {
+        background-color: #ffffff;
+        color: #000;
+        padding: 10px;
+        text-align: center;
+        border-radius: 10px;
+        cursor: pointer;
+        /* Add cursor pointer to indicate interaction */
+        flex: 1;
+        /* Fill available space evenly */
+      }
+
+      .day:hover {
+        cursor: pointer;
+        background-color: #f0f0f0;
+      }
+
+      /* Event styles */
+      .event {
+        font-size: 8.7px;
+        margin-top: 5px;
+        padding: 2px 5px;
+        background-color: rgba(255, 255, 255, 0.2);
+        border-radius: 5px;
+      }
+
+      .eventPopOut {
+        position: absolute;
+        top: 70%;
+        left: 46.9%;
+        transform: translate(-50%, -50%);
+        background-color: rgba(0, 0, 0, 0.8);
+        color: white;
+        padding: 20px;
+        border-radius: 10px;
+        z-index: 999;
+        display: flex;
+      }
+
+      .eventPopOutContent {
+        max-height: 70vh;
+        overflow-y: auto;
+
+      }
+
+      .eventPopOut ul li {
+        margin-bottom: 5px;
+        display: flex;
+        align-items: center;
+      }
+
+      .eventPopOut ul li span {
+        margin-right: 10px;
+        margin-left: 15px;
+      }
+
+      .eventPopOut ul li span:first-child {
+        margin-right: 10px;
+      }
+
+      //popout event text without time
+      .centeredEvent {
+        display: flex;
+        justify-content: left;
+        align-items: center;
+
+      }
+
+      //modify accordingly for calendar
+      .multipleEvents {
+        background-color: rgb(255, 255, 255);
+        color: #000000;
+        font-size: 12px;
+        border-radius: 10px;
+      }
+
+      //pop out x
+      .close {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        cursor: pointer;
+        color: #fff;
+        font-size: 20px;
+      }
+
+      //pop out
+      .close:hover {
+        color: #ccc;
+      }
+
+      /* new code */
+
+      .label {
+        display: block;
+        margin-bottom: 5px;
+      }
+
+      .input {
+        width: 100%;
+        padding: 8px;
+        margin-bottom: 15px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+      }
+
+      .nameInput {
+        width: 100%;
+      }
+
+      .selectInput {
+        width: 100%;
+      }
+
+      .gpaInput {
+        width: 100px;
+      }
+    }
   }
-
-  &:focus {
-    outline: none;
-  }
-}
-
-.tableview {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  transform: translateY(10px);
-}
-
-.examview {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  transform: translateY(30px);
-}
-
-.movedRight {
-  margin-left: 150px; 
-}
-
-.green-square-container {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-}
-
-.green-square {
-  position: fixed;
-  top: 44%;
-  left: 3%;
-  width: 300px;
-  max-width: 80%;
-  height: 300px;
-  background-color: rgb(0, 146, 102);
-  color: rgb(255, 255, 255);
-  outline: none;
-  overflow: auto;
-  line-height: 1.5;
-  overflow-wrap: break-word;
-  white-space: pre-wrap;
-  border-radius: 20px;
-  padding: 20px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.bio-title {
-  position: absolute;
-  top: -30px;
-  left: 140px;
-  color: rgb(255, 255, 255);
-  font-size: 30px;
-}
-
-.bio-textarea {
-  width: calc(100% - 20px);
-  height: calc(100% - 120px);
-  resize: none;
-  border: none;
-  background: transparent;
-  font-size: 16px;
-  color: rgb(255, 255, 255);
-  outline: none;
-  overflow: auto;
-  line-height: 1.5;
-  overflow-wrap: break-word;
-  white-space: pre-wrap;
-  padding: 10px;
-  border-radius: 10px;
-  border: 1px solid #fff;
-}
-
-.academicCalendar {
-  position: absolute;
-  top: 44%;
-  left: 3%;
-  width: 450px;
-  max-width: 80%;
-  height: 300px;
-  background-color: rgb(0, 146, 102);
-  color: rgb(255, 255, 255);
-  outline: none;
-  overflow: auto;
-  line-height: 1.5;
-  overflow-wrap: break-word;
-  white-space: pre-wrap;
-  border-radius: 20px;
-  padding: 20px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  display: flex;
-  flex-direction: column;
-  align-items: center; 
-}
-
-.hover-highlight:hover {
-  background-color: rgba(171, 241, 19, 0.528);
-  color: #000000;
-}
-
-.save-button {
-  margin-top: 75px;
-  margin-right: 9px;
-  padding: 0.5rem 1rem;
-  background-color: white;
-  color: black;
-  border: none;
-  border-radius: 30px;
-  cursor: pointer;
-}
-
-.edit-button {
-  position: absolute;
-  border-radius: 10px;
-  border: none;
-  bottom: 10px;
-  right: 10px;
-}
-
-.button-container-left {
-  position: absolute;
-  bottom: 7px;
-  left: 70px;
-}
-
-.custom-button {
-  margin-right: 15px;
-  padding: 0.5rem 1rem;
-  background-color: rgb(0, 146, 102);
-  color: rgb(255, 255, 255);
-  border: none;
-  border-radius: 100px;
-  cursor: pointer;
-}
-
-.switch {
-  transform: translateY(-115px);
-  position: absolute;
-  border-radius: 10px;
-  border: none;
-  top:450px;
-  left: 335px;
-  background-color: transparent;
-}
-
-.switchIcon {
-  width: 20px;
-  height: 20px;
-  margin-left: 1px;
-}
-
-.newProfileIcon {
-  position: absolute;
-  top: 135px;
-  left: 20px;
-  cursor: pointer;
-}
-
-.profileIcon {
-  width: 95px;
-  height: 95px;
-  border-radius: 50%;
-  border: 2px solid black;
-  transition: transform 0.3s;
-}
-
-.newProfileIcon:hover .profileIcon {
-  transform: scale(1.2);
-}
-
-.switchContainer {
-  position: absolute;
-  top: -180px;
-  left: 8px;
-  align-items: center;
-}
-
-/* Month container styles */
-.monthContainer {
-  margin-bottom: 20px;
-  text-align: center; /* Center the month header */
-}
-
-/* Days container styles */
-.daysContainer {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  gap: 5px;
-}
-
-/* Day styles */
-.day {
-  background-color: #ffffff;
-  color: #000;
-  padding: 10px;
-  text-align: center;
-  border-radius: 10px;
-  cursor: pointer; /* Add cursor pointer to indicate interaction */
-  flex: 1; /* Fill available space evenly */
-}
-
-.day:hover {
-  cursor: pointer;
-  background-color: #f0f0f0;
-}
-
-/* Event styles */
-.event {
-  font-size: 8.7px;
-  margin-top: 5px;
-  padding: 2px 5px;
-  background-color: rgba(255, 255, 255, 0.2);
-  border-radius: 5px;
-}
-
-.eventPopOut {
-  position: absolute;
-  top: 70%;
-  left: 46.9%;
-  transform: translate(-50%, -50%);
-  background-color: rgba(0, 0, 0, 0.8);
-  color: white;
-  padding: 20px;
-  border-radius: 10px;
-  z-index: 999; 
-  display: flex;
-}
-
-.eventPopOutContent {
-  max-height: 70vh;
-  overflow-y: auto;
-  
-}
-
-.eventPopOut ul li {
-  margin-bottom: 5px;
-  display: flex;
-  align-items: center;
-}
-
-.eventPopOut ul li span {
-  margin-right: 10px;
-  margin-left: 15px;
-}
-
-.eventPopOut ul li span:first-child {
-  margin-right: 10px;
-}
-//popout event text without time
-.centeredEvent {
-  display: flex;
-  justify-content: left;
-  align-items: center;
-  
-}
-
-//modify accordingly for calendar
-.multipleEvents {
-  background-color: rgb(255, 255, 255);
-  color: #000000;
-  font-size: 12px;
-  border-radius: 10px;
-}
-//pop out x
-.close {
-  position: absolute;
-  top: 10px;
-  right: 10px; 
-  cursor: pointer;
-  color: #fff;
-  font-size: 20px;
-}
-//pop out
-.close:hover {
-  color: #ccc;
-}
-
-/* new code */
-
-.label {
-  display: block;
-  margin-bottom: 5px;
-}
-
-.input {
-  width: 100%;
-  padding: 8px;
-  margin-bottom: 15px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-}
-
-.nameInput {
-  width: 100%;
-}
-
-.selectInput {
-  width: 100%;
-}
-
-.gpaInput {
-  width: 100px; 
 }

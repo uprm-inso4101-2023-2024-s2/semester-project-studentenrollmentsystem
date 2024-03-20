@@ -22,7 +22,12 @@ const LinkBox = () => {
       <div className={styles.scrollableContainer}>
         <ul className={styles.linkList}>
           {links.map((link, index) => (
-            <li key={index}>{link}</li>
+            // Use an anchor tag to make the link clickable and open in a new tab
+            <li key={index}>
+              <a href={link} target="_blank" rel="noopener noreferrer">
+                {link}
+              </a>
+            </li>
           ))}
         </ul>
       </div>
