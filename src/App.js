@@ -10,6 +10,7 @@ import OfferedCourses from './pages/OfferedCourses';
 import SignUp from './pages/SignUp';
 import LoginPage from './pages/Login';
 import DummyDataMaker from './DummyDataMaker/DummyDataMaker';
+import AcademicProgress from './pages/AcademicProgress';
 
 export default function App() {
   return (
@@ -24,8 +25,10 @@ export default function App() {
         <Route path="/filter-test" element={<FilterTest />} />
         <Route path="/offered-courses" element={<OfferedCourses />} />
         <Route path="/dummy-data-maker" element={<DummyDataMaker />} />
+        <Route path="/academic-progress" element={<AcademicProgress />} />
+        <Route path="studentpage/academic-progress" element={<AcademicProgress />} />
         {/* Add more routes as necessary */}
       </Routes>
     </div>
   );
-}
+} 
