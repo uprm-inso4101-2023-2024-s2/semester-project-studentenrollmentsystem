@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react"
 import styles from "../styles/pages/studentPage.module.scss";
 import Coursetable from "../components/courseTable";
 import Scheduletable from "../components/scheduleTable";
@@ -6,6 +6,7 @@ import Datafall2023 from "../dummydata/fall2023.csv"
 import Dataspring2024 from "../dummydata/spring2024.csv"
 import officeHours from "../dummydata/profOHspring2024.csv"
 import Examtable from "../components/activeExams";
+import GradesEvaluation from "../functionality/evaluation";
 
 export default function StudentPage() {
     var DataSet = [Datafall2023,Dataspring2024];
@@ -44,7 +45,6 @@ export default function StudentPage() {
     const [profileImage, setProfileImage] = useState("https://as2.ftcdn.net/v2/jpg/00/64/67/27/1000_F_64672736_U5kpdGs9keUll8CRQ3p3YaEv2M6qkVY5.jpg");
     const [name, setName] = useState("pedro");
     const [depa, setDepa] = useState("INSO");
-    const [gpa, setGpa] = useState("4.00");
     const [totalRemaining, setTotalRemaining] = useState(0);
     const [totalCredits, setTotalCredits] = useState(0);
     const [isProfileEditing, setIsProfileEditing] = useState(false);
@@ -60,7 +60,10 @@ export default function StudentPage() {
 
     const [academicEvents, setAcademicEvents] = useState({});
     const [selectedEvents, setSelectedEvents] = useState([]);
+    
+   var gpa = new GradesEvaluation(['A', 'B', 'C', 'D', 'A', 'B'],[4,3,2,1,3,3]);
 
+    
     useEffect(() => {
         const setTitleToButton = () => {
             const pageTitle = document.title;
@@ -508,17 +511,35 @@ export default function StudentPage() {
                                     className={styles.movedRight}
                                 />
                                 <label htmlFor="gpa" className={styles.movedRight}>GPA:</label>
+
                                 <input
                                     type="text"
                                     id="gpa"
-                                    value={gpa}
-                                    onChange={(e) => setGpa(e.target.value)}
+                                    value={gpa.getGPA()}
                                     readOnly={!isProfileEditing}
                                     className={styles.movedRight}
                                 />
-                            </>
-                        )}
 
+                                <label htmlFor="creditsTaken" className={styles.movedRight}>Credits Taken:</label>
+                                    <input
+                                        type="text"
+                                        id="creditsTaken"
+                                        value={gpa.getCreditsTaken()} // Ensure this method exists and returns the expected value
+                                        readOnly={true}
+                                        className={styles.movedRight}
+                                    />
+
+                                    <label htmlFor="creditsDue" className={styles.movedRight}>Credits Due:</label>
+                                    <input
+                                        type="text"
+                                        id="creditsDue"
+                                        value={gpa.getCreditsDue()} // Ensure this method exists and returns the expected value
+                                        readOnly={true}
+                                        className={styles.movedRight}
+                                    />
+                             </>
+                        )}
+ 
                         <div className={styles.switchContainer}>
                             <div onClick={handleProfileSwitchToggle} className={styles.switch}>
                                 <span className={styles.slider} />
@@ -559,35 +580,7 @@ export default function StudentPage() {
         </div>
             </div>
 
-            <div className={styles["green-square-container"]}>
-                <div className={styles["green-square"]}>
-                    <p className={styles["bio-title"]}>Bio</p>
-
-                    {isBioEditing ? (
-                        <div className={styles["green-square"]}>
-                            <textarea
-                                value={bio}
-                                onChange={handleChange}
-                                className={styles["bio-textarea"]}
-                            ></textarea>
-
-                            <button className={styles["save-button"]} onClick={handleSaveBio}>
-                                Save
-                            </button>
-                            <button className={styles["save-button"]} onClick={handleCancelBio}>
-                                Cancel
-                            </button>
-                        </div>
-                    ) : (
-                        <div onClick={handleBioEdit}>
-                            <p>{bio}</p>
-                            <button className={`${styles["edit-button"]} ${styles["hover-highlight"]}`}>
-                                Edit
-                            </button>
-                        </div>
-                    )}
-                </div>
-            </div>
+            
 
             {showAcademicCalendar && <AcademicCalendar />}
 
