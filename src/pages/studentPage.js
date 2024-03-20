@@ -70,7 +70,7 @@ export default function StudentPage() {
   const [customLink2, setCustomLink2] = useState("");
   const [showAcademicCalendar, setShowAcademicCalendar] = useState(false);
   const [customButtonText, setCustomButtonText] = useState(["", ""]);
-  const [gpa, setGpa] = useState('');
+  const [gpa, setGpa] = useState("");
   const [missingCredits, setMissingCredits] = useState(""); // Assuming this method exists and calculates the credits due based on some criteria
 
   const [academicEvents, setAcademicEvents] = useState({});
@@ -103,7 +103,7 @@ export default function StudentPage() {
   }, [customLink1, customLink2]);
 
   const [isEditing, setIsEditing] = useState(false);
- 
+
   const [creditsTaken, setCreditsTaken] = useState(
     gpaCalculator.getCreditsTaken()
   );
@@ -619,7 +619,6 @@ export default function StudentPage() {
       <div className={styles.header}>
         <div className={styles.views}>
           <h2>STUDENT PAGE</h2>
-     
         </div>
       </div>
       {/* <label htmlFor="profile-image-upload" className={styles.newProfileIcon} onClick={() => document.getElementById('profile-image-upload').click()}>
@@ -783,6 +782,7 @@ export default function StudentPage() {
             <button className={styles.buttonX} onClick={toggleIsTable1}>
               Switch Views
             </button>
+            
             {isDropdownVisible &&
               DataSet.map((data) => (
                 <button
@@ -801,7 +801,10 @@ export default function StudentPage() {
                       .slice(15, data.toString(data).indexOf("."))}
                 </button>
               ))}
+              
           </div>
+          
+          
           <div className={styles.examview}>
             {isTable1Visible && <h1>Exam Grades</h1>}
             {isTable1Visible && <Examtable></Examtable>}
@@ -870,30 +873,7 @@ export default function StudentPage() {
           </div> */}
         </div>
 
-        {/* {showAcademicCalendar && <AcademicCalendar />}
-
-            <button
-                className={`${styles["switch"]} ${styles["hover-highlight"]}`}
-                onClick={() => setShowAcademicCalendar(!showAcademicCalendar)}
-            >
-                <img src="/switch_icon.png" alt="Switch Icon" className={styles.switchIcon} />
-            </button>
-
-            <div className={styles["button-container-left"]}>
-                <button
-                    className={`${styles["custom-button"]} ${styles["hover-highlight"]}`}
-                    onClick={() => handleCustomButtonClick(customLink1, setCustomLink1, 1)}
-                >
-                    {customLink1 ? customButtonText[0] || "Custom Button 1" : "Set Custom Link 1"}
-                </button>
-                <button
-                    className={`${styles["custom-button"]} ${styles["hover-highlight"]}`}
-                    onClick={() => handleCustomButtonClick(customLink2, setCustomLink2, 2)}
-                >
-                    {customLink2 ? customButtonText[1] || "Custom Button 2" : "Set Custom Link 2"}
-                </button>
-            </div> */}
-
+      
         {selectedEvents.length > 0 && (
           <div className={styles.eventPopOut}>
             <div className={styles.eventPopOutContent}>

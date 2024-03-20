@@ -16,9 +16,10 @@
       justify-content: space-between;
       background-color: #D9D9D9;
       align-items: center;
-     h2{
-     margin: 20px 10px;
-     }
+
+      h2 {
+        margin: 20px 10px;
+      }
     }
 
     .buttons {
@@ -65,6 +66,8 @@
         gap: 5px;
         margin-top: 20px;
 
+
+
         .buttonX {
           width: auto;
           height: 25px;
@@ -84,6 +87,13 @@
           &:focus {
             outline: none;
           }
+
+
+        }
+
+        .salvacion {
+          width: 20px;
+          height: 20px;
         }
       }
 
@@ -186,27 +196,7 @@
         border: 1px solid #fff;
       }
 
-      .academicCalendar {
-        display: none;
-        position: absolute;
-        top: 44%;
-        left: 3%;
-        width: 450px;
-        max-width: 80%;
-        height: 300px;
-        background-color: rgb(0, 146, 102);
-        color: rgb(255, 255, 255);
-        outline: none;
-        overflow: auto;
-        line-height: 1.5;
-        overflow-wrap: break-word;
-        white-space: pre-wrap;
-        border-radius: 20px;
-        padding: 20px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        flex-direction: column;
-        align-items: center;
-      }
+
 
       .hover-highlight:hover {
         background-color: rgba(171, 241, 19, 0.528);
@@ -232,11 +222,7 @@
         right: 10px;
       }
 
-      .button-container-left {
-        position: absolute;
-        bottom: 7px;
-        left: 70px;
-      }
+
 
       .custom-button {
         margin-right: 15px;
@@ -246,6 +232,17 @@
         border: none;
         border-radius: 100px;
         cursor: pointer;
+      }
+
+      .smallButton {
+        padding: 2px 5px; // Reduces the padding to make the button smaller
+        font-size: 10px; // Decreases the font size
+        min-width: 30px; // Minimum width to ensure the button is visually identifiable
+        height: 20px; // Reduces the height
+        display: flex; // To center the icon properly if used
+        justify-content: center; // Centers the content horizontally
+        align-items: center; // Centers the content vertically
+        border-radius: 4px; // Optional: adds a small border-radius for aesthetic purposes
       }
 
       .switch {
@@ -422,5 +419,28 @@
         width: 100px;
       }
     }
+
   }
+}
+
+.academicCalendar {
+  display: none;
+  position: absolute;
+  top: 44%;
+  left: 3%;
+  width: 450px;
+  max-width: 80%;
+  height: 300px;
+  background-color: rgb(0, 146, 102);
+  color: rgb(255, 255, 255);
+  outline: none;
+  overflow: auto;
+  line-height: 1.5;
+  overflow-wrap: break-word;
+  white-space: pre-wrap;
+  border-radius: 20px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  flex-direction: column;
+  align-items: center;
 }
