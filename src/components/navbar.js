@@ -7,6 +7,8 @@ export default function Navbar() {
   // Determine if NavBar menu is open or closed
   const [isOpen, setIsOpen] = useState(false);
 
+  const [currentDateTime, setCurrentDateTime] = useState(new Date());
+
   const navbarRef = useRef(null); //  useRef creates a reference object that can be attached to a Document Object Model (DOM) element for direct manipulation. Here, it will be used to access the <nav> element and its properties in the component.
 
   const toggleMenu = () => {
@@ -26,8 +28,15 @@ export default function Navbar() {
 
     document.addEventListener("click", closeMenu); // Add event listener to detect the clicks
 
+    const intervalId = setInterval(() => {
+      setCurrentDateTime(new Date());
+    }, 1000); // Update current date and time every second
+
+    
     return () => {
       document.removeEventListener("click", closeMenu); // Cleanup event listener to prevent memory leaks
+      clearInterval(intervalId);
+      
     };
   }, [isOpen]); // Dependency array to re-run if 'isOpen' changes
 
@@ -38,12 +47,26 @@ export default function Navbar() {
         <div className={styles.bar}></div>
         <div className={styles.bar}></div>
       </div>
+
       <div className={styles.logo} onClick={closeNavItem}>
-        <Link to="/home">MATRICULA UPRM</Link>
-      </div>      
+          <img src='rum.png' alt="Logo" className={styles.logoImage} />
+      </div>
+
+      <div className={styles.logo} onClick={closeNavItem}>
+        <Link to="/home">MATRICULA UPRM</Link>     
+        <Link to="/" className={styles.logoLink}>
+          <span>MATRICULA UPRM</span>
+        </Link>
+      </div>
+
+      <div className={`${styles.dateAndTime} ${styles.dateAndTimeCustom}`}>
+        {currentDateTime.toLocaleString()}
+      </div>
+      <Link to="/">STUDENT ENROLLMENT SYSTEM</Link>
+
       <ul className={`${styles.navLinks} ${isOpen ? styles.showMenu : ""}`}>
         <li onClick={closeNavItem}>
-          <Link to="/home" >Home</Link>
+          <Link to="/" >Home</Link>
         </li>
         <li onClick={closeNavItem}>
           <Link to="/calendar">Calendar</Link>
@@ -57,6 +80,12 @@ export default function Navbar() {
         <li onClick={closeNavItem}>
           <Link to="/filter-test">Filter-test</Link>
         </li>
+        <li onClick={closeNavItem}>
+          <Link to="/professor-info">Professors Info</Link>
+        </li>
+        <li onClick={closeNavItem}>
+          <Link to="/free-electives">Free Electives</Link>
+        </li>
       </ul>
       <div className={styles.profile}>
         <Link to="/login">
@@ -65,4 +94,5 @@ export default function Navbar() {
       </div>
     </nav>
   );
+
 }

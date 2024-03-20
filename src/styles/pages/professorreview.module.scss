@@ -1,0 +1,17 @@
+.professorReview {
+    padding: 20px;
+
+    .header2 {
+        text-align: center;
+        font-size: 35px;
+        font-family:  'Bebas Neue', sans-serif;
+        margin-bottom: 40px;
+        padding: 20px;  /*Add padding for better spacing */
+       
+        color: hsl(0, 0%, 100%); /* Set the text color to improve contrast */
+        border-radius: 8px; /* Add rounded corners for a modern look */
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a subtle shadow for depth */;
+        background-color: #40976A;
+    }
+
+}
