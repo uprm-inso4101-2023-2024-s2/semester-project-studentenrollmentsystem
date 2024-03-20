@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react"
 import styles from "../styles/pages/studentPage.module.scss";
 import Coursetable from "../components/courseTable";
 import Scheduletable from "../components/scheduleTable";
@@ -10,6 +10,7 @@ import StudentCard from "../components/studentCard";
 import linkBox from "../components/linkBox";
 import LinkBox from "../components/linkBox";
 import Button from "../components/button";
+import GradesEvaluation from "../functionality/evaluation";
 
 export default function StudentPage() {
   var DataSet = [Datafall2023, Dataspring2024];
@@ -71,8 +72,32 @@ export default function StudentPage() {
   const [showAcademicCalendar, setShowAcademicCalendar] = useState(false);
   const [customButtonText, setCustomButtonText] = useState(["", ""]);
 
-  const [academicEvents, setAcademicEvents] = useState({});
-  const [selectedEvents, setSelectedEvents] = useState([]);
+    const [academicEvents, setAcademicEvents] = useState({});
+    const [selectedEvents, setSelectedEvents] = useState([]);
+    
+   var gpa = new GradesEvaluation(['A', 'B', 'C', 'D', 'A', 'B'],[4,3,2,1,3,3]);
+
+    
+    useEffect(() => {
+        const setTitleToButton = () => {
+            const pageTitle = document.title;
+            if (customLink1) {
+                setCustomButtonText((prev) => {
+                    const updatedArray = [...prev];
+                    updatedArray[0] = pageTitle;
+                    return updatedArray;
+                });
+            }
+            if (customLink2) {
+                setCustomButtonText((prev) => {
+                    const updatedArray = [...prev];
+                    updatedArray[1] = pageTitle;
+                    return updatedArray;
+                });
+            }
+        };
+        setTitleToButton();
+    }, [customLink1, customLink2]);
 
   const [isEditing, setIsEditing] = useState(false);
   const [studentName, setStudentName] = useState("John Doe");
@@ -667,17 +692,35 @@ export default function StudentPage() {
                                     className={styles.movedRight}
                                 />
                                 <label htmlFor="gpa" className={styles.movedRight}>GPA:</label>
+
                                 <input
                                     type="text"
                                     id="gpa"
-                                    value={gpa}
-                                    onChange={(e) => setGpa(e.target.value)}
+                                    value={gpa.getGPA()}
                                     readOnly={!isProfileEditing}
                                     className={styles.movedRight}
                                 />
-                            </>
-                        )}
 
+                                <label htmlFor="creditsTaken" className={styles.movedRight}>Credits Taken:</label>
+                                    <input
+                                        type="text"
+                                        id="creditsTaken"
+                                        value={gpa.getCreditsTaken()} // Ensure this method exists and returns the expected value
+                                        readOnly={true}
+                                        className={styles.movedRight}
+                                    />
+
+                                    <label htmlFor="creditsDue" className={styles.movedRight}>Credits Due:</label>
+                                    <input
+                                        type="text"
+                                        id="creditsDue"
+                                        value={gpa.getCreditsDue()} // Ensure this method exists and returns the expected value
+                                        readOnly={true}
+                                        className={styles.movedRight}
+                                    />
+                             </>
+                        )}
+ 
                         <div className={styles.switchContainer}>
                             <div onClick={handleProfileSwitchToggle} className={styles.switch}>
                                 <span className={styles.slider} />
@@ -822,36 +865,52 @@ export default function StudentPage() {
           </div>
         </div>
 
-        {/* <div className={styles["green-square-container"]}>
-                 <div className={styles["green-square"]}>
-                    <p className={styles["bio-title"]}>Bio</p>
+            
 
-                    {isBioEditing ? (
-                        <div className={styles["green-square"]}>
-                            <textarea
-                                value={bio}
-                                onChange={handleChange}
-                                className={styles["bio-textarea"]}
-                            ></textarea>
+            {showAcademicCalendar && <AcademicCalendar />}
 
-                            <button className={styles["save-button"]} onClick={handleSaveBio}>
-                                Save
-                            </button>
-                            <button className={styles["save-button"]} onClick={handleCancelBio}>
-                                Cancel
-                            </button>
-                        </div>
-                    ) : (
-                        <div onClick={handleBioEdit}>
-                            <p>{bio}</p>
-                            <button className={`${styles["edit-button"]} ${styles["hover-highlight"]}`}>
-                                Edit
-                            </button>
-                        </div>
-                    )}
-                </div> 
-            </div> */}
-      </div>
-    </div>
-  );
+            <button
+                className={`${styles["switch"]} ${styles["hover-highlight"]}`}
+                onClick={() => setShowAcademicCalendar(!showAcademicCalendar)}
+            >
+                <img src="/switch_icon.png" alt="Switch Icon" className={styles.switchIcon} />
+            </button>
+
+            <div className={styles["button-container-left"]}>
+                <button
+                    className={`${styles["custom-button"]} ${styles["hover-highlight"]}`}
+                    onClick={() => handleCustomButtonClick(customLink1, setCustomLink1, 1)}
+                >
+                    {customLink1 ? customButtonText[0] || "Custom Button 1" : "Set Custom Link 1"}
+                </button>
+                <button
+                    className={`${styles["custom-button"]} ${styles["hover-highlight"]}`}
+                    onClick={() => handleCustomButtonClick(customLink2, setCustomLink2, 2)}
+                >
+                    {customLink2 ? customButtonText[1] || "Custom Button 2" : "Set Custom Link 2"}
+                </button>
+            </div>
+
+            {selectedEvents.length > 0 && (
+                <div className={styles.eventPopOut}>
+                    <div className={styles.eventPopOutContent}>
+                        <span className={styles.close} onClick={() => setSelectedEvents([])}>&times;</span>
+                        <h2>Events for the day</h2>
+                        <ul>
+                            {selectedEvents.map((event, index) => (
+                                <li key={index} className={!event.time ? styles.centeredEvent : null}>
+                                    <span className={event.important ? styles.centeredEvent : null}>
+                                        {event.title}
+                                    </span>
+                                    {/* Conditionally render the dash and time */}
+                                    {event.time && <span>-</span>}
+                                    {event.time && <span>{event.time}</span>}
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                </div>
+            )}
+        </div>
+    );
 }
