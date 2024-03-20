@@ -4,6 +4,7 @@ import Button from "../components/button";
 import DailySchedule from "../components/DailySchedule";
 import MonthlySchedule from "../components/MonthlySchedule";
 import WeeklySchedule from "../components/WeeklySchedule";
+import AcademicSchedule from "../components/AcademicSchedule";
 
 export default function CalendarPage() {
   const [currentView, setCurrentView] = useState("Daily");
@@ -70,6 +71,16 @@ export default function CalendarPage() {
             }
           />
         );
+      
+        case "Academic":
+        return (
+          <AcademicSchedule
+            events={events}
+            onAddEvent={(newEvent) =>
+              setEvents([...events, { ...newEvent, id: createEventId() }])
+            }
+          />
+        );
 
       default:
         return <DailySchedule events={events} />;
@@ -85,6 +96,7 @@ export default function CalendarPage() {
             <Button onClick={() => changeView("Daily")}>Day</Button>
             <Button onClick={() => changeView("Weekly")}>Week</Button>
             <Button onClick={() => changeView("Monthly")}>Month</Button>
+            {/* <Button onClick={() => changeView("Academic")}>Academic</Button> */}
           </div>
         </div>
       </div>

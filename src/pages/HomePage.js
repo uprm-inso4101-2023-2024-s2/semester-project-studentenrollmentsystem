@@ -2,7 +2,8 @@ import React from "react";
 import styles from "../styles/pages/homePage.module.scss";
 import News from "../components/news";
 import logo from "../img/uprm.png";
-import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";import Button from "../components/button";
+import AcademicSchedule from "../components/AcademicSchedule";
 
 export default function HomePage() {
   return (
@@ -36,6 +37,21 @@ export default function HomePage() {
           >
             Enroll Now
           </button>
+
+          <h2 style={{ marginLeft: "-30%", marginBottom: "0%" }}>External Resources</h2>
+          <ul style={{ listStyleType: "circle", textAlign: "left", marginLeft: "0%", marginTop: "2%" }}>
+            <li><a href="https://www.uprm.edu/mateng/academic-calendar-2/">Academic Google Calendar</a></li>
+            <li><a href="https://portal.upr.edu/rum/portal.php?a=rea_login">Portal UPRM</a></li>
+            <li><a href="https://home.uprm.edu/index.php?l=0">Home UPRM</a></li>
+            <li><a href="https://www.uprm.edu/admisiones/">Admissions Office</a></li>
+            <li><a href="https://www.uprm.edu/cms/index.php/page/1648">Emergency Contacts</a></li>
+          </ul>
+          
+          <div>
+            <h3 style={{ marginLeft: "0%", marginBottom: "0%" }}>PROJECTED CALENDAR</h3>
+            {/* Render the calendar component here */}
+            <AcademicSchedule events={[]} />
+          </div>
         </div>
         
       </div>
