@@ -19,7 +19,7 @@ export default function App() {
     <div className="App">
       <Navbar/>
       <Routes>
-        <Route path="/" element={<HomePage />} />
+        <Route path="/home" element={<HomePage />} />
         <Route path="/calendar" element={<Calendar />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/studentpage" element={<StudentPage />} />

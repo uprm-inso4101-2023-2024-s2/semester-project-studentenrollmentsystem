@@ -53,6 +53,7 @@ export default function Navbar() {
       </div>
 
       <div className={styles.logo} onClick={closeNavItem}>
+        <Link to="/home">MATRICULA UPRM</Link>     
         <Link to="/" className={styles.logoLink}>
           <span>MATRICULA UPRM</span>
         </Link>
