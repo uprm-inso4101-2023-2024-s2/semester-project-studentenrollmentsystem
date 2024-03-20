@@ -1,18 +1,21 @@
 .Coursetable
 {
     font-size:15px;
-    background-color: rgb(0, 146, 102);
+    background-color: #40976A;
     transition: all ease 0.5s;
     border-collapse: collapse;
     color:white;
     td
     {
         border:solid black;
+        border-radius: 10px;
+
     }
     
     th
     {
         border:solid black;
+        
     }
 }
 
