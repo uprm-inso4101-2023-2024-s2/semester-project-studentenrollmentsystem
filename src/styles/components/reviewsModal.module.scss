@@ -1,0 +1,49 @@
+.modalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .modal {
+    background: white;
+    padding: 20px;
+    border-radius: 4px;
+    max-width: 500px;
+    width: 100%;
+    max-height: 80%;
+    overflow-y: auto;
+  }
+  
+  .closeButton {
+    float: right;
+    cursor: pointer;
+    /* Add more styles for the close button */
+  }
+  
+  .reviewsList {
+    /* Style your reviews list */
+  }
+  
+  .reviewItem {
+    /* Style each review item */
+  }
+  
+  .reviewForm {
+    /* Style the form */
+  }
+  
+  .reviewInput {
+    width: 100%;
+    /* Add more styles for the textarea */
+  }
+  
+  .submitButton {
+    /* Style your submit button */
+  }
+  

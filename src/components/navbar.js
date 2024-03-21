@@ -82,6 +82,9 @@ export default function Navbar() {
         <li onClick={closeNavItem}>
           <Link to="/free-electives">Free Electives</Link>
         </li>
+        <li onClick={closeNavItem}>
+          <Link to="/dummy-data-maker">Dummy Data Maker</Link>
+        </li>
       </ul>
       <div className={styles.profile}>
         <Link to="/login">

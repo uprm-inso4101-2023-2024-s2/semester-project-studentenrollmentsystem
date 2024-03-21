@@ -1,0 +1,53 @@
+.CourseMaker {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  margin: 10px;
+  height: 540px;
+
+  .header {
+    display: flex;
+    border-radius: 30px;
+    flex-direction: column;
+    justify-content: center;
+    height: 25%;
+    margin-left: 10px;
+    margin-right: 10px;
+
+    .title {
+      text-align: left;
+      height: 50%;
+    }
+
+    .description {
+      text-align: left;
+      margin-top: 5px;
+    }
+  }
+
+  .toolBox {
+    height: 100%;
+
+    .controlPanel {
+      display: flex;
+      flex-direction: column;
+      height: 85%;
+
+      .inputBox {
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        margin-left: 5px;
+        margin-right: 5px;
+        align-items: center;
+
+        .input {
+          width: 90%;
+          padding: 10px 20px;
+          margin: 2px 0;
+          box-sizing: border-box;
+        }
+      }
+    }
+  }
+}

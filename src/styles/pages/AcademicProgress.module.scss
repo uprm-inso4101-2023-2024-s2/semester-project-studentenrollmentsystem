@@ -1,0 +1,44 @@
+.AcademicProgress {
+    padding: 20px;
+    background-color: #e8f5e9;
+
+    .header {
+        text-align: left;
+        margin-bottom: 40px;
+        color: #2e7d32;
+    }
+
+    .academic-progress-component, .program-details, .academic-progress {
+        text-align: center;
+
+        button {
+            background-color: #4caf50;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            margin: 5px;
+            border-radius: 5px;
+            cursor: pointer;
+
+            &:hover {
+                background-color: #66bb6a;
+            }
+        }
+
+        progress {
+            &::-webkit-progress-value {
+                background-color: #4caf50;
+            }
+            &::-moz-progress-bar {
+                background-color: #4caf50;
+            }
+        }
+
+        .course {
+            margin-bottom: 10px;
+            span {
+                color: #2e7d32;
+            }
+        }
+    }
+}

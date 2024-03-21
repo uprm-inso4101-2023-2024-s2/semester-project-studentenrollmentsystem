@@ -12,7 +12,7 @@ export default function FilterTestPage() {
   ];
   
   return (
-    <div>
+    <div style={{marginLeft: '25px'}}>
       <SearchBar data={randList}/>
       <Filter courseList={randList}/>
     </div>

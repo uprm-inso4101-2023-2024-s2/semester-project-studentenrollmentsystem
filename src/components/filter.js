@@ -13,6 +13,7 @@ export default function Filter({courseList}) {
   const[degree, setDegree] = React.useState([]);
   const[credits, setCredits] = React.useState([]);
   const[keyword, setKeyword] = React.useState([]);
+  const[code, setCode] = React.useState([]);
 
   const[courseData, setCourseData] = React.useState([]);
   React.useEffect(()=>{
@@ -24,7 +25,8 @@ export default function Filter({courseList}) {
     const filteredCourseData = courseData
       .filter(x => x.degree == (degree == '' ? x.degree : degree))
       .filter(y => y.credits == (credits == '' ? y.credits : credits))
-      .filter(z => z.name == (keyword == '' ? z.name : keyword));
+      .filter(z => z.name == (keyword == '' ? z.name : keyword))
+      .filter(w => w.code == (code == '' ? w.code : code));
     setFilteredData(filteredCourseData);
   };
 
@@ -36,9 +38,11 @@ export default function Filter({courseList}) {
         <input type="text" placeholder="Keywords"
           onChange={(e)=>setKeyword(e.target.value)}/>
         <select onChange={(e)=>setDegree(e.target.value)}>
-          <option value="">Filter by Degree</option>
+          <option value="">Degree</option>
           <option value="CIIC">CIIC</option>
+          <option value="INGE">INGE</option>
           <option value="INSO">INSO</option>
+          <option value="MATE">MATE</option>
         </select>
         <select onChange={(e)=>setCredits(e.target.value)}>
           <option value=""># Credits</option>
@@ -48,12 +52,22 @@ export default function Filter({courseList}) {
           <option value="4">4</option>
           <option value="5">5</option>
         </select>
+        <select onChange={(e)=>setCode(e.target.value)}>
+          <option value="">Course Code</option>
+          <option value="3016">3016</option>
+          <option value="3031">3031</option>
+          <option value="4010">4010</option>
+          <option value="4020">4020</option>
+          <option value="4101">4101</option>
+        </select>
+
         <button onClick={()=>applyFilters()}>Apply Filters</button>
         <table className={styles.table}>
           <thead>
             <tr>
               <th>Course Name</th>
               <th>Degree</th>
+              <th>Course Code</th>
               <th># Credits</th>
             </tr>
           </thead>
@@ -62,6 +76,7 @@ export default function Filter({courseList}) {
               <tr key={index}>
                 <td>{course.course}</td>
                 <td>{course.degree}</td>
+                <td>{course.code}</td>
                 <td>{course.credits}</td>
               </tr>
             ))}

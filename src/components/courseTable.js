@@ -38,11 +38,11 @@ export default function Coursetable({DATA})
                     <tbody>
                         {data.map((row,index)=>(
                             <tr key ={index}>
-                                <td>{row.Curso}</td>
-                                <td>{row.Seccion}</td>
-                                <td>{row.Creditos}</td>
-                                <td>{row.Reuniones}</td>
-                                <td>{row.Profesor}</td>
+                                <td>{row.Course}</td>
+                                <td>{row.Section}</td>
+                                <td>{row.Credits}</td>
+                                <td>{row.Meetings}</td>
+                                <td>{row.Proffessor}</td>
                                 <td>{row.Grados}</td>
                             </tr>
                         ))}
