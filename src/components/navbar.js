@@ -85,6 +85,9 @@ export default function Navbar() {
         <li onClick={closeNavItem}>
           <Link to="/dummy-data-maker">Dummy Data Maker</Link>
         </li>
+        <li onClick={closeNavItem}>
+          <Link to="/studentpage/academic-progress">AcademicProgress</Link>
+        </li>
       </ul>
       <div className={styles.profile}>
         <Link to="/login">
