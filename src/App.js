@@ -13,6 +13,7 @@ import ProfessorReview from './pages/ProfessorReview';
 import FreeElectivesPage from './pages/FreeElectives';
 import FreeElectives from './pages/FreeElectives';
 import Footer from './components/footer';
+import ForgotPassword from './pages/ForgotPassword';
 
 export default function App() {
   return (
@@ -27,7 +28,7 @@ export default function App() {
         <Route path="/filter-test" element={<FilterTest />} />
         <Route path="/offered-courses" element={<OfferedCourses />} />
         <Route path="/professor-info" element={<ProfessorReview />} />
-
+        <Route path= "/forgotPass" element={<ForgotPassword/>}/>
         <Route path="/free-electives" element={<FreeElectives />} />
 
         {/* Add more routes as necessary */}

@@ -50,6 +50,7 @@ export default function LoginPage() {
           <input type="button" value="Login" onClick={handleLogin} />
         </form>
         <p>Don't have an account? <a href="/Signup">Signup Here</a></p>
+        <p>Forgot Password? <a href="/forgotPass">Recover it Here</a></p>
         <span>
          <GoogleLogin
            onSuccess={(credentialResponse) => {
