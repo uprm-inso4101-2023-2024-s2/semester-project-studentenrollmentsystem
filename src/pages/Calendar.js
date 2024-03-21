@@ -1,31 +1,31 @@
-import React, { useState, useEffect } from "react";
-import styles from "../styles/pages/calendar.module.scss";
-import Button from "../components/button";
-import DailySchedule from "../components/DailySchedule";
-import MonthlySchedule from "../components/MonthlySchedule";
-import WeeklySchedule from "../components/WeeklySchedule";
-import AcademicSchedule from "../components/AcademicSchedule";
+import React, { useState, useEffect } from 'react';
+import styles from '../styles/pages/calendar.module.scss';
+import Button from '../components/button';
+import DailySchedule from '../components/DailySchedule';
+import MonthlySchedule from '../components/MonthlySchedule';
+import WeeklySchedule from '../components/WeeklySchedule';
+import AcademicSchedule from '../components/AcademicSchedule';
 
 export default function CalendarPage() {
-  const [currentView, setCurrentView] = useState("Daily");
+  const [currentView, setCurrentView] = useState('Daily');
   const [events, setEvents] = useState([]);
-  const [eventName, setEventName] = useState("");
-  const [eventDate, setEventDate] = useState("");
-  const [eventStartHour, setEventStartHour] = useState("");
-  const [eventEndHour, setEventEndHour] = useState("");
-  const [eventDescription, setEventDescription] = useState("");
-  const [schedules, setSchedules] = useState([{ name: "Schedule 1", events: [] }]);
+  const [eventName, setEventName] = useState('');
+  const [eventDate, setEventDate] = useState('');
+  const [eventStartHour, setEventStartHour] = useState('');
+  const [eventEndHour, setEventEndHour] = useState('');
+  const [eventDescription, setEventDescription] = useState('');
+  const [schedules, setSchedules] = useState([{ name: 'Schedule 1', events: [] }]);
   const [currentScheduleIndex, setCurrentScheduleIndex] = useState(0);
 
   useEffect(() => {
-    const loadedSchedules = sessionStorage.getItem("schedules");
+    const loadedSchedules = sessionStorage.getItem('schedules');
     if (loadedSchedules) {
       setSchedules(JSON.parse(loadedSchedules));
     }
   }, []);
 
   useEffect(() => {
-    sessionStorage.setItem("schedules", JSON.stringify(schedules));
+    sessionStorage.setItem('schedules', JSON.stringify(schedules));
   }, [schedules]);
 
   const createEventId = () => String(Date.now());
@@ -39,23 +39,21 @@ export default function CalendarPage() {
       endHour: eventEndHour,
       description: eventDescription,
     };
-  
-    const updatedSchedules = [...schedules];
-    updatedSchedules[currentScheduleIndex].events.push(newEvent);
-  
+
+    const updatedSchedules = schedules.map((schedule, index) =>
+      index === currentScheduleIndex ? { ...schedule, events: [...schedule.events, newEvent] } : schedule
+    );
+
     setSchedules(updatedSchedules);
-    setEventName("");
-    setEventDate("");
-    setEventStartHour("");
-    setEventEndHour("");
-    setEventDescription("");
+    setEventName('');
+    setEventDate('');
+    setEventStartHour('');
+    setEventEndHour('');
+    setEventDescription('');
   };
 
   const handleAddSchedule = () => {
-    setSchedules([
-      ...schedules,
-      { name: `Schedule ${schedules.length + 1}`, events: [] },
-    ]);
+    setSchedules([...schedules, { name: `Schedule ${schedules.length + 1}`, events: [] }]);
   };
 
   const handleRemoveSchedule = () => {
@@ -66,72 +64,36 @@ export default function CalendarPage() {
       setCurrentScheduleIndex(Math.min(currentScheduleIndex, updatedSchedules.length - 1));
     }
   };
-  
 
   const handleScheduleChange = (e) => {
-  const index = Number(e.target.value);
-  setCurrentScheduleIndex(index);
-};
-
+    const index = Number(e.target.value);
+    setCurrentScheduleIndex(index);
+  };
 
   const changeView = (view) => {
     setCurrentView(view);
   };
 
   const renderScheduleView = () => {
-    const events = schedules[currentScheduleIndex].events;
+    const eventsData = schedules[currentScheduleIndex].events;
     switch (currentView) {
-      case "Daily":
-        return (
-          <DailySchedule
-            events={events}
-            onAddEvent={(newEvent) =>
-              setEvents([...events, { ...newEvent, id: createEventId() }])
-            }
-          />
-        );
-      case "Weekly":
-        return (
-          <WeeklySchedule
-            events={events}
-            onAddEvent={(newEvent) =>
-              setEvents([...events, { ...newEvent, id: createEventId() }])
-            }
-          />
-        );
-
-      case "Monthly":
-        return (
-          <MonthlySchedule
-            events={events}
-            onAddEvent={(newEvent) =>
-              setEvents([...events, { ...newEvent, id: createEventId() }])
-            }
-          />
-        );
-
-      case "Academic":
+      case 'Daily':
+        return <DailySchedule key={currentScheduleIndex} events={eventsData} />;
+      case 'Weekly':
+        return <WeeklySchedule key={currentScheduleIndex} events={eventsData} />;
+      case 'Monthly':
+        return <MonthlySchedule key={currentScheduleIndex} events={eventsData} />;
+      case 'Academic':
+      case 'Schedule':
         return (
           <AcademicSchedule
-            events={events}
-            onAddEvent={(newEvent) =>
-              setEvents([...events, { ...newEvent, id: createEventId() }])
-            }
+            key={currentScheduleIndex}
+            events={eventsData}
+            onAddEvent={(newEvent) => setEvents([...events, { ...newEvent, id: createEventId() }])}
           />
         );
-
-      case "Schedule":
-        return (
-          <AcademicSchedule
-            events={events}
-            onAddEvent={(newEvent) =>
-              setEvents([...events, { ...newEvent, id: createEventId() }])
-            }
-          />
-        );
-
       default:
-        return <DailySchedule events={events} />;
+        return <DailySchedule key={currentScheduleIndex} events={eventsData} />;
     }
   };
 
@@ -141,21 +103,18 @@ export default function CalendarPage() {
         <div className={styles.views}>
           <h2>CALENDAR</h2>
           <div className={styles.buttons}>
-            <Button onClick={() => changeView("Daily")}>Day</Button>
-            <Button onClick={() => changeView("Weekly")}>Week</Button>
-            <Button onClick={() => changeView("Monthly")}>Month</Button>
+            <Button onClick={() => changeView('Daily')}>Day</Button>
+            <Button onClick={() => changeView('Weekly')}>Week</Button>
+            <Button onClick={() => changeView('Monthly')}>Month</Button>
             <button className={styles.addScheduleButton} onClick={handleAddSchedule}>Add Schedule</button>
             <button className={styles.removeScheduleButton} onClick={handleRemoveSchedule}>Remove Schedule</button>
             <select onChange={handleScheduleChange} value={currentScheduleIndex}>
-              {schedules.map((schedule, index) => (
-                <option key={index} value={index}>{schedule.name}</option>
-              ))}
+              {schedules.map((schedule, index) => <option key={index} value={index}>{schedule.name}</option>)}
             </select>
             {/* <Button onClick={() => changeView("Academic")}>Academic</Button> */}
           </div>
         </div>
       </div>
-
       <div className={styles.calendarCenter}>
         <div className={styles.inputLocation}>
           <div className={styles.inputBox}>
