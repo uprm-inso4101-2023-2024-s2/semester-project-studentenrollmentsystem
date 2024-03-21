@@ -69,6 +69,11 @@ export default function StudentPage() {
   const [customLink1, setCustomLink1] = useState("");
   const [customLink2, setCustomLink2] = useState("");
   const [showAcademicCalendar, setShowAcademicCalendar] = useState(false);
+  const [counselorInfo, setCounselorInfo] = useState({
+  });
+  const [counselorName, setCounselorName] = useState("");
+  const [counselorPhone, setCounselorPhone] = useState("");
+  const [counselorEmail, setCounselorEmail] = useState("");
   const [customButtonText, setCustomButtonText] = useState(["", ""]);
   const [gpa, setGpa] = useState("");
   const [missingCredits, setMissingCredits] = useState(""); // Assuming this method exists and calculates the credits due based on some criteria
@@ -745,8 +750,11 @@ export default function StudentPage() {
             missingCredits={missingCredits}
             creditsTaken={creditsTaken}
             className={styles.stude}
+            counselorName={counselorInfo.name}
+            counselorEmail={counselorInfo.email}
+            counselorPhone={counselorInfo.phone}
           />
-
+        
           <LinkBox />
         </div>
         <div className={styles.curriculumside}>
