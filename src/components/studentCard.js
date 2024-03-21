@@ -17,6 +17,9 @@ const StudentCard = ({
   const [missingCredits, setMissingCredits] = useState(initialMissingCredits); // Add missingCredits state
   const [creditsTaken, setCreditsTaken] = useState(initialCreditsTaken); // Add creditsTaken state
   const [profileImage, setProfileImage] = useState("your_initial_image_url_here");
+  const [counselorName, setCounselorName] = useState("");
+  const [counselorPhone, setCounselorPhone] = useState("");
+  const [counselorEmail, setCounselorEmail] = useState("");
 
   const saveEdits = () => {
     setIsEditing(false);
@@ -90,6 +93,24 @@ const StudentCard = ({
                 onChange={(e) => setCreditsTaken(e.target.value)}
                 placeholder="Credits Taken"
               />
+              <input
+                type="text" // Assuming credits are numeric
+                value={creditsTaken}
+                onChange={(e) => setCounselorName(e.target.value)}
+                placeholder="Counselor Name"
+              />
+              <input
+                type="text" // Assuming credits are numeric
+                value={creditsTaken}
+                onChange={(e) => setCounselorEmail(e.target.value)}
+                placeholder="Counselor E-mail"
+              />
+              <input
+                type="text" // Assuming credits are numeric
+                value={creditsTaken}
+                onChange={(e) => setCounselorPhone(e.target.value)}
+                placeholder="Counselor Phone"
+              />
             </>
           ) : (
             <>
@@ -98,6 +119,9 @@ const StudentCard = ({
               <div>{gpa || "GPA"}</div>
               <div>{missingCredits || "MISSING CREDITS"}</div>
               <div>{creditsTaken || "CREDITS TAKEN"}</div>
+              <div>{counselorName || "COUNSELOR Name"}</div>
+              <div>{counselorEmail || "COUNSELOR E-MAIL"}</div>
+              <div>{counselorPhone || "COUNSELOR Phone"}</div>
             </>
           )}
         </div>
