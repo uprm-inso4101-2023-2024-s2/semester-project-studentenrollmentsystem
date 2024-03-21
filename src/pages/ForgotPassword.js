@@ -5,6 +5,8 @@ export default function ForgotPassword() {
   const [email, setEmail]= useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [securityQuestion, setSecurityQuestion] = useState("");
+  const [securityAnswer, setSecurityAnswer] = useState("");
   const [error, setError] = useState("");
 
   const handlePassword = () => {
@@ -16,9 +18,13 @@ export default function ForgotPassword() {
     if (password === confirmPassword) {
       console.log("Email:", email);
       console.log("Password:", password);
+      console.log("Security Question:", securityQuestion);
+      console.log("Security Answer:", securityAnswer);
       setPassword("");
       setConfirmPassword("");
-      alert("Password Changed! Check the console for new password values.");
+      setSecurityQuestion("");
+      setSecurityAnswer("");
+      alert("Password Changed! Check the console for new password and security question values.");
     } else {
       setError("Passwords do not match.");
     }
@@ -34,7 +40,7 @@ export default function ForgotPassword() {
       <div className={styles.forgotpassBox}>
         <h2>Recover Password</h2>
         <form>
-        <div className={styles.field}>
+          <div className={styles.field}>
             <label>Email</label>
             <input
               type="email"
@@ -59,6 +65,15 @@ export default function ForgotPassword() {
               placeholder=""
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
+            />
+          </div>
+          <div className={styles.field}>
+            <label>Answer to security question</label>
+            <input
+              type="text"
+              placeholder=""
+              value={securityAnswer}
+              onChange={(e) => setSecurityAnswer(e.target.value)}
             />
           </div>
           {error && <p style={{ color: "red" }}>{error}</p>}
