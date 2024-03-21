@@ -20,11 +20,12 @@ const StudentCard = ({
   const [counselorName, setCounselorName] = useState("");
   const [counselorPhone, setCounselorPhone] = useState("");
   const [counselorEmail, setCounselorEmail] = useState("");
+  const [studentNumber, setStudentNumber] = useState("");
 
   const saveEdits = () => {
     setIsEditing(false);
     if (onSave) {
-      onSave({ studentName, major, gpa, missingCredits, creditsTaken }); // Include new properties in onSave
+      onSave({ studentNumber, studentName, major, gpa, missingCredits, creditsTaken }); // Include new properties in onSave
     }
   };
 
@@ -68,6 +69,12 @@ const StudentCard = ({
                 value={studentName}
                 onChange={(e) => setStudentName(e.target.value)}
                 placeholder="Student Name"
+              />
+              <input
+                type="text"
+                value={studentNumber}
+                onChange={(e) => setStudentNumber(e.target.value)}
+                placeholder="Student Number (#)"
               />
               <input
                 type="text"
@@ -115,6 +122,7 @@ const StudentCard = ({
           ) : (
             <>
               <div>{studentName || "STUDENT NAME"}</div>
+              <div>{studentNumber || "STUDENT NUMBER (#)"}</div>
               <div>{major || "MAJOR"}</div>
               <div>{gpa || "GPA"}</div>
               <div>{missingCredits || "MISSING CREDITS"}</div>

@@ -76,6 +76,7 @@ export default function StudentPage() {
   const [counselorEmail, setCounselorEmail] = useState("");
   const [customButtonText, setCustomButtonText] = useState(["", ""]);
   const [gpa, setGpa] = useState("");
+  const [studentNumber, setStudentNumber] = useState("");
   const [missingCredits, setMissingCredits] = useState(""); // Assuming this method exists and calculates the credits due based on some criteria
 
   const [academicEvents, setAcademicEvents] = useState({});
@@ -747,6 +748,7 @@ export default function StudentPage() {
         <div className={styles.studentInfo}>
           <StudentCard
             initialGpa={gpa}
+            studentNumber={studentNumber}
             missingCredits={missingCredits}
             creditsTaken={creditsTaken}
             className={styles.stude}
