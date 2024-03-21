@@ -33,6 +33,10 @@ export default function SignUp() {
             <label>Security Question</label>
             <input type="text" placeholder="" />
           </div>
+          <div className={styles.field}>
+            <label>Security Question Answer</label>
+            <input type="text" placeholder="" />
+          </div>
           <input type="button" value="Create Account" />
         </form>
         <p>Already have an account? <a href="/login">Login Here</a></p>
