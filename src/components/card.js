@@ -2,7 +2,7 @@ import React, { useState, useEffect} from 'react';
 import styles from "../styles/components/card.module.scss";
 import modstyle from "../styles/components/modal.module.scss";
 import table from "../styles/components/courseTable.module.scss";
-import Data from "../dummydata/dummycoursedetails.csv";
+import Data from "../data/dummy_data/dummycoursedetails.csv";
 import Papa from "papaparse"
 import ReviewsModal from './ReviewsModal';
 

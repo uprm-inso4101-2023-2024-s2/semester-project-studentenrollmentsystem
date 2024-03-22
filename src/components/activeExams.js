@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "../styles/components/activeExams.module.scss";
 import {useState, useEffect} from "react";
-import Data from "../dummydata/spring2024exams.csv";
+import Data from "../data/dummy_data/spring2024exams.csv";
 import Papa from "papaparse"
 
 export default function Examtable()

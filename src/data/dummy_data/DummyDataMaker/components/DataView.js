@@ -1,9 +1,9 @@
 import React from "react";
 import styles from "../styles/dataview.module.scss";
 import InfiniteScroll from "react-infinite-scroll-component";
-import Data from "../../dummydata/dumbdata.csv";
+import Data from "../../dumbdata.csv";
 import Papa from "papaparse";
-import SmallCard from "../../components/smallcard";
+import SmallCard from "../../../../components/smallcard";
 
 export default function DataView() {
   const [data,setData] = React.useState([])
