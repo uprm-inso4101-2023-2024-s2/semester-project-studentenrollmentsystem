@@ -37,7 +37,7 @@ function processCourseData(rawCoursesData, courseCodes) {
   // Write to CSV file.
   const csvHeader = 'Code,Name,Credits,Prerequisites,Description\n';
   const csvData = courses.map(course => course.join(',')).join('\n');
-  fs.writeFileSync('course_data.csv', csvHeader + csvData);
+  fs.writeFileSync('../course_data.csv', csvHeader + csvData);
 }
 
 // Read course codes from `course_codes.txt` file.

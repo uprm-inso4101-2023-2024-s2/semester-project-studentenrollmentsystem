@@ -13,7 +13,7 @@ import ProfessorReview from './pages/ProfessorReview';
 import FreeElectivesPage from './pages/FreeElectives';
 import FreeElectives from './pages/FreeElectives';
 import Footer from './components/footer';
-import DummyDataMaker from './DummyDataMaker/DummyDataMaker';
+import DummyDataMaker from './data/dummy_data/DummyDataMaker/DummyDataMaker';
 import AcademicProgress from './pages/AcademicProgress';
 import ForgotPassword from './pages/ForgotPassword';
 
