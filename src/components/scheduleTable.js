@@ -41,6 +41,184 @@ export default function Scheduletable({DATA,DATAOH,DISPLAYOH})
         fetchData();
     }, []);
 
+    const classHours = useMemo(()=>{
+            var dictCH = new Object();
+            for(var i = 0; i<values.length; i++)
+            {
+                var course = ""; //For displaying
+                var runtime = ""; //For getting information
+                var professor = "";
+                var commacount = 0;
+                for(var j = 0; j<values[i].length; j++)
+                {
+                    if(values[i][j]==",")
+                    {
+                        commacount++;
+                    }
+                    else if(commacount==0 || commacount==3 || commacount==4)
+                    {
+                        if(commacount==0)
+                        {
+                            //Name of course
+                            course = course + values[i][j];
+                        }
+                        else if(commacount==3)
+                        {
+                            //Runtime
+                            runtime = runtime + values[i][j];
+                        }
+                        else if(commacount==4)
+                        {
+                            //Professor
+                            professor = professor + values[i][j];
+                        }
+                    }
+                }
+
+                
+                
+                //If a professor has different office hour meetings and days, they should be divided in the csv file with "|"
+                var lookAtDays = false;
+                var cooldown = false;
+                var hours = "";
+                for(var x = 0; x<runtime.length; x++)
+                {
+                    if(lookAtDays && runtime[x]==" ")
+                    {
+                        //Nothing
+                    }
+                    else if(lookAtDays && runtime[x]=="|")
+                    {
+                        lookAtDays=false;
+                        cooldown = true;
+                        hours = "";
+                    }
+                    else if(!lookAtDays && runtime[x]==" " && cooldown)
+                    {
+                        cooldown = false;
+                    }
+                    else if(!lookAtDays && runtime[x]==" " && !cooldown)
+                    {
+                        lookAtDays = true;
+                    }
+                    else if(!lookAtDays && runtime[x]!=" ")
+                    {
+                        hours = hours + runtime[x];
+                    }
+                    else if(lookAtDays && runtime[x]!=" ")
+                    {
+                        var day = runtime[x];
+                        if(dictCH[day]==undefined)
+                        {
+                            dictCH[day] = hours;
+                        }
+                        else
+                        {
+                            for(var max = 1; max<50; max++)
+                            {
+                                var dayplus = day+max.toString();
+                                if(dictCH[dayplus]==undefined)
+                                {
+                                    dictCH[dayplus] = hours;
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        return dictCH;
+    })
+
+    const classHoursP = useMemo(()=>{
+            var dictCHP = new Object();
+            for(var i = 0; i<values.length; i++)
+            {
+                var course = ""; //For displaying
+                var runtime = ""; //For getting information
+                var professor = "";
+                var commacount = 0;
+                for(var j = 0; j<values[i].length; j++)
+                {
+                    if(values[i][j]==",")
+                    {
+                        commacount++;
+                    }
+                    else if(commacount==0 || commacount==3 || commacount==4)
+                    {
+                        if(commacount==0)
+                        {
+                            //Name of course
+                            course = course + values[i][j];
+                        }
+                        else if(commacount==3)
+                        {
+                            //Runtime
+                            runtime = runtime + values[i][j];
+                        }
+                        else if(commacount==4)
+                        {
+                            //Professor
+                            professor = professor + values[i][j];
+                        }
+                    }
+                }
+
+                
+                
+                //If a professor has different office hour meetings and days, they should be divided in the csv file with "|"
+                var lookAtDays = false;
+                var cooldown = false;
+                var hours = "";
+                for(var x = 0; x<runtime.length; x++)
+                {
+                    if(lookAtDays && runtime[x]==" ")
+                    {
+                        //Nothing
+                    }
+                    else if(lookAtDays && runtime[x]=="|")
+                    {
+                        lookAtDays=false;
+                        cooldown = true;
+                        hours = "";
+                    }
+                    else if(!lookAtDays && runtime[x]==" " && cooldown)
+                    {
+                        cooldown = false;
+                    }
+                    else if(!lookAtDays && runtime[x]==" " && !cooldown)
+                    {
+                        lookAtDays = true;
+                    }
+                    else if(!lookAtDays && runtime[x]!=" ")
+                    {
+                        hours = hours + runtime[x];
+                    }
+                    else if(lookAtDays && runtime[x]!=" ")
+                    {
+                        var day = runtime[x];
+                        if(dictCHP[day]==undefined)
+                        {
+                            dictCHP[day] = course;
+                        }
+                        else
+                        {
+                            for(var max = 1; max<50; max++)
+                            {
+                                var dayplus = day+max.toString();
+                                if(dictCHP[dayplus]==undefined)
+                                {
+                                    dictCHP[dayplus] = course;
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        return dictCHP;
+    })
+
     const dictHours = useMemo(()=>{
             var dictOH = new Object();
             var dictOHP = new Object();
@@ -249,75 +427,41 @@ export default function Scheduletable({DATA,DATAOH,DISPLAYOH})
         }
     }
 
-    //Generates student's classes in schedule calendar
+    //Generates student's classes in table schedule calendar
     function classGen(TIME,DAY){
-        for(var i = 0; i<values.length; i++)
+
+        if(classHours[DAY]!=0 && classHours[DAY]!=undefined && timeX[TIME]==(classHours[DAY]).toString().slice(0,(classHours[DAY]).toString().indexOf("-")))
         {
-            var name = ""; //For displaying
-            var runtime = ""; //For getting information
-            var place = "";
-            var commacount = 0;
-            var spacecount = 0;
-            var addedDash = false;
-            for(var j = 0; j<values[i].length; j++)
+            var officeHours = classHours[DAY];
+            var professor = classHoursP[DAY];
+            var startTime = (officeHours).toString().slice(0,(officeHours).toString().indexOf("-"));
+            var endTime = (officeHours).toString().slice((officeHours).toString().indexOf("-")+1,(officeHours).toString().length)
+            classHours[DAY]=0;
+            classHoursP[DAY]=0;
+            return(<>{Rodcreator([professor, officeHours,createHeighter(startTime,endTime)*(height/940)])}</>);
+        }
+        else
+        {
+            for(var x = 1; x<50; x++)
             {
-                if(values[i][j]==",")
+                var plus = DAY.toString()+x.toString();
+                if(classHours[plus]!=0 && classHours[plus]!=undefined && timeX[TIME]==(classHours[plus]).toString().slice(0,(classHours[plus]).toString().indexOf("-")))
                 {
-                    commacount++;
+                    //document.write(plus);
+                    var officeHours = classHours[plus];
+                    var professor = classHoursP[plus];
+                    var startTime = (officeHours).toString().slice(0,(officeHours).toString().indexOf("-"));
+                    var endTime = (officeHours).toString().slice((officeHours).toString().indexOf("-")+1,(officeHours).toString().length)
+                    classHours[plus]=0;
+                    classHours[plus]=0;
+                    return(<>{Rodcreator([professor, officeHours,createHeighter(startTime,endTime)*(height/940)])}</>);
                 }
-                else if(commacount==0 || commacount==1 || commacount==3)
-                {
-                    if(commacount==0)
-                    {
-                        //Name of course
-                        name = name + values[i][j];
-                    }
-                    else if(commacount==1)
-                    {
-                        //Section of course
-                        if(!addedDash)
-                        {
-                            name = name + "-";
-                            addedDash = true;
-                        }
-                        name = name + values[i][j];
-                    }
-                    else if(commacount==3)
-                    {
-                        //Runtime of course
-                        runtime = runtime + values[i][j];
-                        if(values[i][j]==" ")
-                        {
-                            spacecount++;
-                        }
-                        if(spacecount==2)
-                        {
-                            place = place + values[i][j];
-                        }
-                    }
-                }
-            }
-
-            if(runtime.includes("|"))
-            {
-                //If a class has different schedules on different days, it is assumed it will be split so on the csv file with a "|"
-            }
-
-            var startTime = timeX.findIndex(x=>x==runtime.slice(0,runtime.indexOf("-")));
-            var startTime2 = runtime.slice(0,runtime.indexOf("-"));
-            var endTime = runtime.slice(runtime.indexOf("-")+1,runtime.indexOf(" "));
-            
-
-            if(TIME==startTime && runtime.includes(DAY))
-            {
-                return(<>{Rodcreator([name,place,createHeighter(startTime2,endTime)*(height/940)])}</>)
             }
         }
         return(<></>)
     }
 
     
-    //Generates dictionaries for creation of office hours
     function OHGen(TIME,DAY)
     {
         if(!DISPLAYOH)

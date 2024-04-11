@@ -4,7 +4,7 @@ import styles from "../styles/components/scheduleTableRod.module.scss";
 function Rod([CLASS,TIME,NUMBER])
 {
     return(
-        <div className={styles.Rod} style={{height : NUMBER, fontSize: window.innerWidth/200, width: window.innerWidth/30}}>
+        <div className={styles.Rod} style={{height : NUMBER, fontSize: window.innerWidth/250, width: window.innerWidth/30}}>
             {CLASS}<br></br>
             {TIME}
         </div>
