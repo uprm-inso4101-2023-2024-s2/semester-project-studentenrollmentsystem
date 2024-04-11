@@ -10,6 +10,7 @@ export default function Scheduletable({DATA,DATAOH,DISPLAYOH})
     //Will potentially be changed in the future depending on data inputs
     const [values,setValues] = useState([])
     const [valuesOH,setValuesOH] = useState([])
+    const dictCHC = new Object();
 
     useEffect(()=> {
         const fetchData = async()=> {
@@ -77,21 +78,23 @@ export default function Scheduletable({DATA,DATAOH,DISPLAYOH})
 
                 
                 
-                //If a professor has different office hour meetings and days, they should be divided in the csv file with "|"
+                //If a class has different office hour meetings and days, they should be divided in the csv file with "|"
                 var lookAtDays = false;
                 var cooldown = false;
                 var hours = "";
+                var place = runtime.slice(runtime.lastIndexOf(" "),runtime.length);
                 for(var x = 0; x<runtime.length; x++)
                 {
                     if(lookAtDays && runtime[x]==" ")
                     {
-                        //Nothing
+                       //
                     }
                     else if(lookAtDays && runtime[x]=="|")
                     {
                         lookAtDays=false;
                         cooldown = true;
                         hours = "";
+
                     }
                     else if(!lookAtDays && runtime[x]==" " && cooldown)
                     {
@@ -111,6 +114,7 @@ export default function Scheduletable({DATA,DATAOH,DISPLAYOH})
                         if(dictCH[day]==undefined)
                         {
                             dictCH[day] = hours;
+                            dictCHC[day] = place;
                         }
                         else
                         {
@@ -120,6 +124,7 @@ export default function Scheduletable({DATA,DATAOH,DISPLAYOH})
                                 if(dictCH[dayplus]==undefined)
                                 {
                                     dictCH[dayplus] = hours;
+                                    dictCHC[dayplus] = place;
                                     break;
                                 }
                             }
@@ -200,6 +205,7 @@ export default function Scheduletable({DATA,DATAOH,DISPLAYOH})
                         if(dictCHP[day]==undefined)
                         {
                             dictCHP[day] = course;
+
                         }
                         else
                         {
@@ -432,13 +438,15 @@ export default function Scheduletable({DATA,DATAOH,DISPLAYOH})
 
         if(classHours[DAY]!=0 && classHours[DAY]!=undefined && timeX[TIME]==(classHours[DAY]).toString().slice(0,(classHours[DAY]).toString().indexOf("-")))
         {
-            var officeHours = classHours[DAY];
-            var professor = classHoursP[DAY];
-            var startTime = (officeHours).toString().slice(0,(officeHours).toString().indexOf("-"));
-            var endTime = (officeHours).toString().slice((officeHours).toString().indexOf("-")+1,(officeHours).toString().length)
+            var hours = classHours[DAY];
+            var course = classHoursP[DAY];
+            var place = dictCHC[DAY];
+            var startTime = (hours).toString().slice(0,(hours).toString().indexOf("-"));
+            var endTime = (hours).toString().slice((hours).toString().indexOf("-")+1,(hours).toString().length)
             classHours[DAY]=0;
             classHoursP[DAY]=0;
-            return(<>{Rodcreator([professor, officeHours,createHeighter(startTime,endTime)*(height/940)])}</>);
+            dictCHC[DAY]=0;
+            return(<>{Rodcreator([course, place,createHeighter(startTime,endTime)*(height/940)])}</>);
         }
         else
         {
@@ -447,14 +455,15 @@ export default function Scheduletable({DATA,DATAOH,DISPLAYOH})
                 var plus = DAY.toString()+x.toString();
                 if(classHours[plus]!=0 && classHours[plus]!=undefined && timeX[TIME]==(classHours[plus]).toString().slice(0,(classHours[plus]).toString().indexOf("-")))
                 {
-                    //document.write(plus);
-                    var officeHours = classHours[plus];
-                    var professor = classHoursP[plus];
-                    var startTime = (officeHours).toString().slice(0,(officeHours).toString().indexOf("-"));
-                    var endTime = (officeHours).toString().slice((officeHours).toString().indexOf("-")+1,(officeHours).toString().length)
+                    var hours = classHours[plus];
+                    var course = classHoursP[plus];
+                    var place = dictCHC[plus];
+                    var startTime = (hours).toString().slice(0,(hours).toString().indexOf("-"));
+                    var endTime = (hours).toString().slice((hours).toString().indexOf("-")+1,(hours).toString().length)
                     classHours[plus]=0;
-                    classHours[plus]=0;
-                    return(<>{Rodcreator([professor, officeHours,createHeighter(startTime,endTime)*(height/940)])}</>);
+                    classHoursP[plus]=0;
+                    dictCHC[plus]=0;
+                    return(<>{Rodcreator([course, place,createHeighter(startTime,endTime)*(height/940)])}</>);
                 }
             }
         }
