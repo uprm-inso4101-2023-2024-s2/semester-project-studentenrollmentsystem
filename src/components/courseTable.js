@@ -27,11 +27,11 @@ export default function Coursetable({DATA})
                 <table className={styles.Coursetable}>
                     <thead>
                         <tr>
-                        <th>Curso</th>
-                        <th>Seccion</th>
-                        <th>Creditos</th>
-                        <th>Reuniones</th>
-                        <th>Profesor</th>
+                        <th>Course</th>
+                        <th>Section</th>
+                        <th>Credits</th>
+                        <th>Meetings</th>
+                        <th>Proffessor</th>
                         <th>Grades</th>
                         </tr>
                     </thead>
@@ -43,7 +43,7 @@ export default function Coursetable({DATA})
                                 <td>{row.Credits}</td>
                                 <td>{row.Meetings}</td>
                                 <td>{row.Proffessor}</td>
-                                <td>{row.Grados}</td>
+                                <td>{row.Grades}</td>
                             </tr>
                         ))}
                     </tbody>

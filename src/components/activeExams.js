@@ -28,25 +28,25 @@ export default function Examtable()
                 <table className={styles.Examtable}>
                     <thead>
                         <tr>
-                        <th>Curso</th>
-                        <th>Examen 1</th>
-                        <th>Examen 2</th>
-                        <th>Examen 3</th>
-                        <th>Examen 4</th>
-                        <th>Examen 5</th>
-                        <th>Examen Final</th>
+                        <th>Course</th>
+                        <th>Exam 1</th>
+                        <th>Exam 2</th>
+                        <th>Exam 3</th>
+                        <th>Exam 4</th>
+                        <th>Exam 5</th>
+                        <th>Final Exam</th>
                         </tr>
                     </thead>
                     <tbody>
                         {data.map((row,index)=>(
                             <tr key ={index}>
-                                <td>{row.Curso}</td>
-                                <td>{row.Examen_1}</td>
-                                <td>{row.Examen_2}</td>
-                                <td>{row.Examen_3}</td>
-                                <td>{row.Examen_4}</td>
-                                <td>{row.Examen_5}</td>
-                                <td>{row.Examen_Final}</td>
+                                <td>{row.Course}</td>
+                                <td>{row.Exam_1}</td>
+                                <td>{row.Exam_2}</td>
+                                <td>{row.Exam_3}</td>
+                                <td>{row.Exam_4}</td>
+                                <td>{row.Exam_5}</td>
+                                <td>{row.Final_Exam}</td>
                             </tr>
                         ))}
                     </tbody>
