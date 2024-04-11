@@ -11,6 +11,7 @@ export default function Scheduletable({DATA,DATAOH,DISPLAYOH})
     const [values,setValues] = useState([])
     const [valuesOH,setValuesOH] = useState([])
     const dictCHC = new Object();
+    const dictCHS = new Object();
 
     useEffect(()=> {
         const fetchData = async()=> {
@@ -47,6 +48,7 @@ export default function Scheduletable({DATA,DATAOH,DISPLAYOH})
             for(var i = 0; i<values.length; i++)
             {
                 var course = ""; //For displaying
+                var section = ""; //For section
                 var runtime = ""; //For getting information
                 var professor = "";
                 var commacount = 0;
@@ -56,12 +58,17 @@ export default function Scheduletable({DATA,DATAOH,DISPLAYOH})
                     {
                         commacount++;
                     }
-                    else if(commacount==0 || commacount==3 || commacount==4)
+                    else if(commacount==0 || commacount==1 || commacount==3 || commacount==4)
                     {
                         if(commacount==0)
                         {
                             //Name of course
                             course = course + values[i][j];
+                        }
+                        else if(commacount==1)
+                        {
+                            //Section of course
+                            section = section + values[i][j];
                         }
                         else if(commacount==3)
                         {
@@ -115,6 +122,7 @@ export default function Scheduletable({DATA,DATAOH,DISPLAYOH})
                         {
                             dictCH[day] = hours;
                             dictCHC[day] = place;
+                            dictCHS[day] = section;
                         }
                         else
                         {
@@ -125,6 +133,7 @@ export default function Scheduletable({DATA,DATAOH,DISPLAYOH})
                                 {
                                     dictCH[dayplus] = hours;
                                     dictCHC[dayplus] = place;
+                                    dictCHS[dayplus] = section;
                                     break;
                                 }
                             }
@@ -441,12 +450,14 @@ export default function Scheduletable({DATA,DATAOH,DISPLAYOH})
             var hours = classHours[DAY];
             var course = classHoursP[DAY];
             var place = dictCHC[DAY];
+            var section = dictCHS[DAY];
             var startTime = (hours).toString().slice(0,(hours).toString().indexOf("-"));
             var endTime = (hours).toString().slice((hours).toString().indexOf("-")+1,(hours).toString().length)
             classHours[DAY]=0;
             classHoursP[DAY]=0;
             dictCHC[DAY]=0;
-            return(<>{Rodcreator([course, place,createHeighter(startTime,endTime)*(height/940)])}</>);
+            dictCHS[DAY]=0;
+            return(<>{Rodcreator([course+"-"+section,place,createHeighter(startTime,endTime)*(height/940)])}</>);
         }
         else
         {
@@ -458,12 +469,14 @@ export default function Scheduletable({DATA,DATAOH,DISPLAYOH})
                     var hours = classHours[plus];
                     var course = classHoursP[plus];
                     var place = dictCHC[plus];
+                    var section = dictCHS[plus];
                     var startTime = (hours).toString().slice(0,(hours).toString().indexOf("-"));
                     var endTime = (hours).toString().slice((hours).toString().indexOf("-")+1,(hours).toString().length)
                     classHours[plus]=0;
                     classHoursP[plus]=0;
                     dictCHC[plus]=0;
-                    return(<>{Rodcreator([course, place,createHeighter(startTime,endTime)*(height/940)])}</>);
+                    dictCHS[plus]=0;
+                    return(<>{Rodcreator([course+"-"+section,place,createHeighter(startTime,endTime)*(height/940)])}</>);
                 }
             }
         }
