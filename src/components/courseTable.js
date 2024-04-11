@@ -31,7 +31,7 @@ export default function Coursetable({DATA})
                         <th>Section</th>
                         <th>Credits</th>
                         <th>Meetings</th>
-                        <th>Proffessor</th>
+                        <th>Professor</th>
                         <th>Grades</th>
                         </tr>
                     </thead>
