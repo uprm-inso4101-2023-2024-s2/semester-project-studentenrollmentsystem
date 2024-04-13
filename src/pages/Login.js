@@ -4,30 +4,40 @@ import Portimage from "../components/image";
 import { GoogleLogin } from '@react-oauth/google';
 import { jwtDecode } from "jwt-decode";
 import { AuthContext } from "../functionality/AuthContext"; // Import the AuthContext
+import firebase from '../firebase';
 
 export default function LoginPage() {
   const { login } = useContext(AuthContext); // Access login function from context
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleLogin = () => {
-    console.log("Email:", email);
-    console.log("Password:", password);
-
-    // Perform login logic here (e.g., call login function from context)
-    login({ email }); // You can pass any user data needed for authentication
-
-    setEmail("");
-    setPassword("");
-
-    alert("Login clicked! Check the console for email and password values.");
+  const handleLogin = async () => {
+    try {
+      // Sign in with email and password using Firebase
+      await firebase.auth().signInWithEmailAndPassword(email, password);
+      // If successful, call login function from context
+      login({ email });
+      // Clear input fields
+      setEmail("");
+      setPassword("");
+    } catch (error) {
+      // Handle login error
+      console.error('Login error:', error.message);
+      // Optionally, display error to the user
+    }
   };
 
-  const handleGoogleLoginSuccess = (credentialResponse) => {
-    const decoded = jwtDecode(credentialResponse?.credential);
-    console.log(decoded);
-    // Perform login logic here (e.g., call login function from context)
-    login({ email: decoded.email }); // Assuming decoded object contains email
+  const handleGoogleLoginSuccess = async (credentialResponse) => {
+    try {
+      // Sign in with Google using Firebase
+      const { user } = await firebase.auth().signInWithPopup(new firebase.auth.GoogleAuthProvider());
+      // If successful, call login function from context
+      login({ email: user.email });
+    } catch (error) {
+      // Handle login error
+      console.error('Google login error:', error.message);
+      // Optionally, display error to the user
+    }
   };
 
   return (
