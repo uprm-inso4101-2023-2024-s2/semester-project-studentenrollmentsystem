@@ -61,7 +61,7 @@ export default function AcademicProgress() {
             <button>Completed</button>
             <button>Not Completed</button>
           </div>
-
+          {/*`make the courses view as a table not a list*/}
           {progressData.courses.map(course => (
             <div className={styles["course"]} key={course.name}>
               <h3>{course.name}</h3>
