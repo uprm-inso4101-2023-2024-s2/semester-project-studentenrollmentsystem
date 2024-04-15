@@ -42,7 +42,7 @@ export default function Coursetable({DATA})
                                 <td>{row.Section}</td>
                                 <td>{row.Credits}</td>
                                 <td>{row.Meetings}</td>
-                                <td>{row.Proffessor}</td>
+                                <td>{row.Professor}</td>
                                 <td>{row.Grades}</td>
                             </tr>
                         ))}
