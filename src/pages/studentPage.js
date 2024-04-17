@@ -799,7 +799,7 @@ export default function StudentPage() {
         </div>
         <div className={styles.curriculumside}>
           <h1 className={styles.tableTitle}>
-            {"Curriculum:"}
+            {"Curriculum: Fix me and semester list"}
           </h1>
 
           {!isTable1Visible && (
