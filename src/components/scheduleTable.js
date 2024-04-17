@@ -1,47 +1,14 @@
 import styles from "../styles/components/scheduleTable.module.scss";
 import {useState, useEffect, useRef, useMemo} from "react";
-import Papa from "papaparse";
 import Rodcreator from "./scheduleTableRod";
 import RodcreatorOH from "./scheduleTableRodOH";
 
 export default function Scheduletable({DATA,DATAOH,DISPLAYOH})
 {
-    //Only works with npm papaparse (npm install papaparse)
-    //Will potentially be changed in the future depending on data inputs
-    const [values,setValues] = useState([])
-    const [valuesOH,setValuesOH] = useState([])
+    const values = DATA;
+    const valuesOH = DATAOH;
     const dictCHC = new Object();
     const dictCHS = new Object();
-
-    useEffect(()=> {
-        const fetchData = async()=> {
-            const response = await fetch(DATA);
-            const reader = response.body.getReader();
-            const result = await reader.read();
-            const decoder = new TextDecoder("utf-8");
-            const csvData = decoder.decode(result.value);
-            const valuesArray=[];
-            const parsedData = Papa.parse(csvData, {header:true, skipEmptyLines:true, complete: function (results) {results.data.map((d)=>{valuesArray.push(Object.values(d)+",")})}}).data;
-            //setData(parsedData);
-            setValues(valuesArray);
-        };
-        fetchData();
-    }, []);
-
-    useEffect(()=> {
-        const fetchData = async()=> {
-            const response = await fetch(DATAOH);
-            const reader = response.body.getReader();
-            const result = await reader.read();
-            const decoder = new TextDecoder("utf-8");
-            const csvData = decoder.decode(result.value);
-            const valuesArray=[];
-            const parsedData = Papa.parse(csvData, {header:true, skipEmptyLines:true, complete: function (results) {results.data.map((d)=>{valuesArray.push(Object.values(d)+",")})}}).data;
-            //setOHData(parsedData);
-            setValuesOH(valuesArray);
-        };
-        fetchData();
-    }, []);
 
     const classHours = useMemo(()=>{
             var dictCH = new Object();

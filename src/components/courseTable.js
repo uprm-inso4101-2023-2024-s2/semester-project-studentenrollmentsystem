@@ -1,25 +1,14 @@
 import React from "react";
 import styles from "../styles/components/courseTable.module.scss";
 import {useState, useEffect} from "react";
-import Papa from "papaparse"
 
 export default function Coursetable({DATA})
 {
-    //Only works with npm papaparse (npm install papaparse)
-    //Will potentially be changed in the future depending on data inputs
-    const [data,setData] = useState([])
-    useEffect(()=> {
-        const fetchData = async()=> {
-            const response = await fetch(DATA);
-            const reader = response.body.getReader();
-            const result = await reader.read();
-            const decoder = new TextDecoder("utf-8");
-            const csvData = decoder.decode(result.value);
-            const parsedData = Papa.parse(csvData, {header:true, skipEmptyLines:true}).data;
-            setData(parsedData);
-        };
-        fetchData();
-    }, []);
+    var data = [];
+    for(var i = 0; DATA["course" + i.toString()]!=undefined; i++)
+    {
+        data[i] = DATA["course" + i.toString()];
+    }
 
     return(
         <>

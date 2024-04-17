@@ -1,26 +1,14 @@
 import React from "react";
 import styles from "../styles/components/activeExams.module.scss";
 import {useState, useEffect} from "react";
-import Data from "../data/dummy_data/spring2024exams.csv";
-import Papa from "papaparse"
 
-export default function Examtable()
+export default function Examtable({DATA})
 {
-    //Only works with npm papaparse (npm install papaparse)
-    //Will potentially be changed in the future depending on data inputs
-    const [data,setData] = useState([])
-    useEffect(()=> {
-        const fetchData = async()=> {
-            const response = await fetch(Data);
-            const reader = response.body.getReader();
-            const result = await reader.read();
-            const decoder = new TextDecoder("utf-8");
-            const csvData = decoder.decode(result.value);
-            const parsedData = Papa.parse(csvData, {header:true, skipEmptyLines:true}).data;
-            setData(parsedData);
-        };
-        fetchData();
-    }, []);
+    var data = [];
+    for(var i = 0; DATA["examGrades" + i.toString()]!=undefined; i++)
+    {
+        data[i] = DATA["examGrades" + i.toString()];
+    }
 
     return(
         <>
