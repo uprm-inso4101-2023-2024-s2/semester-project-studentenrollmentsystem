@@ -14,8 +14,7 @@ import GradesEvaluation from "../functionality/evaluation";
 import { fbapp } from "../firebase";
 import {getFirestore,collection,getDocs} from 'firebase/firestore'
 
-export default function StudentPage() {
-  const currentId = "student0";
+export default function StudentPage({currentId}) {
   const [activeSemester,setActiveSemester] = useState("spring2024");
   const [studentDataRaw, setStudentDataRaw] = useState(new Object());
   const [studentSemesterDataRaw, setStudentSemesterDataRaw] = useState([]);
@@ -839,7 +838,7 @@ export default function StudentPage() {
             </button>
 
             {isDropdownVisible && studentSemesterDataRaw.map((data)=>(
-              <button className={styles.buttonX} onClick={()=>{setActiveSemester(data)}}>{data}</button>
+              <button className={styles.buttonX} onClick={()=>{setActiveSemester(data); setIsDropdownVisible(false); console.log("Switch Succesful")}}>{data}</button>
             ))}
           </div>
           

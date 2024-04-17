@@ -25,7 +25,7 @@ export default function App() {
         <Route path="/home" element={<HomePage />} />
         <Route path="/calendar" element={<Calendar />} />
         <Route path="/signup" element={<SignUp />} />
-        <Route path="/studentpage" element={<StudentPage />} />
+        <Route path="/studentpage" element={<StudentPage currentId={"student0"}/>} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/filter-test" element={<FilterTest />} />
         <Route path="/offered-courses" element={<OfferedCourses />} />
