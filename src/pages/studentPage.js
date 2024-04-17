@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useReducer } from "react";
 import styles from "../styles/pages/studentPage.module.scss";
 import Coursetable from "../components/courseTable";
 import Scheduletable from "../components/scheduleTable";
@@ -18,6 +18,7 @@ export default function StudentPage() {
   const currentId = "student0";
   const [activeSemester,setActiveSemester] = useState("spring2024");
   const [studentDataRaw, setStudentDataRaw] = useState(new Object());
+  const [studentSemesterDataRaw, setStudentSemesterDataRaw] = useState([]);
   
   //Instantiate DB instance
   const db = getFirestore();
@@ -26,7 +27,15 @@ export default function StudentPage() {
   //This area is for collecting the vital information of a student in a semester
 
   //Collection Ref of Student
+  const semesterRef = collection(db,"students/"+currentId+"/semesters")
   const studentRef = collection(db,"students/"+currentId+"/semesters/"+activeSemester+"/semesterData")
+
+  var studentSemesterDataRaw2 = [];
+  getDocs(semesterRef)
+    .then((snapshot)=>{
+      snapshot.docs.forEach((doc)=>{studentSemesterDataRaw2.push(doc.id)})
+      setStudentSemesterDataRaw(studentSemesterDataRaw2);
+    });
 
   //Collect data of student
   var studentDataRaw2 = new Object();
@@ -799,7 +808,7 @@ export default function StudentPage() {
         </div>
         <div className={styles.curriculumside}>
           <h1 className={styles.tableTitle}>
-            {"Curriculum: Fix me and semester list"}
+            Curriculum: {activeSemester}
           </h1>
 
           {!isTable1Visible && (
@@ -827,7 +836,11 @@ export default function StudentPage() {
             </button>
             <button className={styles.buttonX} onClick={toggleIsTable1}>
               Switch Views
-            </button> 
+            </button>
+
+            {isDropdownVisible && studentSemesterDataRaw.map((data)=>(
+              <button className={styles.buttonX} onClick={()=>{setActiveSemester(data)}}>{data}</button>
+            ))}
           </div>
           
           
