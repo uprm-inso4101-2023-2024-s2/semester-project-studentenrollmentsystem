@@ -14,10 +14,20 @@ import GradesEvaluation from "../functionality/evaluation";
 import { fbapp } from "../firebase";
 import {getFirestore,collection,getDocs} from 'firebase/firestore'
 
+//The page works on the assumption that it already knows what student to look at to portray their data.
 export default function StudentPage({currentId}) {
   const [count, setCount] = useState(0);
-  const [activeSemester,setActiveSemester] = useState("spring2024");
+
+  //Used to indicate what semester of data to show on screen
+  const [currentSemester,setcurrentSemester] = useState("spring2024");
+
+  //Used to know if we are currently looking at the active semester
+  const [activeSemester, setActiveSemester] = useState(true);
+
+  //Raw Data of a student's courses, exam grades and professor office hours in a given semester.
   const [studentDataRaw, setStudentDataRaw] = useState(new Object());
+
+  //Used to find exactly how many semesters of data a student has
   const [studentSemesterDataRaw, setStudentSemesterDataRaw] = useState([]);
   
   //Instantiate DB instance
@@ -29,7 +39,7 @@ export default function StudentPage({currentId}) {
   //Collection Ref of Student
   useEffect(()=>{
     const semesterRef = collection(db,"students/"+currentId+"/semesters")
-    const studentRef = collection(db,"students/"+currentId+"/semesters/"+activeSemester+"/semesterData")
+    const studentRef = collection(db,"students/"+currentId+"/semesters/"+currentSemester+"/semesterData")
 
     var studentSemesterDataRaw2 = [];
     getDocs(semesterRef)
@@ -48,14 +58,14 @@ export default function StudentPage({currentId}) {
   },[count]);
 
   //Data to be fed to curriculum and schedule components
-  var studentData = [];
-  var studentTableData = [];
-  var studentOHData = [];
+  var studentData = []; //For graphic schedule
+  var studentTableData = []; //For curriculum table
+  var studentOHData = []; //For office hours
   if(studentDataRaw["courses"]!=undefined)
   {
     studentTableData = studentDataRaw["courses"];
   }
-  var studentExamData = [];
+  var studentExamData = []; //For exam grades table
   if(studentDataRaw["examGrades"]!=undefined)
   {
     studentExamData = studentDataRaw["examGrades"];
@@ -66,7 +76,7 @@ export default function StudentPage({currentId}) {
   {
       for(var i = 0; studentDataRaw["courses"]["course" + i.toString()]!=undefined; i++)
     {
-      //studentDataRaw["courses"]["course0"/"course1"/"courseX"]["Course"->"Section"->"Credits"->"Meetings"->"Professor"->"Grades"]
+      //studentDataRaw["courses"]["course0"/"course1"/"course..."]["Course"->"Section"->"Credits"->"Meetings"->"Professor"->"Grades"]
       var toAdd = "";
       toAdd = toAdd + studentDataRaw["courses"]["course" + i.toString()]["Course"] + ",";
       toAdd = toAdd + studentDataRaw["courses"]["course" + i.toString()]["Section"] + ",";
@@ -810,7 +820,7 @@ export default function StudentPage({currentId}) {
         </div>
         <div className={styles.curriculumside}>
           <h1 className={styles.tableTitle}>
-            Curriculum: {activeSemester}
+            Curriculum: {currentSemester}
           </h1>
 
           {!isTable1Visible && (
@@ -841,7 +851,7 @@ export default function StudentPage({currentId}) {
             </button>
 
             {isDropdownVisible && studentSemesterDataRaw.map((data)=>(
-              <button className={styles.buttonX} onClick={()=>{setActiveSemester(data); setCount(count+1);}}>{data}</button>
+              <button className={styles.buttonX} onClick={()=>{setcurrentSemester(data); setCount(count+1); setIsDropdownVisible(false); if(data=="spring2024"){setActiveSemester(true)}else{setActiveSemester(false)}}}>{data}</button>
             ))}
           </div>
           
