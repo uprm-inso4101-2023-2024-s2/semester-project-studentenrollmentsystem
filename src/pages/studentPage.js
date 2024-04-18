@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useReducer } from "react";
+import React, { useState, useEffect, useReducer, useMemo } from "react";
 import styles from "../styles/pages/studentPage.module.scss";
 import Coursetable from "../components/courseTable";
 import Scheduletable from "../components/scheduleTable";
@@ -15,6 +15,7 @@ import { fbapp } from "../firebase";
 import {getFirestore,collection,getDocs} from 'firebase/firestore'
 
 export default function StudentPage({currentId}) {
+  const [count, setCount] = useState(0);
   const [activeSemester,setActiveSemester] = useState("spring2024");
   const [studentDataRaw, setStudentDataRaw] = useState(new Object());
   const [studentSemesterDataRaw, setStudentSemesterDataRaw] = useState([]);
@@ -26,24 +27,26 @@ export default function StudentPage({currentId}) {
   //This area is for collecting the vital information of a student in a semester
 
   //Collection Ref of Student
-  const semesterRef = collection(db,"students/"+currentId+"/semesters")
-  const studentRef = collection(db,"students/"+currentId+"/semesters/"+activeSemester+"/semesterData")
+  useEffect(()=>{
+    const semesterRef = collection(db,"students/"+currentId+"/semesters")
+    const studentRef = collection(db,"students/"+currentId+"/semesters/"+activeSemester+"/semesterData")
 
-  var studentSemesterDataRaw2 = [];
-  getDocs(semesterRef)
+    var studentSemesterDataRaw2 = [];
+    getDocs(semesterRef)
     .then((snapshot)=>{
       snapshot.docs.forEach((doc)=>{studentSemesterDataRaw2.push(doc.id)})
       setStudentSemesterDataRaw(studentSemesterDataRaw2);
     });
 
-  //Collect data of student
-  var studentDataRaw2 = new Object();
-  getDocs(studentRef)
+    var studentDataRaw2 = new Object();
+    getDocs(studentRef)
     .then((snapshot)=>{
       snapshot.docs.forEach((doc)=>{studentDataRaw2[doc.id]=doc.data()})
       setStudentDataRaw(studentDataRaw2);
     });
-  
+    console.log("Yippee");
+  },[count]);
+
   //Data to be fed to curriculum and schedule components
   var studentData = [];
   var studentTableData = [];
@@ -838,7 +841,7 @@ export default function StudentPage({currentId}) {
             </button>
 
             {isDropdownVisible && studentSemesterDataRaw.map((data)=>(
-              <button className={styles.buttonX} onClick={()=>{setActiveSemester(data); setIsDropdownVisible(false); console.log("Switch Succesful")}}>{data}</button>
+              <button className={styles.buttonX} onClick={()=>{setActiveSemester(data); setCount(count+1);}}>{data}</button>
             ))}
           </div>
           
