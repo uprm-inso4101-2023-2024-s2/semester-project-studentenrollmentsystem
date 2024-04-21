@@ -89,7 +89,7 @@ export default function Navbar() {
           <Link to="/studentpage/academic-progress">AcademicProgress</Link>
         </li>
         <li onClick={closeNavItem}>
-          <Link to="/feedback">Feedback</Link>
+          <Link to="/Feedback">Feedback</Link>
         </li>
       </ul>
       <div className={styles.profile}>

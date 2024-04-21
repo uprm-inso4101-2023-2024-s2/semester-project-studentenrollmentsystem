@@ -36,6 +36,7 @@ export default function App() {
           <Route path="/forgotPass" element={<ForgotPassword/>}/>
           <Route path="/free-electives" element={<FreeElectives />} />
           <Route path="/studentpage/academic-progress" element={<AcademicProgress />} />
+          <Route path="/Feedback" element={<FeedBackPage />} />
 
           {/* Add more routes as necessary */}
         </Routes>

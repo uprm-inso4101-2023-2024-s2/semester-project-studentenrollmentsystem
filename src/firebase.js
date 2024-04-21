@@ -1,5 +1,6 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
+import { getFirestore } from "firebase/firestore";
 
 
 // TODO: Add SDKs for Firebase products that you want to use
@@ -18,5 +19,7 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const fbapp = initializeApp(firebaseConfig);
+const db = getFirestore(fbapp);
 
 export default fbapp; // Export the initialized app
+export { db }; // Now you're also exporting db
