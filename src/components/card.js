@@ -6,7 +6,7 @@ import Data from "../data/dummy_data/dummycoursedetails.csv";
 import Papa from "papaparse"
 import ReviewsModal from './ReviewsModal';
 
-export default function Card({courseName, credits, instructor, imageUrl, description, buttontext = 'Click Me', reviewButtonText = 'Reviews'}){ 
+export default function Card({courseName, credits, instructor, imageUrl, description, buttontext = 'Click Me', reviewButtonText = 'Reviews', addToSchedText = 'Add To Schedule'}){ 
   const [modal, setModal] = useState(false);
   const [showReviewsModal, setShowReviewsModal] = useState(false);
   
@@ -87,6 +87,7 @@ export default function Card({courseName, credits, instructor, imageUrl, descrip
           <button onClick={toggleModal} className={styles.button}>{buttontext}</button>
           
           <button className={styles.button} onClick={() => setShowReviewsModal(true)}>{reviewButtonText}</button>
+          <button className={styles.button}>{addToSchedText}</button>
           {showReviewsModal && <ReviewsModal onClose={() => setShowReviewsModal(false)} reviews={reviews} />}
         </div>
       </div>

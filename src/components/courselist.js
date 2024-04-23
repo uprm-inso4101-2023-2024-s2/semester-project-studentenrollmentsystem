@@ -16,6 +16,7 @@ const CourseList = ({ courses }) => {
                credits={course.credits}
                buttontext='Section Details'
                reviewButtonText = 'Reviews'
+               addToSchedText='Add To Schedule'
                 />
             ))}
         </Grid>

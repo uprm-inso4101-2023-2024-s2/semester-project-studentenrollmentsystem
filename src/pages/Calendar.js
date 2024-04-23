@@ -5,6 +5,14 @@ import DailySchedule from '../components/DailySchedule';
 import MonthlySchedule from '../components/MonthlySchedule';
 import WeeklySchedule from '../components/WeeklySchedule';
 import AcademicSchedule from '../components/AcademicSchedule';
+// import { fbapp } from "../firebase";
+// import {getFirestore,collection,getDocs} from 'firebase/firestore';
+// import { initializeApp } from "firebase/app";
+
+import { db } from "../firebase";
+import { collection, addDoc, getDocs } from "firebase/firestore";
+
+import { collectFromHash } from '@fullcalendar/core/internal';
 
 export default function CalendarPage() {
   const [currentView, setCurrentView] = useState('Daily');
@@ -16,6 +24,7 @@ export default function CalendarPage() {
   const [eventDescription, setEventDescription] = useState('');
   const [schedules, setSchedules] = useState([{ name: 'Schedule 1', events: [] }]);
   const [currentScheduleIndex, setCurrentScheduleIndex] = useState(0);
+  const [scheduleIds, setScheduleIds] = useState([]);
 
   useEffect(() => {
     const loadedSchedules = sessionStorage.getItem('schedules');
@@ -27,6 +36,19 @@ export default function CalendarPage() {
   useEffect(() => {
     sessionStorage.setItem('schedules', JSON.stringify(schedules));
   }, [schedules]);
+
+  useEffect(() => {
+    const loadSchedules = async () => {
+      const scheduleCollection = collection(db, 'schedule');
+      const scheduleSnapshot = await getDocs(scheduleCollection);
+      const scheduleData = scheduleSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+      setSchedules(scheduleData);
+      setScheduleIds(scheduleSnapshot.docs.map(doc => doc.id));
+    };
+
+    loadSchedules();
+  }, []);
+
 
   const createEventId = () => String(Date.now());
 
@@ -50,6 +72,8 @@ export default function CalendarPage() {
     setEventStartHour('');
     setEventEndHour('');
     setEventDescription('');
+
+    renderScheduleView();
   };
 
   const handleAddSchedule = () => {
@@ -160,3 +184,22 @@ export default function CalendarPage() {
     </div>
   );
 }
+
+
+// /*********** TEMPORARY  *************/
+
+// const firebaseConfig = {
+//   appId: "1:3501973170:web:30e6a542a61888df31f3ab"
+// };
+
+// const fbapp = initializeApp(firebaseConfig);
+/************************************/
+
+// const db = getFirestore(fbapp); // Initialize service
+
+const colRef = collection(db, 'schedules'); // Reference to collection
+
+getDocs(colRef) // Getting data from collection
+  .then((snapshot) => {
+    console.log(snapshot.docs)
+  })
