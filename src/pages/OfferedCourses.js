@@ -11,11 +11,9 @@ function OfferedCourses() {
   const offeredCourses = [
     {
       id: 1,
-      image:
-        "https://upload.wikimedia.org/wikipedia/commons/e/e4/Color-blue.JPG",
+      image: "https://upload.wikimedia.org/wikipedia/commons/e/e4/Color-blue.JPG",
       title: "Advanced Programming",
-      description:
-        "Advanced programming techniques applied to the solution of engineering problems.",
+      description: "Advanced programming techniques applied to the solution of engineering problems.",
       instructor: "Bienvenido Velez",
       credits: "4 credits",
     },
@@ -31,33 +29,33 @@ function OfferedCourses() {
       title: "Machine Learning",
       description: "Learn the fundamentals of machine learning",
     },
-
     {
-      id: 3,
+      id: 4,
       image: "/logo512.png",
       title: "Algorithm Analysis",
       description: "Learn the fundamentals of machine learning",
     },
     {
-      id: 3,
+      id: 5,
       image: "/logo512.png",
-      title: "Machine Learning",
-      description: "Computer Data Bases",
-    },
-    {
-      id: 3,
-      image: "/logo512.png",
-      title: "Machine Learning",
-      description: "Operating Systems",
-    },
-    {
-      id: 3,
-      image: "/logo512.png",
-      title: "Intro to software Engineering",
+      title: "Computer Data Bases",
       description: "Learn the fundamentals of machine learning",
+    },
+    {
+      id: 6,
+      image: "/logo512.png",
+      title: "Operating Systems",
+      description: "Learn the fundamentals of machine learning",
+    },
+    {
+      id: 7,
+      image: "/logo512.png",
+      title: "Intro to Software Engineering",
+      description: "Learn the fundamentals of software engineering",
     },
     // Add more courses as needed
   ];
+  
 
   // Update the filteredCourses based on the search query
   useEffect(() => {
