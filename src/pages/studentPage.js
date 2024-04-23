@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useReducer, useMemo } from "react";
+import { Routes, Route, Link } from 'react-router-dom';
 import styles from "../styles/pages/studentPage.module.scss";
 import Coursetable from "../components/courseTable";
 import Scheduletable from "../components/scheduleTable";
@@ -13,6 +14,7 @@ import Button from "../components/button";
 import GradesEvaluation from "../functionality/evaluation";
 import { fbapp } from "../firebase";
 import {getFirestore,collection,getDocs} from 'firebase/firestore'
+import StudentProgram from './studentProgram';
 
 //The page works on the assumption that it already knows what student to look at to portray their data.
 export default function StudentPage({currentId}) {
@@ -821,6 +823,7 @@ export default function StudentPage({currentId}) {
         <div className={styles.curriculumside}>
           <h1 className={styles.tableTitle}>
             Curriculum: {currentSemester}
+           <div></div><Link to="/studentpage/studentprogram">Program</Link>
           </h1>
 
           {!isTable1Visible && (
