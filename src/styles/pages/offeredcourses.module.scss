@@ -1,8 +1,13 @@
-.offeredCourses {
-    padding: 20px;
+.body {
+    .offeredCourses {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
 
-    .header {
-        text-align: center;
-        margin-bottom: 40px;
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
     }
 }
