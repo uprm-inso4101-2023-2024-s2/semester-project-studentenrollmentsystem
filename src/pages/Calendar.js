@@ -39,15 +39,23 @@ export default function CalendarPage() {
 
   useEffect(() => {
     const loadSchedules = async () => {
-      const scheduleCollection = collection(db, 'schedule');
-      const scheduleSnapshot = await getDocs(scheduleCollection);
-      const scheduleData = scheduleSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-      setSchedules(scheduleData);
-      setScheduleIds(scheduleSnapshot.docs.map(doc => doc.id));
+      try {
+        const scheduleCollection = collection(db, 'schedule');
+        const scheduleSnapshot = await getDocs(scheduleCollection);
+        const scheduleData = scheduleSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+        setSchedules(scheduleData);
+        setScheduleIds(scheduleSnapshot.docs.map(doc => doc.id));
+  
+        // This will log each document object to the console
+        console.log(scheduleData);
+      } catch (error) {
+        console.error("Failed to fetch schedules:", error);
+      }
     };
-
+  
     loadSchedules();
   }, []);
+  
 
 
   const createEventId = () => String(Date.now());
