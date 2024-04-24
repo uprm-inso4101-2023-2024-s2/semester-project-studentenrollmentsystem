@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useReducer, useMemo } from "react";
 import { fbapp } from "../firebase";
 import {getFirestore,collection,getDocs,doc,getDoc} from 'firebase/firestore'
+import ProgramTables from "../components/programTables";
 
 export default function StudentProgram({ID})
 {
@@ -31,6 +32,11 @@ export default function StudentProgram({ID})
         })
     },[])
 
-    //console.log(programData["y1s1"]["course0"]);
-    return(<h>Hi</h>);
+    var contains = Object.keys(programData);
+
+    return(
+        <>
+            {contains.map((sem)=>(<ProgramTables DATA={programData[sem]}/>))}
+        </>
+    );
 }
