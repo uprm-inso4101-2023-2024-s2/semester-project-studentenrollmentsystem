@@ -6,9 +6,13 @@ import { imageDb } from "../firebase";
 import { ref , uploadBytes, getDownloadURL } from "firebase/storage";
 import { v4 } from "uuid";
 
-const dummyUser = {
+const dummyUser2 = {
   uid: '9BoWZai194eJdTOW9gwzzN2ro3w2',
 };
+
+const dummyUser = {
+  uid: 'SKzTTae1mfgUhWOt6luVd6wTlF12'
+}
 
 const StudentCard = ({
   className,
