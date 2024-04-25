@@ -1,5 +1,5 @@
 import styles from "../styles/pages/AcademicProgress.module.scss";
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 export default function AcademicProgress() {
   const progressData = {
@@ -15,6 +15,24 @@ export default function AcademicProgress() {
       { name: "Software Engineering", completed: true },
     ],
   };
+
+  // State to manage filtered courses
+  const [filteredCourses, setFilteredCourses] = useState(progressData.courses);
+  const [filter, setFilter] = useState('all'); // 'all', 'completed', 'notCompleted'
+
+  
+  useEffect(() => {
+    switch (filter) {
+      case 'completed':
+        setFilteredCourses(progressData.courses.filter(course => course.completed));
+        break;
+      case 'notCompleted':
+        setFilteredCourses(progressData.courses.filter(course => !course.completed));
+        break;
+      default:
+        setFilteredCourses(progressData.courses);
+    }
+  }, [filter]); 
 
   return (
     <div className={styles.AcademicProgress}>
@@ -56,12 +74,11 @@ export default function AcademicProgress() {
           <h2>Courses</h2>
           <p>View your curriculum and track your progress in each course.</p>
           <div className={styles["filters"]}>
-            <button>Filter</button>
-            <button>Completed</button>
-            <button>Not Completed</button>
+            <button onClick={() => setFilter('all')}>All</button>
+            <button onClick={() => setFilter('completed')}>Completed</button>
+            <button onClick={() => setFilter('notCompleted')}>Not Completed</button>
           </div>
 
-          {/* Table view for courses */}
           <table className={styles.table}>
             <thead>
               <tr>
@@ -70,7 +87,7 @@ export default function AcademicProgress() {
               </tr>
             </thead>
             <tbody>
-              {progressData.courses.map(course => (
+              {filteredCourses.map(course => (
                 <tr key={course.name}>
                   <td>{course.name}</td>
                   <td>{course.completed ? "Completed" : "Not Completed"}</td>
