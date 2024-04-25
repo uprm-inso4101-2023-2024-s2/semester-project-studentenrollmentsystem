@@ -3,7 +3,6 @@
   flex-direction: column;
   width: 75%;
   margin: 0 auto;
-  //background-color: pink;
 
   * {
     box-sizing: border-box;
@@ -12,6 +11,7 @@
   .InfoBox {
     padding: 8px;
     width: 100%;
+
     .Text {
       font-family: 'Bebas Neue', sans-serif;
       font-size: 18px;
@@ -21,47 +21,35 @@
 
   .ControlBox {
     display: flex;
-    flex-direction: row;
-    // justify-content: center;
     padding: 8px;
     width: 100%;
     justify-content: space-between;
+    background-color: #f2f2f2;
+    border-radius: 5px;
 
     .leftBox {
-      background-color: pink;
       display: flex;
-      flex-direction: row;
       align-items: center;
+      justify-content: space-between;
       width: 50%;
 
-      .ProgramSelector {
+      .ProgramSelector, .CreditSelector {
         padding: 2px;
-
-        .Input {
-          width: 100%;
-        }
-        //background-color: antiquewhite;
-      }
-  
-      .CreditSelector {
-        padding: 2px;
-        //background-color: aqua;
       }
     }
 
     .rightBox {
-      background-color: antiquewhite;
+      display: flex;
+      align-items: center;
 
       .PageControl {
         padding: 8px;
         width: 100%;
-        //background-color: antiquewhite;
       }
     }
   }
 
   .TableContainer {
-    //background-color: blue;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -72,23 +60,23 @@
     .Table {
       width: 100%;
       border-collapse: collapse;
-      background-color: rgba(255, 255, 255, 0.9); /* Lighter color with transparency */
-      color: black; /* Changed text color to black for better contrast */
-    
+      background-color: rgba(255, 255, 255, 0.9);
+      color: black;
+
       th, td {
         border: 1px solid #ddd;
         padding: 8px;
         text-align: left;
       }
-    
+
       th {
         background-color: #f2f2f2;
       }
-    
+
       tr:nth-child(even) {
         background-color: #f9f9f9;
       }
-    
+
       tr:hover {
         background-color: #e5e5e5;
       }
