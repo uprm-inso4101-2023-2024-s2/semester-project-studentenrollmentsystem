@@ -1,21 +1,33 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBell, faSquare, faCheckSquare } from '@fortawesome/free-solid-svg-icons';
 import styles from "../styles/components/navbar.module.scss";
+import { db } from "../firebase";
+import { collection, addDoc, getDocs, deleteDoc, doc, onSnapshot } from "firebase/firestore";
 
 const NotificationDropdown = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [notifications, setNotifications] = useState([
-    { id: 4, message: 'Your progress report is ready!', read: false },
-    { id: 3, message: 'Enrollment process will start soon!', read: false },
-    { id: 2, message: 'Remember to select your courses for next semster.', read: false },
-    { id: 1, message: 'Welcome to the S.E.A webpage!', read: true }, // Example of a read notification
-  ]);
+  const [notifications, setNotifications] = useState([]);
 
+  // Function to fetch notifications from Firebase
+  useEffect(() => {
+    const unsubscribe = onSnapshot(collection(db, 'notifications'), (querySnapshot) => {
+      const fetchedNotifications = [];
+      querySnapshot.forEach((doc) => {
+        fetchedNotifications.push({ id: doc.id, ...doc.data() });
+      });
+      setNotifications(fetchedNotifications);
+    });
+
+    return () => unsubscribe();
+  }, []);
+
+   // Function to toggle dropdown visibility
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
   };
 
+  // Function to handle notification click (mark as read)
   const handleNotificationClick = (id) => {
     const updatedNotifications = notifications.map(notification =>
       notification.id === id ? { ...notification, read: !notification.read } : notification
@@ -23,11 +35,20 @@ const NotificationDropdown = () => {
     setNotifications(updatedNotifications);
   };
 
-  const handleDismissNotification = (id) => {
-    const updatedNotifications = notifications.filter(notification => notification.id !== id);
-    setNotifications(updatedNotifications);
+  // Function to handle dismissing notification
+  const handleDismissNotification = async (id) => {
+    try {
+      // Remove notification from Firebase
+      await deleteDoc(doc(db, "notifications", id));
+      // Update local state to reflect the removal
+      const updatedNotifications = notifications.filter(notification => notification.id !== id);
+      setNotifications(updatedNotifications);
+    } catch (error) {
+      console.error("Error dismissing notification: ", error);
+    }
   };
 
+  // Line  78 return notifs from Firebase however currently id is being used as the message which would need to be adjusted in the querySnapshot for the Effect function.
   return (
     <div className={styles.notificationDropdownContainer}>
       <div className={styles.notificationDropdown}>
@@ -54,11 +75,11 @@ const NotificationDropdown = () => {
                     <FontAwesomeIcon icon={faSquare} className={styles.blueIcon} />
                   )}
                 </span>
-                <span>{notification.message}</span>
+                <span>{notification.id} {notification.message}</span>
                 <button
                   className="dismiss-button"
                   onClick={(e) => {
-                    e.stopPropagation(); // Prevent the notification from being clicked when dismissing
+                    e.stopPropagation();
                     handleDismissNotification(notification.id);
                   }}
                 >
