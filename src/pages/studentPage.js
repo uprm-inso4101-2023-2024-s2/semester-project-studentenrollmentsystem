@@ -823,7 +823,7 @@ export default function StudentPage({currentId}) {
         <div className={styles.curriculumside}>
           <h1 className={styles.tableTitle}>
             Curriculum: {currentSemester}
-           <div></div><Link to="/studentpage/studentprogram">Program</Link>
+           <div><Link to="/studentpage/studentprogram">Program</Link></div>
           </h1>
 
           {!isTable1Visible && (

@@ -2,6 +2,7 @@ import React, { useState, useEffect, useReducer, useMemo } from "react";
 import { fbapp } from "../firebase";
 import {getFirestore,collection,getDocs,doc,getDoc} from 'firebase/firestore'
 import ProgramTables from "../components/programTables";
+import styles from "../styles/pages/studentProgram.module.scss"
 
 export default function StudentProgram({ID})
 {
@@ -33,10 +34,17 @@ export default function StudentProgram({ID})
     },[])
 
     var contains = Object.keys(programData);
+    contains.sort();
 
     return(
         <>
-            {contains.map((sem)=>(<ProgramTables DATA={programData[sem]}/>))}
+            
+            {contains.map((sem)=>(
+                <div className={styles.tableview}>
+                    <div>{"Year" + " " + sem[1] + ": Semester" + " " + sem[3]}</div>
+                    <ProgramTables DATA={programData[sem]}/>
+                </div>
+            ))}
         </>
     );
 }
