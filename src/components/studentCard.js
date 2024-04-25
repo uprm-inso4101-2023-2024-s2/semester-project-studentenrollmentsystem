@@ -1,151 +1,130 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "../styles/components/studentCard.module.scss";
+import { db } from "../firebase";
+import { collection, getDocs, where, query, doc, updateDoc} from 'firebase/firestore';
+import { imageDb } from "../firebase";
+import { ref , uploadBytes, getDownloadURL } from "firebase/storage";
+import { v4 } from "uuid";
+
+const dummyUser = {
+  uid: '9BoWZai194eJdTOW9gwzzN2ro3w2',
+};
 
 const StudentCard = ({
   className,
   initialStudentName,
   initialMajor,
   initialGpa,
-  initialMissingCredits, // Add initialMissingCredits prop
-  initialCreditsTaken, // Add initialCreditsTaken prop
-  onSave,
+  initialMissingCredits,
+  initialCreditsTaken,
 }) => {
-  const [isEditing, setIsEditing] = useState(false);
+
   const [studentName, setStudentName] = useState(initialStudentName);
   const [major, setMajor] = useState(initialMajor);
   const [gpa, setGpa] = useState(initialGpa);
-  const [missingCredits, setMissingCredits] = useState(initialMissingCredits); // Add missingCredits state
-  const [creditsTaken, setCreditsTaken] = useState(initialCreditsTaken); // Add creditsTaken state
-  const [profileImage, setProfileImage] = useState("your_initial_image_url_here");
+  const [missingCredits, setMissingCredits] = useState(initialMissingCredits);
+  const [creditsTaken, setCreditsTaken] = useState(initialCreditsTaken);
+  // eslint-disable-next-line
   const [counselorName, setCounselorName] = useState("");
+  // eslint-disable-next-line
   const [counselorPhone, setCounselorPhone] = useState("");
+  // eslint-disable-next-line
   const [counselorEmail, setCounselorEmail] = useState("");
   const [studentNumber, setStudentNumber] = useState("");
+  const [img, setImg] = useState(null); // State to store uploaded image
+  const [profilePicUrl, setProfilePicUrl] = useState(""); // State to store profile picture URL
 
-  const saveEdits = () => {
-    setIsEditing(false);
-    if (onSave) {
-      onSave({ studentNumber, studentName, major, gpa, missingCredits, creditsTaken }); // Include new properties in onSave
+  const userCollectionRef = collection(db, "students");
+
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const q = query(userCollectionRef, where("id", "==", dummyUser.uid));
+        const docSnap = await getDocs(q);
+        
+
+        docSnap.forEach((doc) => {
+          const data = doc.data();
+          setStudentName(data.name || initialStudentName);
+          setMajor(data.major || initialMajor);
+          setGpa(data.gpa || initialGpa);
+          setMissingCredits(data.missingCredits || initialMissingCredits);
+          setCreditsTaken(data.creditsTaken || initialCreditsTaken);
+          setCounselorName(data.counselorName || "");
+          setCounselorPhone(data.counselorPhone || "");
+          setCounselorEmail(data.counselorEmail || "");
+          setStudentNumber(data.studentNumber || "");
+          if (data.profilePicUrl) {
+            setProfilePicUrl(data.profilePicUrl);
+          }
+        });
+      } catch (error) {
+        console.error("Error fetching document: ", error);
+      }
+    };
+  
+    fetchData();
+    // eslint-disable-next-line
+  }, [dummyUser.uid, initialStudentName, initialMajor, initialGpa, initialMissingCredits, initialCreditsTaken]);
+
+
+  const handleClick = async () => {
+    if (!img) {
+      console.error("No image selected.");
+      return;
+    }
+
+    try {
+      const imgRef = ref(imageDb, `files/${v4()}`);
+      await uploadBytes(imgRef, img);
+
+      // Get download URL of the uploaded image
+      const imgUrl = await getDownloadURL(imgRef);
+      const q = query(userCollectionRef, where("id", "==", dummyUser.uid));
+      const docSnap = await getDocs(q);
+      const filteredData = docSnap.docs.map((doc) => ({
+        ...doc.data(),
+        id: doc.id,
+      }));
+      const id = filteredData[0].id;
+      updateProfile(id, imgUrl)
+
+      setProfilePicUrl(imgUrl);
+    } catch (error) {
+      console.error("Error uploading image: ", error);
     }
   };
 
-  const handleClick = () => {
-    // Programmatically click the hidden file input
-    document.getElementById("profile-image-upload").click();
-  };
-
-  const handleImageChange = (event) => {
-    const file = event.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setProfileImage(reader.result);
-      };
-      reader.readAsDataURL(file);
-    }
+    const updateProfile = async (id, im) => {
+      const profDoc = doc(db, "students", id);
+      await updateDoc(profDoc, { profilePicUrl: im });
   };
 
   return (
     <div className={`${styles.studentCard} ${className || ""}`.trim()}>
       <div className={styles.contentContainer}>
-        <div className={styles.studentImage}>
-          <input
-            type="file"
-            id="profile-image-upload"
-            style={{ display: "none" }}
-            accept="image/*"
-            onChange={handleImageChange}
-            className={styles.uploadButton}
-          />
-          <button className={styles.uploadButton} onClick={handleClick}>
-            Upload Image
-          </button>
+      <div className={styles.studentImage} style={{ backgroundImage: `url(${profilePicUrl})` }}>
+          
         </div>
         <div className={styles.studentInfo}>
-          {isEditing ? (
-            <>
-              <input
-                type="text"
-                value={studentName}
-                onChange={(e) => setStudentName(e.target.value)}
-                placeholder="Student Name"
-              />
-              <input
-                type="text"
-                value={studentNumber}
-                onChange={(e) => setStudentNumber(e.target.value)}
-                placeholder="Student Number (#)"
-              />
-              <input
-                type="text"
-                value={major}
-                onChange={(e) => setMajor(e.target.value)}
-                placeholder="Major"
-              />
-              <input
-                type="text"
-                value={gpa}
-                onChange={(e) => setGpa(e.target.value)}
-                placeholder="GPA"
-              />
-              <input
-                type="number" // Assuming credits are numeric
-                value={missingCredits}
-                onChange={(e) => setMissingCredits(e.target.value)}
-                placeholder="Missing Credits"
-              />
-              <input
-                type="number" // Assuming credits are numeric
-                value={creditsTaken}
-                onChange={(e) => setCreditsTaken(e.target.value)}
-                placeholder="Credits Taken"
-              />
-              <input
-                type="text" // Assuming credits are numeric
-                value={creditsTaken}
-                onChange={(e) => setCounselorName(e.target.value)}
-                placeholder="Counselor Name"
-              />
-              <input
-                type="text" // Assuming credits are numeric
-                value={creditsTaken}
-                onChange={(e) => setCounselorEmail(e.target.value)}
-                placeholder="Counselor E-mail"
-              />
-              <input
-                type="text" // Assuming credits are numeric
-                value={creditsTaken}
-                onChange={(e) => setCounselorPhone(e.target.value)}
-                placeholder="Counselor Phone"
-              />
-            </>
-          ) : (
-            <>
-              <div>{studentName || "STUDENT NAME"}</div>
-              <div>{studentNumber || "STUDENT NUMBER (#)"}</div>
-              <div>{major || "MAJOR"}</div>
-              <div>{gpa || "GPA"}</div>
-              <div>{missingCredits || "MISSING CREDITS"}</div>
-              <div>{creditsTaken || "CREDITS TAKEN"}</div>
-              <div>{counselorName || "COUNSELOR Name"}</div>
-              <div>{counselorEmail || "COUNSELOR E-MAIL"}</div>
-              <div>{counselorPhone || "COUNSELOR Phone"}</div>
-            </>
-          )}
+          <div>Name: {studentName}</div>
+          <div>Student Number: {studentNumber}</div>
+          <div>Major: {major}</div>
+          <div>GPA: {gpa}</div>
+          <div>Missing Credits: {missingCredits}</div>
+          <div>Credits Taken: {creditsTaken}</div>
+
+          <input type="file" onChange={(e) => setImg(e.target.files[0])} />
+          <button onClick={handleClick}>Upload</button>
+
+          {/* 
+          <div>Counselor Name: {counselorName}</div>
+          <div>Counselor Email: {counselorEmail}</div>
+          <div>Counselor Phone: {counselorPhone}</div> 
+          */}
         </div>
       </div>
-      {isEditing ? (
-        <button className={styles.editButton} onClick={saveEdits}>
-          Save
-        </button>
-      ) : (
-        <button
-          className={styles.editButton}
-          onClick={() => setIsEditing(true)}
-        >
-          Edit
-        </button>
-      )}
     </div>
   );
 };
