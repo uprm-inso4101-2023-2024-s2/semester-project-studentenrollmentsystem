@@ -13,6 +13,7 @@ export default function StudentProgram({ID})
     const db = getFirestore();
 
     var program = ""
+    var [name, setName] = useState("");
     const [programData, setProgramData] = useState(new Object());
     useEffect(()=>{
         const studentRef = doc(db,"students",ID);
@@ -22,6 +23,7 @@ export default function StudentProgram({ID})
         .then((snapshot)=>{
             var dumProg = snapshot.data()["program"];
             program = dumProg;
+            setName(dumProg);
         });
     },[])
 
@@ -35,10 +37,9 @@ export default function StudentProgram({ID})
 
     var contains = Object.keys(programData);
     contains.sort();
-
     return(
         <>
-            
+            <h className={styles.tableview}>{"Program: " + name}</h>
             {contains.map((sem)=>(
                 <div className={styles.tableview}>
                     <div>{"Year" + " " + sem[1] + ": Semester" + " " + sem[3]}</div>
