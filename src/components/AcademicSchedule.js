@@ -4,18 +4,12 @@ import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
 
-// Accept events and onAddEvent as props
-export default function AcademicSchedule({ onAddEvent }) {
-  // Hardcoded events
-  const hardcodedEvents = [
-    
-  ];
+export default function AcademicSchedule({ events, onAddEvent }) {
 
   const handleDateSelect = (selectInfo) => {
     let title = prompt("Please enter a new title for your event");
 
     if (title) {
-      // Construct the new event object
       const newEvent = {
         title,
         start: selectInfo.startStr,
@@ -23,7 +17,6 @@ export default function AcademicSchedule({ onAddEvent }) {
         allDay: selectInfo.allDay,
       };
 
-      // Use the passed onAddEvent function to add this new event
       onAddEvent(newEvent);
     }
   };
@@ -34,7 +27,7 @@ export default function AcademicSchedule({ onAddEvent }) {
       headerToolbar={{
         left: "prev,next today",
         center: "title",
-        right: "",
+        right: "dayGridMonth,timeGridWeek,timeGridDay"
       }}
       eventColor="#05B774"
       initialView="dayGridMonth"
@@ -42,7 +35,7 @@ export default function AcademicSchedule({ onAddEvent }) {
       selectable={true}
       selectMirror={true}
       dayMaxEvents={true}
-      events={hardcodedEvents} // Use hardcoded events for display
+      events={events} // Use passed events prop here
       select={handleDateSelect}
     />
   );
