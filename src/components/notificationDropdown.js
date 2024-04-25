@@ -6,9 +6,9 @@ import styles from "../styles/components/navbar.module.scss";
 const NotificationDropdown = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [notifications, setNotifications] = useState([
-    { id: 1, message: ' Notification 1 ', read: false },
-    { id: 2, message: ' Notification 2 ', read: false },
-    { id: 3, message: ' Notification 3 ', read: true }, // Example of a read notification
+    { id: 3, message: 'Enrollment process will start soon!', read: false },
+    { id: 2, message: 'Remember to select your courses for next semster.', read: false },
+    { id: 1, message: 'Welcome to the S.E.A webpage!', read: true }, // Example of a read notification
   ]);
 
   const toggleDropdown = () => {

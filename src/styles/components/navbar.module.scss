@@ -123,19 +123,17 @@
 .notificationList {
     background-color: rgba(0, 0, 0, 0.8); /* Darker background color */
     padding: 0px; /* Add padding to the notification list */
-    border-radius: 5px; /* Add border radius for rounded corners */
+    border-radius: 15px; /* Add border radius for rounded corners */
+    max-width: 450px;
 }
 
 .notificationItem {
     display: flex;
     align-items: center;
     padding: 10px; /* Add padding to all sides */
+    max-width: auto;
+    text-align: left;
 }
-
-// .dismiss-button {
-//     margin-left: auto; /* Push the dismiss button to the right */
-//     padding-right: 25px; /* Add padding to the right */
-// }
 
 // Adjust the media query to change the display property of the hamburger menu
 @media (max-width: 768px) {
