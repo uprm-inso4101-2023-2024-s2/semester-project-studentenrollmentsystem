@@ -16,6 +16,7 @@ import Footer from './components/footer';
 import DummyDataMaker from './data/dummy_data/DummyDataMaker/DummyDataMaker';
 import AcademicProgress from './pages/AcademicProgress';
 import ForgotPassword from './pages/ForgotPassword';
+import CourseAdvisor from './pages/CourseAdvisor';
 
 export default function App() {
   return (
@@ -33,6 +34,7 @@ export default function App() {
         <Route path= "/forgotPass" element={<ForgotPassword/>}/>
         <Route path="/free-electives" element={<FreeElectives />} />
         <Route path="/studentpage/academic-progress" element={<AcademicProgress />} />
+        <Route path="/course-advisor" element={<CourseAdvisor />} />
 
         {/* Add more routes as necessary */}
       </Routes>
