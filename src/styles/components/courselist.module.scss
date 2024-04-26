@@ -1,11 +1,11 @@
-.courseItem {
-    background-color: #f9f9f9;
-    padding: 10px;
-    border-radius: 4px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-
-    h3 {
-        margin: 0;
-        font-size: 1rem;
-    }
-}
+.body {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around; 
+    gap: 20px; 
+  }
+  
+  .cards {
+    flex: 1 1 300px; 
+  }
+  

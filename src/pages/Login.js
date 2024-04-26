@@ -1,39 +1,45 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import styles from "../styles/pages/loginPage.module.scss";
 import Portimage from "../components/image";
-/*import { AuthenticatedTemplate, UnauthenticatedTemplate, useMsal, MsalProvider } from "@azure/msal-react";
-import { loginRequest } from "../authConfig";
-*/
 import { GoogleLogin } from '@react-oauth/google';
 import { jwtDecode } from "jwt-decode";
+import { AuthContext } from "../functionality/AuthContext"; // Import the AuthContext
+import firebase from '../firebase';
 
 export default function LoginPage() {
+  const { login } = useContext(AuthContext); // Access login function from context
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleLogin = () => {
-    console.log("Email:", email);
-    console.log("Password:", password);
-
-    setEmail("");
-    setPassword("");
-
-    alert("Login clicked! Check the console for email and password values.");
+  const handleLogin = async () => {
+    try {
+      // Sign in with email and password using Firebase
+      await firebase.auth().signInWithEmailAndPassword(email, password);
+      // If successful, call login function from context
+      login({ email });
+      // Clear input fields
+      setEmail("");
+      setPassword("");
+    } catch (error) {
+      // Handle login error
+      console.error('Login error:', error.message);
+      // Optionally, display error to the user
+    }
   };
 
-  /* Microsoft Auth remainder, si no se piensa usar luego se puede borrar*/
-  /*const { instance } = useMsal();
-  const activeAccount = instance.getActiveAccount();
-
-  const handleMSRedirect = () => {
-      instance
-          .loginRedirect({
-              ...loginRequest,
-              prompt: 'create',
-          })
-          .catch((error) => console.log(error));
+  const handleGoogleLoginSuccess = async (credentialResponse) => {
+    try {
+      // Sign in with Google using Firebase
+      const { user } = await firebase.auth().signInWithPopup(new firebase.auth.GoogleAuthProvider());
+      // If successful, call login function from context
+      login({ email: user.email });
+    } catch (error) {
+      // Handle login error
+      console.error('Google login error:', error.message);
+      // Optionally, display error to the user
+    }
   };
-*/
+
   return (
     <div className={styles.signupContainer}>
       <div className={styles.SignupBox}>
@@ -53,10 +59,7 @@ export default function LoginPage() {
         <p>Forgot Password? <a href="/forgotPass">Recover it Here</a></p>
         <span>
          <GoogleLogin
-           onSuccess={(credentialResponse) => {
-            const decoded = jwtDecode(credentialResponse?.credential);
-            console.log(decoded);
-           }}
+           onSuccess={handleGoogleLoginSuccess}
            onError={() => {
             console.log('Login Failed');
            }}
@@ -66,12 +69,3 @@ export default function LoginPage() {
     </div>
   );
 }
-/* Microsoft Auth remainder, si no se piensa usar luego se puede borrar*/
-/*const App = ({ instance }) => {
-  return (
-      <MsalProvider instance={instance}>
-        
-      </MsalProvider>
-  );
-};
-*/

@@ -5,7 +5,7 @@ import styles from '../styles/components/courselist.module.scss'; // Path to you
 
 const CourseList = ({ courses }) => {
     return (
-        <Grid>
+        <div className={styles.body}>
             {courses.map((course) => (
                <Card
                key={course.id}
@@ -16,9 +16,10 @@ const CourseList = ({ courses }) => {
                credits={course.credits}
                buttontext='Section Details'
                reviewButtonText = 'Reviews'
+               className={styles.cards}
                 />
             ))}
-        </Grid>
+        </div>
     );
 };
 
