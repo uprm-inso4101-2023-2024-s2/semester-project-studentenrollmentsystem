@@ -6,6 +6,9 @@ import Data from "../data/dummy_data/dummycoursedetails.csv";
 import Papa from "papaparse"
 import ReviewsModal from './ReviewsModal';
 
+import { db } from "../firebase";
+import { doc, getDoc, updateDoc } from "firebase/firestore";
+
 export default function Card({courseName, credits, instructor, imageUrl, description, buttontext = 'Click Me', reviewButtonText = 'Reviews', addToSchedText = 'Add To Schedule'}){ 
   const [modal, setModal] = useState(false);
   const [showReviewsModal, setShowReviewsModal] = useState(false);
@@ -16,6 +19,53 @@ export default function Card({courseName, credits, instructor, imageUrl, descrip
 
   const toggleModal = () => {
     setModal(!modal);
+  };
+
+  const addToScheduleHandler = () => {
+    // Call the function passed as a prop when the button is clicked
+    // if (typeof addToSchedHandler === 'function') {
+    //   addToSchedHandler();
+    // }
+
+     /* Getting course details for schedule */
+
+  // useEffect(() => {
+    const fetchCourseData = async () => {
+      try {
+        const courseDocRef = doc(db, 'courses', courseName); // Assuming courseName is the ID
+        const courseSnapshot = await getDoc(courseDocRef);
+        if (courseSnapshot.exists()) {
+          const courseData = { id: courseSnapshot.id, ...courseSnapshot.data() };
+          const { id, start_time, days, end_time } = courseData;
+          const extractedData = { id, start_time, days, end_time };
+
+          console.log("Course data:", courseData);
+          console.log("Extracted data:", extractedData);
+          // setCourseDetails(courseSnapshot.data());
+
+          // Update the schedule document in Firestore with the new course ID
+        const scheduleDocRef = doc(db, 'schedule', '1');
+        const scheduleSnapshot = await getDoc(scheduleDocRef);
+        if (scheduleSnapshot.exists()) {
+          const scheduleData = scheduleSnapshot.data();
+          const updatedCourses = [...scheduleData.courses, extractedData.id];
+          await updateDoc(scheduleDocRef, { courses: updatedCourses });
+          console.log("Course ID added to schedule:", extractedData.id);
+        } else {
+          console.log("Schedule document does not exist!");
+        }
+
+        } else {
+          console.log("No such course document!");
+        }
+      } catch (error) {
+        console.error("Failed to fetch course:", error);
+      }
+    };
+
+    fetchCourseData();
+  // }, [courseName]);
+
   };
 
   if(modal) {
@@ -87,7 +137,7 @@ export default function Card({courseName, credits, instructor, imageUrl, descrip
           <button onClick={toggleModal} className={styles.button}>{buttontext}</button>
           
           <button className={styles.button} onClick={() => setShowReviewsModal(true)}>{reviewButtonText}</button>
-          <button className={styles.button}>{addToSchedText}</button>
+          <button className={styles.button} onClick={addToScheduleHandler}>{addToSchedText}</button>
           {showReviewsModal && <ReviewsModal onClose={() => setShowReviewsModal(false)} reviews={reviews} />}
         </div>
       </div>

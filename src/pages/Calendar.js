@@ -10,12 +10,12 @@ import AcademicSchedule from '../components/AcademicSchedule';
 // import { initializeApp } from "firebase/app";
 
 import { db } from "../firebase";
-import { collection, addDoc, getDocs } from "firebase/firestore";
+import { collection, addDoc, getDocs, doc, getDoc } from "firebase/firestore";
 
 import { collectFromHash } from '@fullcalendar/core/internal';
 
-export default function CalendarPage() {
-  const [currentView, setCurrentView] = useState('Daily');
+export default function CalendarPage({}) {
+  const [currentView, setCurrentView] = useState('Weekly');
   const [events, setEvents] = useState([]);
   const [eventName, setEventName] = useState('');
   const [eventDate, setEventDate] = useState('');
@@ -55,34 +55,58 @@ export default function CalendarPage() {
   
     loadSchedules();
   }, []);
+
+
+  useEffect(() => {
+    const loadCourses = async () => {
+      try {
+        const courseDocRef = doc(db, 'courses', 'Algorithms and Computer Programming');
+        const courseSnapshot = await getDoc(courseDocRef);
+        if (courseSnapshot.exists()) {
+          const courseData = { id: courseSnapshot.id, ...courseSnapshot.data() };
+          const { id, start_time, days, end_time } = courseData;
+          const extractedData = { id, start_time, days, end_time };
+          
+          console.log("Course data:", courseData);
+          console.log("Extracted data:", extractedData);
+        } else {
+          console.log("No such course document!");
+        }
+      } catch (error) {
+        console.error("Failed to fetch course:", error);
+      }
+    };
+  
+    loadCourses();
+  }, []);
   
 
 
   const createEventId = () => String(Date.now());
 
-  const handleInsertEvent = () => {
-    const newEvent = {
-      id: createEventId(),
-      name: eventName,
-      date: eventDate,
-      startHour: eventStartHour,
-      endHour: eventEndHour,
-      description: eventDescription,
-    };
+  // const handleInsertEvent = () => {
+  //   const newEvent = {
+  //     id: createEventId(),
+  //     name: eventName,
+  //     date: eventDate,
+  //     startHour: eventStartHour,
+  //     endHour: eventEndHour,
+  //     description: eventDescription,
+  //   };
 
-    const updatedSchedules = schedules.map((schedule, index) =>
-      index === currentScheduleIndex ? { ...schedule, events: [...schedule.events, newEvent] } : schedule
-    );
+  //   const updatedSchedules = schedules.map((schedule, index) =>
+  //     index === currentScheduleIndex ? { ...schedule, events: [...schedule.events, newEvent] } : schedule
+  //   );
 
-    setSchedules(updatedSchedules);
-    setEventName('');
-    setEventDate('');
-    setEventStartHour('');
-    setEventEndHour('');
-    setEventDescription('');
+  //   setSchedules(updatedSchedules);
+  //   setEventName('');
+  //   setEventDate('');
+  //   setEventStartHour('');
+  //   setEventEndHour('');
+  //   setEventDescription('');
 
-    renderScheduleView();
-  };
+  //   renderScheduleView();
+  // };
 
   const handleAddSchedule = () => {
     setSchedules([...schedules, { name: `Schedule ${schedules.length + 1}`, events: [] }]);
@@ -181,7 +205,7 @@ export default function CalendarPage() {
             />
 
             <div className={styles.buttons}>
-              <Button onClick={handleInsertEvent}>Insert</Button>
+              <Button>Insert</Button>
             </div>
           </div>
         </div>
