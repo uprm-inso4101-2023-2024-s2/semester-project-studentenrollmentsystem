@@ -87,7 +87,7 @@ export default function Card({courseName, credits, instructor, imageUrl, descrip
           <button onClick={toggleModal} className={styles.button}>{buttontext}</button>
           
           <button className={styles.button} onClick={() => setShowReviewsModal(true)}>{reviewButtonText}</button>
-          {showReviewsModal && <ReviewsModal onClose={() => setShowReviewsModal(false)} reviews={reviews} />}
+          {showReviewsModal && <ReviewsModal onClose={() => setShowReviewsModal(false)} reviews={reviews} courseName={courseName} />}
         </div>
       </div>
     </>        
