@@ -1,0 +1,60 @@
+.aboutuspage {
+    padding: 50px 20px;
+    text-align: center;
+}
+
+.header {
+    margin-bottom: 40px;
+
+    h1 {
+        font-size: 70px;
+        font-family: 'Bebas Neue', sans-serif;
+        color: #40976A;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+    }
+}
+
+.content {
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
+    font-size: 20px;
+    line-height: 1.6;
+    font-weight: bold;
+    background-image: url(https://www.uprm.edu/wdt/resources/seal-rum-uprm-1280x1280px.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    color: #000000;
+    padding: 20px;
+}
+
+.content::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.7);
+    z-index: 0; /* Set a lower z-index for the overlay */
+}
+
+.content > * {
+    position: relative;
+    z-index: 1; /* Set a higher z-index for the text */
+}
+
+.contact {
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
+    font-size: 20px;
+    line-height: 1.6;
+    font-weight: bold;
+    color: #000000;
+    padding: 20px;
+    margin-top: 40px; /* Adjust spacing from the content above */
+    padding-top: 20px; /* Add padding above the contact section */
+}
