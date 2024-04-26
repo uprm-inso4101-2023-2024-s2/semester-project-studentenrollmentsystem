@@ -16,6 +16,7 @@ import Footer from './components/footer';
 import DummyDataMaker from './data/dummy_data/DummyDataMaker/DummyDataMaker';
 import AcademicProgress from './pages/AcademicProgress';
 import ForgotPassword from './pages/ForgotPassword';
+import StudentProgram from './pages/studentProgram';
 import AboutUs from './pages/AboutUs';
 import { AuthProvider } from "./functionality/AuthContext";
 import FeedBackPage from './pages/Feedback';
@@ -30,7 +31,8 @@ export default function App() {
           <Route path="/home" element={<HomePage />} />
           <Route path="/calendar" element={<Calendar />} />
           <Route path="/signup" element={<SignUp />} />
-          <Route path="/studentpage" element={<StudentPage />} />
+          <Route path="/studentpage" element={<StudentPage currentId={"student0"}/>} />
+          <Route path="/studentpage/studentprogram" element={<StudentProgram ID={"student0"}/>}/>
           <Route path="/login" element={<LoginPage />} />
           <Route path="/filter-test" element={<FilterTest />} />
           <Route path="/offered-courses" element={<OfferedCourses />} />
