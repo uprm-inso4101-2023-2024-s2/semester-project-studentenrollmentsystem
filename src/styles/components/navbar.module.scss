@@ -25,7 +25,7 @@
         text-decoration: none;
         transition: color 0.1s;
 
-        &:hov00er {
+        &:hover {
             color: #ddd;
         }
     }
@@ -64,9 +64,8 @@
     overflow: hidden;
     z-index: 1;
     list-style-type: none;
-    /* Remove list iƒtem dots */
-    margin: 0px;
-
+    /* Remove list item dots */
+    margin: 0;
 
     a {
         color: white;
@@ -92,30 +91,49 @@
 .dateAndTime {
     font-family: 'Bebas Neue', sans-serif; 
     font-size: 26px; /* Adjust the font size as needed */
-    margin-left: auto
-    
-  }
+    margin-left: auto;
+}
 
-
-  .profile {
+.profile {
     justify-content: flex-end; 
-    margin-left:25px;
-  }
+    margin-left: 25px;
+}
   
-  .profileImage {
+.profileImage {
     width: 40px; 
     height: 40px; 
     border-radius: 50%; 
-  }
+}
 
-  
-  .logoImage {
+.logoImage {
     width: 50px;
     height: auto;
     margin-left: 40px; /* Adjust the spacing between text and image */
-  }  
-  
+}  
 
+.notificationDropdownContainer {
+    padding: 5px; // Adjust the padding values as needed
+}
+
+.scrollableList {
+    max-height: 80px; /* Set the maximum height for the list */
+    overflow-y: auto; /* Enable vertical scrolling */
+}
+
+.notificationList {
+    background-color: rgba(0, 0, 0, 0.8); /* Darker background color */
+    padding: 0px; /* Add padding to the notification list */
+    border-radius: 15px; /* Add border radius for rounded corners */
+    max-width: 450px;
+}
+
+.notificationItem {
+    display: flex;
+    align-items: center;
+    padding: 10px; /* Add padding to all sides */
+    max-width: auto;
+    text-align: left;
+}
 
 // Adjust the media query to change the display property of the hamburger menu
 @media (max-width: 768px) {
@@ -123,7 +141,6 @@
         .hamburger {
             display: block;
         }
-
 
         .navLinks {
             flex-direction: column;
@@ -133,7 +150,6 @@
 
             a {
                 font-size: 40px;
-
             }
 
             &.showMenu {

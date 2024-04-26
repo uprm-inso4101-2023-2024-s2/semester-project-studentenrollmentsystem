@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useRef } from "react";
 import styles from "../styles/components/navbar.module.scss";
 import { Link } from "react-router-dom";
-import profileImage from "../img/profile.png"; // Import your profile image
+import profileImage from "../img/profile.png";
+import NotificationDropdown from "./notificationDropdown";
 
 export default function Navbar() {
   // Determine if NavBar menu is open or closed
@@ -89,9 +90,17 @@ export default function Navbar() {
           <Link to="/studentpage/academic-progress">AcademicProgress</Link>
         </li>
         <li onClick={closeNavItem}>
+          <Link to="/about-us">About Us</Link>
+        </li>
+        <li onClick={closeNavItem}>
           <Link to="/Feedback">Feedback</Link>
         </li>
       </ul>
+      
+      <div className={styles.notificationContainer}>
+        <NotificationDropdown />
+      </div>
+      
       <div className={styles.profile}>
         <Link to="/login">
           <img src={profileImage} alt="Profile" className={styles.profileImage} />

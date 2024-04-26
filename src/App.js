@@ -1,5 +1,5 @@
 import React from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import './App.css';
 import StudentPage from './pages/studentPage'
 import Navbar from './components/navbar';
@@ -16,10 +16,13 @@ import Footer from './components/footer';
 import DummyDataMaker from './data/dummy_data/DummyDataMaker/DummyDataMaker';
 import AcademicProgress from './pages/AcademicProgress';
 import ForgotPassword from './pages/ForgotPassword';
+import StudentProgram from './pages/studentProgram';
+import AboutUs from './pages/AboutUs';
 import { AuthProvider } from "./functionality/AuthContext";
 import FeedBackPage from './pages/Feedback';
 import CalendarPage from'./pages/Calendar'
 import CompareSchedules from './pages/CompareSchedules';
+
 
 export default function App() {
   return (
@@ -30,7 +33,8 @@ export default function App() {
           <Route path="/home" element={<HomePage />} />
           <Route path="/calendar" element={<Calendar />} />
           <Route path="/signup" element={<SignUp />} />
-          <Route path="/studentpage" element={<StudentPage />} />
+          <Route path="/studentpage" element={<StudentPage currentId={"student0"}/>} />
+          <Route path="/studentpage/studentprogram" element={<StudentProgram ID={"student0"}/>}/>
           <Route path="/login" element={<LoginPage />} />
           <Route path="/filter-test" element={<FilterTest />} />
           <Route path="/offered-courses" element={<OfferedCourses />} />
@@ -39,8 +43,13 @@ export default function App() {
           <Route path="/free-electives" element={<FreeElectives />} />
           <Route path="/studentpage/academic-progress" element={<AcademicProgress />} />
           <Route path="/Feedback" element={<FeedBackPage />} />
+
           <Route path="/" element={<CalendarPage />} />
           <Route path="/compare-schedules" element={<CompareSchedules />} />
+
+          <Route path="/about-us" element={<AboutUs />} />
+          <Route path="/*" element={<Navigate to="/home" />} />
+
           {/* Add more routes as necessary */}
         </Routes>
       </AuthProvider>

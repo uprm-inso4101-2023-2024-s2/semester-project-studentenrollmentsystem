@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useReducer, useMemo } from "react";
+import { Routes, Route, Link } from 'react-router-dom';
 import styles from "../styles/pages/studentPage.module.scss";
 import Coursetable from "../components/courseTable";
 import Scheduletable from "../components/scheduleTable";
@@ -11,11 +12,97 @@ import linkBox from "../components/linkBox";
 import LinkBox from "../components/linkBox";
 import Button from "../components/button";
 import GradesEvaluation from "../functionality/evaluation";
+import { fbapp } from "../firebase";
+import {getFirestore,collection,getDocs} from 'firebase/firestore'
+import StudentProgram from './studentProgram';
 
-export default function StudentPage() {
-  var DataSet = [Datafall2023, Dataspring2024];
-  var [Data, setState] = useState(Dataspring2024);
-  var [currentSemester, setCurrentSemester] = useState(true);
+//The page works on the assumption that it already knows what student to look at to portray their data.
+export default function StudentPage({currentId}) {
+  const [count, setCount] = useState(0);
+
+  //Used to indicate what semester of data to show on screen
+  const [currentSemester,setcurrentSemester] = useState("spring2024");
+
+  //Used to know if we are currently looking at the active semester
+  const [activeSemester, setActiveSemester] = useState(true);
+
+  //Raw Data of a student's courses, exam grades and professor office hours in a given semester.
+  const [studentDataRaw, setStudentDataRaw] = useState(new Object());
+
+  //Used to find exactly how many semesters of data a student has
+  const [studentSemesterDataRaw, setStudentSemesterDataRaw] = useState([]);
+  
+  //Instantiate DB instance
+  const db = getFirestore();
+  
+  //---------------------------------------------------------------------------------------------------------------------------------------------------
+  //This area is for collecting the vital information of a student in a semester
+
+  //Collection Ref of Student
+  useEffect(()=>{
+    const semesterRef = collection(db,"students/"+currentId+"/semesters")
+    const studentRef = collection(db,"students/"+currentId+"/semesters/"+currentSemester+"/semesterData")
+
+    var studentSemesterDataRaw2 = [];
+    getDocs(semesterRef)
+    .then((snapshot)=>{
+      snapshot.docs.forEach((doc)=>{studentSemesterDataRaw2.push(doc.id)})
+      setStudentSemesterDataRaw(studentSemesterDataRaw2);
+    });
+
+    var studentDataRaw2 = new Object();
+    getDocs(studentRef)
+    .then((snapshot)=>{
+      snapshot.docs.forEach((doc)=>{studentDataRaw2[doc.id]=doc.data()})
+      setStudentDataRaw(studentDataRaw2);
+    });
+    console.log("Yippee");
+  },[count]);
+
+  //Data to be fed to curriculum and schedule components
+  var studentData = []; //For graphic schedule
+  var studentTableData = []; //For curriculum table
+  var studentOHData = []; //For office hours
+  if(studentDataRaw["courses"]!=undefined)
+  {
+    studentTableData = studentDataRaw["courses"];
+  }
+  var studentExamData = []; //For exam grades table
+  if(studentDataRaw["examGrades"]!=undefined)
+  {
+    studentExamData = studentDataRaw["examGrades"];
+  }
+  
+  //Condition used to fight weird delay with getting data
+  if(studentDataRaw["courses"]!=undefined)
+  {
+      for(var i = 0; studentDataRaw["courses"]["course" + i.toString()]!=undefined; i++)
+    {
+      //studentDataRaw["courses"]["course0"/"course1"/"course..."]["Course"->"Section"->"Credits"->"Meetings"->"Professor"->"Grades"]
+      var toAdd = "";
+      toAdd = toAdd + studentDataRaw["courses"]["course" + i.toString()]["Course"] + ",";
+      toAdd = toAdd + studentDataRaw["courses"]["course" + i.toString()]["Section"] + ",";
+      toAdd = toAdd + studentDataRaw["courses"]["course" + i.toString()]["Credits"] + ",";
+      toAdd = toAdd + studentDataRaw["courses"]["course" + i.toString()]["Meetings"] + ",";
+      toAdd = toAdd + studentDataRaw["courses"]["course" + i.toString()]["Professor"] + ",";
+      toAdd = toAdd + studentDataRaw["courses"]["course" + i.toString()]["Grades"];
+      studentData.push(toAdd);
+    }
+  }
+
+  if(studentDataRaw["professorOfficeHours"]!=undefined)
+  {
+    for(var i = 0; studentDataRaw["professorOfficeHours"]["officeHour" + i.toString()]!=undefined; i++)
+    {
+      var toAdd = "";
+      toAdd = toAdd + studentDataRaw["professorOfficeHours"]["officeHour" + i.toString()]["Professor"] + ",";
+      toAdd = toAdd + studentDataRaw["professorOfficeHours"]["officeHour" + i.toString()]["Office_Hours"] + ",";
+      toAdd = toAdd + studentDataRaw["professorOfficeHours"]["officeHour" + i.toString()]["Office"];
+      studentOHData.push(toAdd);
+    }
+  }
+  //---------------------------------------------------------------------------------------------------------------------------------------------------
+
   var [displayOH, setDisplayOH] = useState(false);
   const [currentView, setCurrentView] = useState("Daily");
 
@@ -23,33 +110,7 @@ export default function StudentPage() {
     setCurrentView(view);
   };
 
-  const changeSemester = (SEMESTER) => {
-    if (
-      SEMESTER !=
-      Data.toString(Data).slice(14, Data.toString(Data).indexOf("."))
-    ) {
-      for (var i = 0; i < DataSet.length; i++) {
-        if (
-          SEMESTER ==
-          DataSet[i]
-            .toString(DataSet[i])
-            .slice(14, DataSet[i].toString(DataSet[i]).indexOf("."))
-        ) {
-          setState(DataSet[i]);
-          setIsTable1Visible(false);
-          setTimeout(setIsTable1Visible, 1, true);
-          setIsDropdownVisible(false);
-          if (DataSet[i] != DataSet[DataSet.length - 1]) {
-            setCurrentSemester(false);
-            setDisplayOH(false);
-          } else if (DataSet[i] == DataSet[DataSet.length - 1]) {
-            setCurrentSemester(true);
-          }
-          break;
-        }
-      }
-    }
-  };
+  
   const [isTable1Visible, setIsTable1Visible] = useState(true);
   const [isDropdownVisible, setIsDropdownVisible] = useState(false);
 
@@ -761,12 +822,11 @@ export default function StudentPage() {
         </div>
         <div className={styles.curriculumside}>
           <h1 className={styles.tableTitle}>
-            {"Curriculum: " +
-              Data.toString(Data).charAt(14).toUpperCase() +
-              Data.toString(Data).slice(15, Data.toString(Data).indexOf("."))}
+            Curriculum: {currentSemester}
+           <div><Link to="/studentpage/studentprogram">Program</Link></div>
           </h1>
 
-          {currentSemester && !isTable1Visible && (
+          {!isTable1Visible && (
             <button
               className={styles.buttonOH}
               onClick={() => toggleDisplayOh()}
@@ -776,11 +836,11 @@ export default function StudentPage() {
           )}
 
           <div className={styles.tableview}>
-            {isTable1Visible && <Coursetable DATA={Data} />}
+            {isTable1Visible && <Coursetable DATA={studentTableData} />}
             {!isTable1Visible && (
               <Scheduletable
-                DATA={Data}
-                DATAOH={officeHours}
+                DATA={studentData}
+                DATAOH={studentOHData}
                 DISPLAYOH={displayOH}
               />
             )}
@@ -792,32 +852,16 @@ export default function StudentPage() {
             <button className={styles.buttonX} onClick={toggleIsTable1}>
               Switch Views
             </button>
-            
-            {isDropdownVisible &&
-              DataSet.map((data) => (
-                <button
-                  className={styles.buttonX}
-                  onClick={() =>
-                    changeSemester(
-                      data
-                        .toString(data)
-                        .slice(14, data.toString(data).indexOf("."))
-                    )
-                  }
-                >
-                  {data.toString(data).charAt(14).toUpperCase() +
-                    data
-                      .toString(data)
-                      .slice(15, data.toString(data).indexOf("."))}
-                </button>
-              ))}
-              
+
+            {isDropdownVisible && studentSemesterDataRaw.map((data)=>(
+              <button className={styles.buttonX} onClick={()=>{setcurrentSemester(data); setCount(count+1); setIsDropdownVisible(false); if(data=="spring2024"){setActiveSemester(true)}else{setActiveSemester(false)}}}>{data}</button>
+            ))}
           </div>
           
           
           <div className={styles.examview}>
             {isTable1Visible && <h1>Exam Grades</h1>}
-            {isTable1Visible && <Examtable></Examtable>}
+            {isTable1Visible && <Examtable DATA={studentExamData}></Examtable>}
           </div>
 
           {/* <div className={styles.academicCalendar}>
