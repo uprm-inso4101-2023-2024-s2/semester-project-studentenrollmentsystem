@@ -25,27 +25,6 @@ export default function App() {
   return (
     <div className="App">
       <Navbar/>
-      <Routes>
-        <Route path="/home" element={<HomePage />} />
-        <Route path="/calendar" element={<Calendar />} />
-        <Route path="/signup" element={<SignUp />} />
-        <Route path="/studentpage" element={<StudentPage />} />
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/filter-test" element={<FilterTest />} />
-        <Route path="/offered-courses" element={<OfferedCourses />} />
-        <Route path="/professor-info" element={<ProfessorReview />} />
-        <Route path= "/forgotPass" element={<ForgotPassword/>}/>
-        <Route path="/free-electives" element={<FreeElectives />} />
-        <Route path="/studentpage/academic-progress" element={<AcademicProgress />} />
-        <Route path="/about-us" element={<AboutUs />} />
-
-
-        {/* Add more routes as necessary */}
-        {/* Redirect from "/" to "/home" */}
-        <Route path="/*" element={<Navigate to="/home" />} />
-      </Routes>
-      <Footer />
-
       <AuthProvider> {/* Wrap the entire Routes block with AuthProvider */}
         <Routes>
           <Route path="/home" element={<HomePage />} />
@@ -60,7 +39,8 @@ export default function App() {
           <Route path="/free-electives" element={<FreeElectives />} />
           <Route path="/studentpage/academic-progress" element={<AcademicProgress />} />
           <Route path="/Feedback" element={<FeedBackPage />} />
-
+          <Route path="/about-us" element={<AboutUs />} />
+          <Route path="/*" element={<Navigate to="/home" />} />
           {/* Add more routes as necessary */}
         </Routes>
       </AuthProvider>
