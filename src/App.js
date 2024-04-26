@@ -1,5 +1,5 @@
 import React from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import './App.css';
 import StudentPage from './pages/studentPage'
 import Navbar from './components/navbar';
@@ -16,6 +16,7 @@ import Footer from './components/footer';
 import DummyDataMaker from './data/dummy_data/DummyDataMaker/DummyDataMaker';
 import AcademicProgress from './pages/AcademicProgress';
 import ForgotPassword from './pages/ForgotPassword';
+import AboutUs from './pages/AboutUs';
 
 export default function App() {
   return (
@@ -33,10 +34,14 @@ export default function App() {
         <Route path= "/forgotPass" element={<ForgotPassword/>}/>
         <Route path="/free-electives" element={<FreeElectives />} />
         <Route path="/studentpage/academic-progress" element={<AcademicProgress />} />
+        <Route path="/about-us" element={<AboutUs />} />
+
 
         {/* Add more routes as necessary */}
+        {/* Redirect from "/" to "/home" */}
+        <Route path="/*" element={<Navigate to="/home" />} />
       </Routes>
-      <Footer/>
+      <Footer />
     </div>
   );
 } 
