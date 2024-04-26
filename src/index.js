@@ -4,6 +4,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import App from './App';
 import './index.css';
 import { GoogleOAuthProvider } from '@react-oauth/google';
+import { UserProvider } from './UserContext';
 
 /*Microsoft remainders por si se piensa utilizar. */
 /*import { PublicClientApplication, EventType } from '@azure/msal-browser';

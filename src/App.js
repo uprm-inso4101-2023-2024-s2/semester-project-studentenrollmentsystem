@@ -18,6 +18,8 @@ import AcademicProgress from './pages/AcademicProgress';
 import ForgotPassword from './pages/ForgotPassword';
 import { AuthProvider } from "./functionality/AuthContext";
 import FeedBackPage from './pages/Feedback';
+import CalendarPage from'./pages/Calendar'
+import CompareSchedules from './pages/CompareSchedules';
 
 export default function App() {
   return (
@@ -37,7 +39,8 @@ export default function App() {
           <Route path="/free-electives" element={<FreeElectives />} />
           <Route path="/studentpage/academic-progress" element={<AcademicProgress />} />
           <Route path="/Feedback" element={<FeedBackPage />} />
-
+          <Route path="/" element={<CalendarPage />} />
+          <Route path="/compare-schedules" element={<CompareSchedules />} />
           {/* Add more routes as necessary */}
         </Routes>
       </AuthProvider>
