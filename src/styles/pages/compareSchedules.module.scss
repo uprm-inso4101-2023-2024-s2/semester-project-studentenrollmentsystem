@@ -1,0 +1,112 @@
+// Layout for the overall calendar page
+.Home {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    background-color: #f9f9f9;
+  
+    .header {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+  
+      h2 {
+        color: #333;
+      }
+  
+      .buttons {
+        display: flex;
+        gap: 10px;
+      }
+    }
+  
+    .calendarCenter {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .inputLocation {
+      margin-top: 20px;
+      width: 80%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+  
+      .inputBox {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+  
+        input, select {
+          padding: 8px;
+          margin: 5px 0;
+          border: 1px solid #ccc;
+          border-radius: 5px;
+          width: 100%;
+        }
+  
+        .buttons {
+          display: flex;
+          justify-content: center;
+          margin-top: 10px;
+        }
+      }
+    }
+  
+    .calendarContainer {
+      width: 100%;
+      margin-top: 20px;
+      display: flex;
+      justify-content: center;
+    }
+  }
+  
+  // Button styling
+  .button,
+  .addScheduleButton,
+  .removeScheduleButton {
+    padding: 10px 15px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  
+    &:hover {
+      background-color: #0056b3;
+    }
+  
+    &:disabled {
+      background-color: #ccc;
+      cursor: not-allowed;
+    }
+  }
+  
+  // Specific styles for schedule types if needed
+  .scheduleContainer {
+    margin: 10px;
+    border: 1px solid #ddd;
+    padding: 15px;
+    border-radius: 8px;
+    background-color: white;
+  }
+  
+  // Links style, particularly for navigation to compare pages
+  .compareLink {
+    margin-top: 20px;
+    padding: 8px 15px;
+    background-color: #28a745;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+  
+    &:hover {
+      background-color: #218838;
+    }
+  }
+  
