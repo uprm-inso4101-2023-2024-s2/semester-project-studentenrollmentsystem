@@ -90,6 +90,9 @@ export default function Navbar() {
           <Link to="/studentpage/academic-progress">AcademicProgress</Link>
         </li>
         <li onClick={closeNavItem}>
+          <Link to="/CourseSugg">Course Sugg</Link>
+        </li>
+        <li onClick={closeNavItem}>
           <Link to="/about-us">About Us</Link>
         </li>
         <li onClick={closeNavItem}>

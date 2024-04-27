@@ -22,6 +22,7 @@ import { AuthProvider } from "./functionality/AuthContext";
 import FeedBackPage from './pages/Feedback';
 import CalendarPage from'./pages/Calendar'
 import CompareSchedules from './pages/CompareSchedules';
+import CourseSugg from './pages/CourseSugg';
 
 
 export default function App() {
@@ -43,6 +44,7 @@ export default function App() {
           <Route path="/free-electives" element={<FreeElectives />} />
           <Route path="/studentpage/academic-progress" element={<AcademicProgress />} />
           <Route path="/Feedback" element={<FeedBackPage />} />
+          <Route path="/CourseSugg" element={<CourseSugg />}/>
 
           <Route path="/" element={<CalendarPage />} />
           <Route path="/compare-schedules" element={<CompareSchedules />} />
