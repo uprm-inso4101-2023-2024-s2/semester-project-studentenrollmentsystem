@@ -24,6 +24,7 @@ import CalendarPage from'./pages/Calendar'
 import CompareSchedules from './pages/CompareSchedules';
 import CourseSugg from './pages/CourseSugg';
 
+import CourseAdvisor from './pages/CourseAdvisor';
 
 export default function App() {
   return (
@@ -50,6 +51,7 @@ export default function App() {
 
           <Route path="/about-us" element={<AboutUs />} />
           <Route path="/*" element={<Navigate to="/home" />} />
+        <Route path="/course-advisor" element={<CourseAdvisor />} />
 
           {/* Add more routes as necessary */}
         </Routes>

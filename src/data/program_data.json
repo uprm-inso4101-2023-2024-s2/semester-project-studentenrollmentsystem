@@ -1,0 +1,19 @@
+{
+  "CIIC": {
+    "curriculum": [
+      "MATE 3031",
+      "QUIM 3131",
+      "QUIM 3133",
+      "CIIC 3015"
+    ]
+  },
+
+  "INSO": {
+    "curriculum": [
+      "MATE 3031",
+      "QUIM 3131",
+      "QUIM 3133",
+      "CIIC 3015"
+    ]
+  }
+}

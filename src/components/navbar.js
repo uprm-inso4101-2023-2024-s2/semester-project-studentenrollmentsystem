@@ -98,6 +98,9 @@ export default function Navbar() {
         <li onClick={closeNavItem}>
           <Link to="/Feedback">Feedback</Link>
         </li>
+        <li onClick={closeNavItem}>
+          <Link to="/course-advisor">Course Advisor</Link>
+        </li>
       </ul>
       
       <div className={styles.notificationContainer}>
