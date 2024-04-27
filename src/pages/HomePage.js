@@ -1,11 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "../styles/pages/homePage.module.scss";
 import News from "../components/news";
-import logo from "../img/uprm.png";
 import { Link } from "react-router-dom";
 import Button from "../components/button";
 import AcademicSchedule from "../components/AcademicSchedule";
-import { useState } from "react";
+import { initializeApp } from "firebase/app";
+import { getFirestore, collection, addDoc } from "firebase/firestore";
+import Papa from "papaparse";
+import { db } from "../firebase"; // Import db for Firestore operations
 
 export default function HomePage({ events, onAddEvent }) {
   const [localEvents, setLocalEvents] = useState([
@@ -26,6 +28,24 @@ export default function HomePage({ events, onAddEvent }) {
 
   const handleAddEvent = (newEvent) => {
     setLocalEvents((prevEvents) => [...prevEvents, newEvent]);
+  };
+
+  const handleFileUpload = (event) => {
+    const file = event.target.files[0];
+    Papa.parse(file, {
+      header: true,
+      skipEmptyLines: true,
+      complete: function (results) {
+        results.data.forEach(async (row) => {
+          try {
+            const docRef = await addDoc(collection(db, "electives"), row);
+            console.log("Document written with ID: ", docRef.id);
+          } catch (e) {
+            console.error("Error adding document: ", e);
+          }
+        });
+      },
+    });
   };
 
   return (
@@ -97,13 +117,17 @@ export default function HomePage({ events, onAddEvent }) {
                 Enroll Now
               </button>
             </div>
+            <input type="file" onChange={handleFileUpload} accept=".csv" />
           </div>
         </div>
 
         <div className={styles.calendarcontainer}>
           <div>
             <h3>PROJECTED CALENDAR</h3>
-            <AcademicSchedule events={localEvents} onAddEvent={handleAddEvent} />
+            <AcademicSchedule
+              events={localEvents}
+              onAddEvent={handleAddEvent}
+            />
           </div>
         </div>
       </div>
