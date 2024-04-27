@@ -14,9 +14,30 @@ import { collection, addDoc, getDocs, doc, getDoc } from "firebase/firestore";
 
 import { collectFromHash } from '@fullcalendar/core/internal';
 
-export default function CalendarPage({}) {
+export default function CalendarPage({ events, onAddEvent }) {
+
+  const [localEvents, setLocalEvents] = useState([
+    {
+      id: 1,
+      date: "2024-08-20",
+      title: "First Day of Classes",
+      description: "Classes begin for the Fall semester.",
+    },
+    {
+      id: 2,
+      date: "2024-12-15",
+      title: "Final Exams",
+      description: "Final examinations week for the Fall semester.",
+    },
+    // Add more events as needed
+  ]);
+
+  const handleAddEvent = (newEvent) => {
+    setLocalEvents((prevEvents) => [...prevEvents, newEvent]);
+  };
+
   const [currentView, setCurrentView] = useState('Weekly');
-  const [events, setEvents] = useState([]);
+  // const [events, setEvents] = useState([]);
   const [eventName, setEventName] = useState('');
   const [eventDate, setEventDate] = useState('');
   const [eventStartHour, setEventStartHour] = useState('');
@@ -142,11 +163,13 @@ export default function CalendarPage({}) {
       case 'Academic':
       case 'Schedule':
         return (
-          <AcademicSchedule
-            key={currentScheduleIndex}
-            events={eventsData}
-            onAddEvent={(newEvent) => setEvents([...events, { ...newEvent, id: createEventId() }])}
-          />
+          // <AcademicSchedule
+          //   key={currentScheduleIndex}
+          //   events={eventsData}
+          //   onAddEvent={(newEvent) => setEvents([...events, { ...newEvent, id: createEventId() }])}
+          // />
+
+          <AcademicSchedule key={currentScheduleIndex} events={localEvents} onAddEvent={handleAddEvent} />
         );
       default:
         return <DailySchedule key={currentScheduleIndex} events={eventsData} />;
