@@ -31,7 +31,7 @@ export default function App() {
       <AuthProvider> {/* Wrap the entire Routes block with AuthProvider */}
         <Routes>
           <Route path="/home" element={<HomePage />} />
-          <Route path="/calendar" element={<Calendar />} />
+          <Route path="/calendar" element={<CalendarPage />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/studentpage" element={<StudentPage currentId={"student0"}/>} />
           <Route path="/studentpage/studentprogram" element={<StudentProgram ID={"student0"}/>}/>
@@ -44,7 +44,6 @@ export default function App() {
           <Route path="/studentpage/academic-progress" element={<AcademicProgress />} />
           <Route path="/Feedback" element={<FeedBackPage />} />
 
-          <Route path="/" element={<CalendarPage />} />
           <Route path="/compare-schedules" element={<CompareSchedules />} />
 
           <Route path="/about-us" element={<AboutUs />} />
