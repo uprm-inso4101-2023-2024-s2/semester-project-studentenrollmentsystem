@@ -102,7 +102,7 @@ export default function HomePage({ events, onAddEvent }) {
 
         <div className={styles.calendarcontainer}>
           <div>
-            <h3>PROJECTED CALENDAR</h3>
+            <h3>PROJECTED ACADEMIC CALENDAR</h3>
             <AcademicSchedule events={localEvents} onAddEvent={handleAddEvent} />
           </div>
         </div>
