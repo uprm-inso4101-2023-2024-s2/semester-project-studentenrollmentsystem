@@ -35,7 +35,7 @@ export default function CalendarPage() {
       console.error("Current schedule index is out of bounds.");
       return; // Exit the function if the index is invalid
     }
-  
+
     const newEvent = {
       id: Date.now().toString(),
       name: eventName,
@@ -44,12 +44,12 @@ export default function CalendarPage() {
       endHour: eventEndHour,
       description: eventDescription,
     };
-  
+
     const scheduleDocRef = doc(db, `users/${userId}/schedules`, schedules[currentScheduleIndex].id);
     await updateDoc(scheduleDocRef, {
       events: arrayUnion(newEvent)
     });
-  
+
     // Optimistically update the local state
     const updatedSchedules = schedules.map((schedule, index) => {
       if (index === currentScheduleIndex) {
@@ -57,7 +57,7 @@ export default function CalendarPage() {
       }
       return schedule;
     });
-  
+
     setSchedules(updatedSchedules);
     setEventName('');
     setEventDate('');
@@ -65,7 +65,7 @@ export default function CalendarPage() {
     setEventEndHour('');
     setEventDescription('');
   };
-   
+
 
   const handleAddSchedule = async () => {
     const newSchedule = { name: `Schedule ${schedules.length + 1}`, events: [] };
@@ -125,11 +125,13 @@ export default function CalendarPage() {
       <div className={styles.calendarCenter}>
         <div className={styles.inputLocation}>
           <h2>Event Details</h2>
-          <input type="text" value={eventName} onChange={(e) => setEventName(e.target.value)} placeholder="Event Name" className={styles.dateInput} />
-          <input type="date" value={eventDate} onChange={(e) => setEventDate(e.target.value)} placeholder="Pick a date" className={styles.dateInput} />
-          <input type="time" value={eventStartHour} onChange={(e) => setEventStartHour(e.target.value)} placeholder="Start Hour" className={styles.hourInput} />
-          <input type="time" value={eventEndHour} onChange={(e) => setEventEndHour(e.target.value)} placeholder="End Hour" className={styles.hourInput} />
-          <Button onClick={handleInsertEvent}>Insert</Button>
+          <div className={styles.actualInput}>
+            <input type="text" value={eventName} onChange={(e) => setEventName(e.target.value)} placeholder="Event Name" className={styles.dateInput} />
+            <input type="date" value={eventDate} onChange={(e) => setEventDate(e.target.value)} placeholder="Pick a date" className={styles.dateInput} />
+            <input type="time" value={eventStartHour} onChange={(e) => setEventStartHour(e.target.value)} placeholder="Start Hour" className={styles.hourInput} />
+            <input type="time" value={eventEndHour} onChange={(e) => setEventEndHour(e.target.value)} placeholder="End Hour" className={styles.hourInput} />
+            <Button onClick={handleInsertEvent}>Insert</Button>
+          </div>
         </div>
         <div className={styles.calendarContainer}>
           {renderScheduleView()}
